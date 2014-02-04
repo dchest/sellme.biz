@@ -1,10 +1,10 @@
 Sellme.biz
 ==========
 
-This is a source code for my blog <http://sellme.biz>.
+This is a source code for my blog <https://sellme.biz>.
 If you found a mistake or a typo, feel free to submit a pull request.
 
-Это исходники моего блога <http://sellme.biz>.
+Это исходники моего блога <https://sellme.biz>.
 Если найдете ошибку или опечатку, не стесняйтесь присылать пулл-реквесты.
 
 
