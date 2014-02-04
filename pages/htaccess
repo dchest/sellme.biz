@@ -17,9 +17,11 @@ DirectoryIndex index.html index.htm
 # 404 error
 ErrorDocument 404 /404.html
 
-# Redirect http to https
+# Redirect http to https everyone
+# except for FeedBurner, as it can't handle our HTTPS.
 RewriteEngine On
 RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_USER_AGENT} !FeedBurner 
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
 # Redirect sellme.ru to sellme.biz

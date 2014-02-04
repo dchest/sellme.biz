@@ -18,16 +18,16 @@ layout: none
 
     {{range .Site.Posts.Limit 10 }}
     <entry>
-        <title type="text">{{ .Meta.title }}</title>
+        <title type="text"><![CDATA[{{ .Meta.title }}]]></title>
 	<id>{{ $.Site.URL }}/{{ .Meta.id }}</id>
         <link rel="alternate" type="text/html" href="{{$.Site.URL}}{{.Meta.url}}"/>
         <updated>{{.Date.Format "2006-01-02T15:04:05Z07:00" }}</updated>
         <published>{{.Date.Format "2006-01-02T15:04:05Z07:00" }}</published>
 	{{with .Meta.summary}}
-	<summary type="text">{{.}}</summary>
+	<summary type="text"><![CDATA[{{. | xml}}]]></summary>
 	{{end}}
 	<!-- TODO categories -->
-        <content type="html" xml:base="{{$.Site.URL}}/">{{ .Content | xml }}</content>
+	<content type="html" xml:base="{{$.Site.URL}}/"><![CDATA[{{ .Content | xml }}]]></content>
     </entry>
     {{end}}
 
