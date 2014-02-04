@@ -1,0 +1,25 @@
+---
+layout: default
+title: Страница не найдена
+---
+<div style="max-width: 740px">
+
+<h2>Страница не найдена.</h2>
+
+<p>К сожалению, запрошенная страница не найдена.
+Скорее всего, она куда-то пропала при переезде.
+Пожалуйста, сообщите об этом автору по адресу
+<a href="mailto:dmitry@sellme.biz">dmitry@sellme.biz</a>.
+Спасибо!</p>
+
+<a href="/">Перейти на главную страницу</a>
+
+<h3>Последние посты</h3>
+<ul>
+  {{range .Site.Posts.Limit 10}}
+  <li><a href="{{.Meta.url}}">{{.Meta.title}}</a></li>
+  {{end}}
+  <li><a href="/archive/"><b>Список всех постов</b></a></li>
+</ul>
+
+</div>

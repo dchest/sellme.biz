@@ -1,0 +1,299 @@
+---
+author: "dchest"
+category: "Программирование"
+date: 2008-06-24 16:15:17 +00:00
+primary_category: "Программирование"
+status: "Publish"
+title: "Я люблю какао. Часть 1"
+---
+<p>Ненавижу какао, на самом деле.</p>
+<p>В этой серии заметок я буду хвастаться прелестями <a href="http://developer.apple.com/cocoa/">Cocoa</a>, чтобы вы, веб- виндоус- линукс- девелоперы завидовали, а непрограммисты еще раз подумали, зачем же они подписаны на мой блог.</p>
+<p>Сегодня, дорогие ребята, мы поговорим о многопоточности... дурацкое слово... о мультитредности. Все знают, как сложно писать мультитредные программы. Сихронизация, управление тредами и т.п.</p>
+<p>Пример: вам нужно сделать какие-нибудь более-менее долгие манипуляции с сотней объектов. Чтобы не заставлять пользователя ждать пока операция завершится — пускай себе дальше в интерфейсе копается — нам надо запустить эти манипуляции в отдельном треде. Окей, но что если у юзера многоядерный процессор? Например, четыре ядра. Чтобы ускорить манипуляции, нужно создать не один тред, скажем, три или четыре — пусть компьютер работает на полную мощность! А если у пользователя 100 ядер? Блин, придется либо забить на все это дело и сделать один-два-три-четыре треда, либо узнавать количество ядер и кодить какую-нибудь штуку, которая запускала бы нужное количество тредов.</p>
+<p>Добро пожаловать в Cocoa! Здесь есть классы <code>NSOperation</code> и <code>NSOperationQueue</code> (начиная с Mac OS X 10.5). Делаем подкласс <code>NSOperation</code>, в котором описываем нужную операцию, создаем 100 экземпляров этого класса, а потом просто ставим их всех в очередь — добавляем в <code>NSOperationQueue</code>. Все! Дальше Cocoa при участии ядра операционки само решит сколько тредов нужно создавать, когда их запускать, и какое количество запустить одновременно, учитывая особенности компьютера и его текущую загруженность. Ахххх, какое удовольствие! (Кстати, если нужны какие-нибудь зависимости, например, одна операция не может сработать пока не закончится другая — пожалуйста, и это тоже можно).</p>
+<p>Вот так. Cocoa FTW. Давайте, теперь оправдывайтесь.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">ksavelev</span> <span class="comment-date">2008-06-24 16:08</span>
+</div>
+<div class="comment-body">
+<p>Для выньдевелоперов есть CCR. И скоро выйдет ParallelFX (пока beta). CCR помощнее, ParallelFX попроще. Думаю скоро вам и линуксоиды ответят.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://code-inside-out.blogspot.com/">meowth</a></span> <span class="comment-date">2008-06-24 17:08</span>
+</div>
+<div class="comment-body">
+<p>Разработчики дотнет сразу же узнали давно и горячо полюбившийсч им ThreadPool/WorkingQueue, а ожидающие сx09 оживленно заговорили про будущий релиз фьючерсов :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 17:08</span>
+</div>
+<div class="comment-body">
+<p>meowth: Нее, это не ThreadPool.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Rafiki</span> <span class="comment-date">2008-06-24 18:08</span>
+</div>
+<div class="comment-body">
+<p>Не TheradPool, но BackgrowndWorker, причём немного кастрированный :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://biztimes.ru/">Anton Gladchenko</a></span> <span class="comment-date">2008-06-24 18:08</span>
+</div>
+<div class="comment-body">
+<p>Cocoa - штука интересная, сейчас как раз изучаю. Непривычно немного, но крайне интересно.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.salikhovilyas.ru">Ильяс Салихов</a></span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>Единсвенное не пойму, почему в качестве базового языка разработки Apple выбрала ObjectiveC, противоречиво, кто-то хвалит его, кто-то нет...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>pthreads + MPProcessorsScheduled + нормальная архитектура и у меня особых проблем с портированием многопоточной софтины с винды не возникло.</p>
+<p>по описанию в посте - обычный пул потоков, чесслово. ну разве что зависимостей нет. или не требовались и не нашел их. это все красиво, пока не встает дурацкой задачи обрабатывать часть элементов как-нибудь иначе. например строго последовательно или строго в одном потоке или еще как-нибудь. тогда все волшедные фреймворки приходится выкидывать и тупо кодить с нуля ;)</p>
+<p>вообще, кокоа, это интересно. более того, лет так 10 назад это было вообще революционно. но сейчас все эти фичи уже появились в более "обычных" языках. а кокоа будет страдать из-за obj-c, который, все-таки, ужасен ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>во, предлагаю тебе тему для второй части: "как легко и просто сделать своими руками NSZoomScrollView с центрированием контента, если он маленький"</p>
+<p>в леопарде, вроде, готовый класс сделали. а в тигре мне сейчас ой как весело ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>Rafiki: BackgroundWorker... а очередь где?</p>
+<p>ksavelev: ParallelFX действительно интересная штука. Мне понравилось: Parallel.For(....)</p>
+<p>Виталий: ага, чего еще написать? :)) Насчет "строго последовательно или строго в одном потоке" — см. <a href="http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/OperationObjects/chapter_3_section_4.html#//apple_ref/doc/uid/10000057i-CH14-SW17" rel="nofollow">Configuring Dependencies Among Operation Objects</a>.</p>
+<p>Ильяс: потому что ObjC — прелестнейший язык! Потом об этом напишу.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>а в третьей части можешь рассказать как легко и весело всякие модальные окошки блокируют таймеры, если их не зарегистрировать в трех разных местах.</p>
+<p>дури везде полно. я в первые три дня изучения кокоа "подвесил" тамошний прогресс-бар. в тигре. в леопарде не повторяется. механизм простой: после пары -setHidden:YES/NO он перестает обновляться, пока в него не кликнешь.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий: а как насчет центрирования контента прямо в NSView, который содержится в NSScrollView?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий: конечно, багов везде полно :)</p>
+<p>Насчет таймеров — нахрен они вообще нужны? :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>setHidden? А как насчет removeFromSuperview? :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>т.е. NSView полезет через NSClipView, чтобы узнать -boundSize у NSScrollView и поресайзить себя под этот размер? как-то неизящно для кокоа ;)</p>
+<p>я нашел в инете решение через сабкласс NSClipView и ручное создание всей этой троицы, в обход IB. некузяво.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p><blockquote></p>
+<p>я нашел в инете решение через сабкласс NSClipView и ручное создание всей этой троицы, в обход IB. некузяво.</p>
+<p></blockquote></p>
+<p>Так это как раз отлично. Так и надо )</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>А зачем ручное создание, кстати? :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>removeFromSuperView? надо глянуть. не видел. а обратно я его поставить смогу потом? рект запоминать придется?</p>
+<p>мне таймеры нужны в программе. для "немгновенной" реакции на действия пользователя (запускать тяжелые вычисления не сразу после клика, а чуть позже). для обновления интерфейса на основании данных от нескольких потоков с предсказуемой периодичностью. есть в них смысл, есть.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>зачем ручное - хз. я в IB не нашел куда ткнуть, чтобы после заворачивания вьюхи в скролл, достучаться до клипа.</p>
+<p>эту проблему оставил завтра на утро. пока у меня контент отцентрирован по левому нижнему краю (кстати, перевернутая ось OY - тема для четвертого поста, я считаю ;).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 20:08</span>
+</div>
+<div class="comment-body">
+<p>Я как раз эти setHidden не использовал (потому что они себя ведут не так, как я ожидал), всегда удалял/добавлял в superview. Обратно можно, только не забыть retain. Насчет ректов не помню.</p>
+<p>Таймеры всегда ненавидел. Пусть лучше потоки шлют нотификации чере NSDistributedNotificationCenter. А зачем не сразу запускать?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 20:08</span>
+</div>
+<div class="comment-body">
+<p>ну если есть контрол, который надо показывать изредка, то что использовать, как не -setHidden, как считаешь? ;)</p>
+<p>зачем не сразу? представь, что есть два метода отрисовки картинки на вьюхе: быстрый и некачественный и медленный и качественный. юзер мышкой подвигал, поменял что-то, вьюха перерисовалась быстро, но некачественно. в этот момент начинается отсчет, скажем, 5-ти секунд. если юзверь за это время решает еще что-то поменять, то 5 секунд начинают отсчитываться заново. а если он ничего уже не делает, то через 5 секунд запускается более "тяжелый" алгоритм отрисовки (тут как раз прогресс появлялся, который не полз ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 20:08</span>
+</div>
+<div class="comment-body">
+<p>А если view mode в IB поменять на дерево, там оно есть?</p>
+<p>Перевернутая ось — ага, совсем непривычно поначалу.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 20:08</span>
+</div>
+<div class="comment-body">
+<p>смотреть надо, я сейчас в винде. идея, в принципе, понятна - завтра гляну что там к чему. обидно, что они для скролла не сделали тупой алигн. как для текста. все бы проблемы решились. или анкоры вьюхи читали бы. ан-нет: в левый нижний угол и все.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-24 20:08</span>
+</div>
+<div class="comment-body">
+<p>поначалу... да она по-жизни непривычна.</p>
+<p>почему во вьюхе ось вверх, а в картинке - вниз? ;))</p>
+<p>а мне рамку Crop'а нужно сделать для картинки. так весело переводить координаты туда-сюда, блин.</p>
+<p>думал -isFlipped поможет - хрен там. картинка перевернулась, мать ее ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 20:08</span>
+</div>
+<div class="comment-body">
+<p><blockquote></p>
+<p>зачем не сразу? представь, что есть два метода отрисовки картинки на вьюхе</p>
+<p></blockquote></p>
+<p>Да, makes sense.</p>
+<p><blockquote></p>
+<p>почему во вьюхе ось вверх, а в картинке - вниз? ;))</p>
+<p>а мне рамку Crop'а нужно сделать для картинки. так весело переводить координаты туда-сюда, блин.</p>
+<p>думал -isFlipped поможет - хрен там. картинка перевернулась, мать ее ;)</p>
+<p></blockquote></p>
+<p>А если setFlipped:YES на картинке и на view? :) </p>
+<p>А картинки, кстати, не все с верхнего левого угла "начинаются", на сколько помню :) convertRect:fromView: на них!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-24 20:08</span>
+</div>
+<div class="comment-body">
+<p>И все-таки, про скроллвью. Ты же ведь ему даешь NSView свой с картинкой? Если она маленькая, почему бы в этом NSView и не отцентрировать?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.seocafe.info">Fan</a></span> <span class="comment-date">2008-06-24 21:08</span>
+</div>
+<div class="comment-body">
+<p>не дал я ладу с этой Cocoa... Увы.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-25 00:08</span>
+</div>
+<div class="comment-body">
+<p>есть потомок NSView, который делает с картинкой то, что мне надо. у него есть метод </p>
+<p>- (void) setImage: (NSImage *) img {...}</p>
+<p>в нем я retain'ю картинку и максимум, что могу сделать, это вызвать себе же -setFrame: NSMakeFrame(0, 0, w, h) по размерам этой картинки. это я и делаю.</p>
+<p>чтобы мелкую картинку центрировать, надо знать размер видимой области скроллвью, это двумя уровнями выше. мне кажется уродливым лезть из класса так "высоко".</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-06-25 00:08</span>
+</div>
+<div class="comment-body">
+<p>я может нечетко выразился. картинка не то, чтобы мелкая. она, вообще говоря, произвольного размера (т.к. это все-таки NS_Zoom_ScrollView) - какой масштаб задам, такого размера она и будет. если она больше клиентской области скроллера, то все шоколадно. а вот если меньше, то надо уже центрировать. ну а про это я уже выше написал</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-25 01:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий:</p>
+<p>Нормально,</p>
+<p>NSView:</p>
+<p><blockquote></p>
+<p><b>enclosingScrollView</b></p>
+<p>Returns the nearest ancestor NSScrollView object containing the receiver (not including the receiver itself); otherwise returns nil.</p>
+<p>- (NSScrollView *)enclosingScrollView</p>
+<p></blockquote></p>
+<p>А можно и не лезть, а получать NSNotification о том, что картинку/скроллвью ресайзнули.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-06-30 22:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий, сейчас писал код с модальным sheet и таймером. Таймер сработал :) У тебя таймер случайно не в run loop другого треда добавляется?</p>
+</div>
+</div>
+</div>

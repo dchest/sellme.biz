@@ -1,0 +1,100 @@
+---
+author: "dchest"
+date: 2009-09-20 19:03:21 +00:00
+markup: markdown
+status: "Publish"
+title: "MacRuby"
+---
+[MacRuby](http://macruby.org) — это Ruby, портированный на Objective-C runtime и использующий ее сборщик мусора. Над проектом работают разработчики из Apple. Пока еще разработка в самом разгаре, скоро будет выпущена версия 0.5, которая построена на [LLVM](http://llvm.org/) и может *компилировать* Ruby в машинный язык.
+
+Это очень классный и важный проект. 
+
+Во-первых, Ruby известен своей плохой производительностью. Использование LLVM может улучшить ее (Google, кстати, по этому же соображению [портирует Python на LLVM](http://code.google.com/p/unladen-swallow/)).
+
+Во-вторых, использование Ruby в связке с Cocoa упростит написание десктопных приложений. Да, сейчас у Apple есть Ruby (RubyCocoa) и Python (PyObjC) bridges в Cocoa, и уже есть как опенсорсные, так и [коммерческие](http://www.checkoutapp.com/) приложения, написанные на этих двух языках. Но их производительность не так высока, как производительность откомпилированных программ, написанных на Objective-C, к тому же, их приходится распространять вместе с исходниками (код на питоне можно распространять в .pyc, но они легко декомпилируются).
+
+Базовые классы в MacRuby построены на классах Cocoa — любой класс является наследником `NSObject`. Строки — `NSMutableString`, массивы — `NSMutableArray` и т.д. При этом, у них помимо методов Objective-C есть и Ruby-методы, и они являются полноценными Ruby-объектами. Например:
+
+    $ macirb
+    irb> s = "hello"
+	=> "hello"
+	irb> s.class
+	=> NSMutableString
+	irb> s.upcase
+	=> "HELLO"
+	irb> s.uppercaseString
+	=> "HELLO"
+	
+    irb> a = ["one", "two"]
+	=> ["one", "two"]
+	irb> a.class
+	=> NSMutableArray
+	irb> a.is_a? Array
+	=> true
+	irb> a[0]
+	=> "one"
+	irb> a[1]
+	=> "two"
+	irb> a.objectAtIndex(0)
+	=> "one"
+
+Objective-C методы состоящие из нескольких частей, например `setValue:forKey:` в RubyCocoa вызывались так:
+
+	obj.setValue_forKey_("hello", "greeting")
+
+Это смотрелось не очень хорошо. В MacRuby можно делать так:
+
+	obj.setValue "hello", forKey:"greeting"
+
+Что повышает читаемость и удобство написания.
+
+Сравним MacRuby с Objective-C?
+
+Objective-C:
+
+	@interface OrderedTreeController : NSTreeController
+    - (void)updateSortOrderForNode:(NSTreeNode *)node;
+	@end
+
+	@implementation OrderedTreeController
+
+	- (void)updateSortOrderForNode:(NSTreeNode *)node
+	{
+		[[node representedObject] setValue:
+			[NSNumber numberWithInteger:[[node indexPath] lastIndex]] 
+			forKey:@"sortOrder"];
+		for (NSTreeNode *child in [node childNodes]) {
+			[self updateSortOrderForNode:child];
+		}
+	}
+	
+	@end
+
+
+MacRuby:
+
+	class OrderedTreeController < NSTreeController
+
+	  def updateSortOrderForNode(node)
+        node.representedObject.sortOrder = node.indexPath.lastIndex 
+        node.childNodes.each { |child| updateSortOrderForNode(child) }
+	  end
+
+	end
+
+Несколько замечаний. Во-первых, в MacRuby числа не надо конвертировать в `NSNumber`.
+
+	irb> n = 3
+	=> 3
+	irb> n.is_a? NSNumber
+	=> true
+	irb> n.is_a? Fixnum
+	=> true
+
+
+Во-вторых, Objective-C версию можно было бы написать с `setSortOrder:` вместо `setValue:forKey:`, но тогда классу нужно было бы дать знать о `setSortOrder:` через включение заголовочного файла или добавление категории к `NSObject`. Тем не менее, разница очевидна: мы теряем проверку типов во время компиляции, но получаем легче читаемый и изменяемый код.
+
+MacRuby можно взять с <http://macruby.org>, только учтите, что последний "стабильный" релиз (0.4) сделан не на LLVM, а на YARV, так что берите [trunk с SVN](http://www.macruby.org/source.html) или [GitHub](http://github.com/masterkain/macruby/tree/master), либо свежий [nighly build](http://macruby.icoretech.org/). Дистрибутив включает шаблоны проектов для Xcode, но пока со сборкой в интерпретируемом (точнее JIT-компилированном) виде, однако компилировать можно из командной строки (читайте README и [рассылку](http://lists.macosforge.org/mailman/listinfo.cgi/macruby-devel), особенно [это письмо с примерами](http://lists.macosforge.org/pipermail/macruby-devel/2009-July/002062.html)). На сайте также есть небольшой [туториал](http://www.macruby.org/documentation/tutorial.html).
+
+Кстати, приложение, сделанное в MacRuby можно распространять без Ruby и прочих добавок — шаблоны включают MacRuby.framework  и его достаточно (а когда сделают нормальную компиляцию, можно будет обойтись и без него).
+

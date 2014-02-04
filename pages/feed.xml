@@ -1,0 +1,34 @@
+---
+layout: none
+---
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+    {{with .Page.title}}
+    <title type="text" xml:lang="en">{{.}}</title>
+    {{else}}
+    <title type="text" xml:lang="en">{{.Site.Name}}</title>
+    {{end}}
+    <link rel="self" type="application/atom+xml" href="{{.Site.URL }}{{.Page.url}}" />
+    <link rel="alternate" type="text/html" href="{{.Site.URL }}"/>
+    <updated>{{.Site.Date.Format "2006-01-02T15:04:05Z07:00" }}</updated>
+    <author>
+        <name>{{.Site.Author}}</name>
+    </author>
+    <id>{{.Site.URL}}/{{with .Page.id}}{{.}}{{end}}</id>
+
+    {{range .Site.Posts.Limit 10 }}
+    <entry>
+        <title type="text">{{ .Meta.title }}</title>
+	<id>{{ $.Site.URL }}/{{ .Meta.id }}</id>
+        <link rel="alternate" type="text/html" href="{{$.Site.URL}}{{.Meta.url}}"/>
+        <updated>{{.Date.Format "2006-01-02T15:04:05Z07:00" }}</updated>
+        <published>{{.Date.Format "2006-01-02T15:04:05Z07:00" }}</published>
+	{{with .Meta.summary}}
+	<summary type="text">{{.}}</summary>
+	{{end}}
+	<!-- TODO categories -->
+        <content type="html" xml:base="{{$.Site.URL}}/">{{ .Content | xml }}</content>
+    </entry>
+    {{end}}
+
+</feed>

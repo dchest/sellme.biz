@@ -1,0 +1,249 @@
+---
+author: "dchest"
+category: "Технологии"
+date: 2008-05-25 20:16:08 +00:00
+primary_category: "Технологии"
+status: "Publish"
+tags: "bzr,git,svn,\"контроль версий\""
+title: "bzr — отстой"
+---
+<p>Раз уж пошла такая пьянка (штампы — отстой!) в описании отстоев (кстати, вахтерши в подъезде — отстой!), то нельзя не сказать о bzr.</p>
+<p><a href="http://bazaar-vcs.org/">Bazaar</a> — это такая распределенная система контроля версий, по-отстойному названная, видимо, в честь отстойной книжки <em>The Cathedral and the Bazaar</em>, которую написал <a href="http://www.youtube.com/watch?v=K57c13j1yUo">красавец Eric S. Raymond</a>, который лучше бы писал fetchmail, а не книжки, которые я не читал и не буду. На базаре делают <a href="http://www.ubuntu.com">убунту</a>. Bzr отличается от других тем, что документацию для него пишут живые люди, а не хрустальные черепа из "Индианы Джонса".</p>
+<p>Так вот, это отстойная система по одной причине:</p>
+<p><pre><code></p>
+<p>added "Mémoires.xcodeproj"</p>
+<p>bzr: ERROR: exceptions.KeyError: u'Me\u0301moires.xcodeproj'</p>
+<p>Traceback (most recent call last):</p>
+<p>  File "/Library/Python/2.5/site-packages/bzrlib/commands.py", line 846, in run_bzr_catch_errors</p>
+<p>    return run_bzr(argv)</p>
+<p>  File "/Library/Python/2.5/site-packages/bzrlib/commands.py", line 797, in run_bzr</p>
+<p>    ret = run(*run_argv)</p>
+<p>  File "/Library/Python/2.5/site-packages/bzrlib/commands.py", line 499, in run_argv_aliases</p>
+<p>    return self.run(**all_cmd_args)</p>
+<p>  File "/Library/Python/2.5/site-packages/bzrlib/builtins.py", line 373, in run</p>
+<p>    no_recurse, action=action, save=not dry_run)</p>
+<p>  File "/Library/Python/2.5/site-packages/bzrlib/mutabletree.py", line 52, in tree_write_locked</p>
+<p>    return unbound(self, *args, **kwargs)</p>
+<p>  File "/Library/Python/2.5/site-packages/bzrlib/mutabletree.py", line 412, in smart_add</p>
+<p>    this_ie = parent_ie.children[directory.base_path]</p>
+<p>KeyError: u'Me\u0301moires.xcodeproj'</p>
+<p>bzr 1.5 on python 2.5.1 (darwin)</p>
+<p>arguments: ['/usr/local/bin/bzr', 'add']</p>
+<p>encoding: 'UTF-8', fsenc: 'utf-8', lang: 'ru_RU.UTF-8'</p>
+<p>plugins:</p>
+<p>  bzrtools             /Library/Python/2.5/site-packages/bzrlib/plugins/bzrtools [1.5.0]</p>
+<p>  fastimport           /Users/dmitry/.bazaar/plugins/fastimport [unknown]</p>
+<p>  launchpad            /Library/Python/2.5/site-packages/bzrlib/plugins/launchpad [unknown]</p>
+<p>  qbzr                 /Library/Python/2.5/site-packages/bzrlib/plugins/qbzr [0.9.0]</p>
+<p>  rebase               /Library/Python/2.5/site-packages/bzrlib/plugins/rebase [0.3.0dev0]</p>
+<p>*** Bazaar has encountered an internal error.</p>
+<p>    Please report a bug at https://bugs.launchpad.net/bzr/+filebug</p>
+<p>    including this traceback, and a description of what you</p>
+<p>    were doing when the error occurred.</p>
+<p></code></pre></p>
+<p>В общем, файл с <b>é</b> в нее не добавляется. На маке. Вот <a href="https://lists.ubuntu.com/archives/bazaar/2007q2/024773.html">объяснение</a>:</p>
+<p><blockquote></p>
+<p>Thanks for the bug report. This is sort of a "known bug" with Mac's</p>
+<p>filesystem. In that the rest of the world considers ü to be a single</p>
+<p>character: u'\xfc' (LATIN SMALL LETTER U WITH DIAERESIS),</p>
+<p>Mac re-normalizes it to 2 u'u\u0308' ('u' and '\u0308' COMBINING DIAERESIS).</p>
+<p>Now, Unicode specifies that those are both valid ways of representing</p>
+<p>the concept of ü.</p>
+<p>However, it means that if you create u'\xfc' on Linux, and commit. And</p>
+<p>then checkout on Mac, all of the sudden your existing file is marked as</p>
+<p>missing, and the new file is marked as unknown.</p>
+<p>In bzr 0.14 and earlier we tried to account for this fact. So when files</p>
+<p>were added, on non-Mac we would check that they were properly</p>
+<p>normalized, and on Mac we would re-normalize (to account for Mac's choice).</p>
+<p>However this causes some other problems, because other platforms don't</p>
+<p>always normalize (Win32 seems to create wide character japanese</p>
+<p>parenthesis).</p>
+<p>All other systems that I tested just ignore this (and live with the fact</p>
+<p>that a versioned file now has changed name on Mac, and thus forces all</p>
+<p>other platforms to use a different name).</p>
+<p>So we decided to stop fighting as hard for what we considered</p>
+<p>"correctness" in 0.15. But obviously some of the old code remains.</p>
+<p>If you just want your import to succeed, you can:</p>
+<p>   1) Use WorkingTree3 (bzr init --knit) which is the format for 0.14</p>
+<p>      and earlier.</p>
+<p>   2) Take out all calls to 'osutils.normalized_filename()'.</p>
+<p>The internals will then treat paths by whatever they exist on disk, and</p>
+<p>it is up to the user to deal with the fact that Mac OS X is breaking</p>
+<p>their filenames. (which is what svn, cvs, git, darcs, and hg do).</p>
+<p>I'm sorry this is causing a problem for you. We were trying to be nicer,</p>
+<p>but it seems to be causing more problems than it helped.</p>
+<p></blockquote></p>
+<p>Что в дословном переводе значит:</p>
+<p><blockquote></p>
+<p>В Линуксе буковка ü — это буковка LATIN SMALL LETTER U WITH DIAERESIS, на Маке — 'u' and '\u0308' COMBINING DIAERESIS. Раньше мы делали так, чтобы это значило одно и тоже, но так как мы тормоза и не можем писать нормальный код, это ломало еще какую-то фигню в Винде, поэтому мы просто забили на это и предлагаем мак-юзерам следующее решение:</p>
+<p>— использовать старый дебильный формат репозитория;</p>
+<p>— пройтись по миллиону файлов кода bzr и закомментить osutils.normalized_filename();</p>
+<p>— идти в жопу.</p>
+<p></blockquote></p>
+<p>Поэтому я перешел обратно на git, хоть в нем ID коммитов и выглядят как ДНК обезьяны: 0cc2815f7c736e44961d0e67a07fde80ba0737ab ("Скажите, какая версия Mémoires у вас?" — "Версия 1.1 (оу-си-си-ту-эйт-уан-файв-эф-севен-си-севен-фри-сикс-и-фор-фор-найн-сикс-уан-ди-оу-и-сикс-севен-эй-оу-севен-эф-ди-и-эйт-оу-би-эй-оу-севен-фри-севен-эй-би)!").</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://oleganza.wordpress.com">Oleg Andreev</a></span> <span class="comment-date">2008-05-25 21:08</span>
+</div>
+<div class="comment-body">
+<p>Ты же знаешь, что в гите принято сокращать номера коммитов там, где это некритично. В случае номера билда можно сокращать до первых 4-6 символов. И будет ДНК не обезьяны, а всего лишь амебы.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-25 22:08</span>
+</div>
+<div class="comment-body">
+<p>Ага, но фигово, что они не инкрементные.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">dimas</span> <span class="comment-date">2008-05-26 01:08</span>
+</div>
+<div class="comment-body">
+<p>А не проще пропатчить эту самую normalized_filename, хотя бы заменив на пустышку? И править мало, и проблема будет решена.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-26 02:08</span>
+</div>
+<div class="comment-body">
+<p>dimas: я к такому решению и пришел, но мне не захотелось с этим возиться — раз сами разработчики игнорируют юзеров, то ну их нафик.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">and</span> <span class="comment-date">2008-05-26 11:08</span>
+</div>
+<div class="comment-body">
+<p>А не пробовали ещё Mercurial? Если да, то что в нём не понравилось?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.boxshot3d.com">Виталий</a></span> <span class="comment-date">2008-05-26 12:08</span>
+</div>
+<div class="comment-body">
+<p>белые разумные люди, с длиной днк превышающей длину номера коммита git, уже давно пользуются SVN. к которой и под мак есть неплохая морда, под винду так вообще - сказка.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-26 13:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий, ха-ха, неандертальцы что ли? Еще про CVS скажите.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.boxshot3d.com">Виталий</a></span> <span class="comment-date">2008-05-26 14:08</span>
+</div>
+<div class="comment-body">
+<p>нет, про CVS я ничего не скажу.</p>
+<p>а вот GIT я поставил на днях и понял, что разум для его использования потребуется минимум инопланетный. и если единственным бенефитом при этом будет возможность иметь много репозиториев (что ни в условиях индивидуальной разработки, ни в условиях софтверной компании нах не надо), то затраты на его внедрение (а с его интерфейсом под винду это отдельная песня, и не надо про командную строку) не окупятся вовсе.</p>
+<p>смысл, сестра, смысл? я помню ты что-то там говорил про то, что SVN создает свои каталоги везде. это причина для перехода на GIT? или у тебя тысяча программеров по миру, как у Линуса? я уже лет пять пользуюсь SVN'ом, если не больше. и в офисе, где куча проектов под ним лежит. и дома, где тоже много всего туда засунуто. никаких претензий к системе.</p>
+<p>а ты вот мечешься ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-26 14:08</span>
+</div>
+<div class="comment-body">
+<p>Смысл вот тут — <a href="/2007/12/11/linus-torvalds-on-git" rel="nofollow">https://sellme.biz/2007/12/11/linus-torvalds-on-git</a> (фиг с Линусом, там мои комменты).</p>
+<p>Насчет разума — </p>
+<p>git init</p>
+<p>git add *</p>
+<p>Все.</p>
+<p>git commit -a</p>
+<p>git push</p>
+<p>Что тут сложного? Как раз для одного разработчика ничего лучше git (или любой другой подобной системы [кроме bzr]) не найти.</p>
+<p>Я тоже пять лет пользовался SVN, и если бы сейчас мне дали машину времени, я бы прилетел назад и ударил себя svn-щика по голове посильнее.</p>
+<p>Стоит сказать, что svn постепенно движется в сторону распределенных систем и к версии так 3 будет, наверное, юзабельным.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.boxshot3d.com">Виталий</a></span> <span class="comment-date">2008-05-26 14:08</span>
+</div>
+<div class="comment-body">
+<p>у тебя по ссылке два аргумента:</p>
+<p>1. долго ждать коннекта к базе</p>
+<p>2. засоряет папки</p>
+<p>второй отметаем как ерундовый (на этапе сборки продукта это некритично, в инсталлятор идет ровно то, что надо)</p>
+<p>первый решается локальной базой (ну, в смысле базой в локальной сети).</p>
+<p>по GIT: команды-то эти я пробовал. в однопользовательском режиме оно более-менее жило. чуть сложнее, чем ты пишешь, но жило. жопа случилась, когда я сделал копию репозитория, поменял что-то там, закоммитил там же, и попытался вернуть в мастер-репозиторий. все. аут. полезли ошибки, в инете были описания, люди какие-то решения предлагали итд итп. сорри, что без конкретики, не помню уже подробности. не сложилось, вобщем. возможно потому, что пробовал под виндой. но тут у меня без вариантов...</p>
+<p>вот я, когда дома, один разработчик. у меня есть база SVN, в которой лежат исходники. разработка под виндой и под маком. и там и там по клиенту, все шоколадно. надо где-то еще поработать - забрал рабочую копию, поработал, принес (это, вообще говоря, редкий случай)</p>
+<p>смысла в распределенных системах нету. для одиночек - нету. для компаний - точно нету. линусу это было надо в силу специфики техпроцесса.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-26 14:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий: пунк 2 критичен, причем очень, для разработки под Mac OS X, где есть бандлы — папки, ведущие себя как файлы. </p>
+<p>Локальная база — отстой, репозиторий надо хранить удаленно. Причем в нескольких местах :)</p>
+<p>Все плохое решается параметром --force  :)</p>
+<p>Смысл есть и для первых, и для других. Как я уже говорил, и  svn туда придет.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.boxshot3d.com">Виталий</a></span> <span class="comment-date">2008-05-26 14:08</span>
+</div>
+<div class="comment-body">
+<p>ну есть, и чего? ты юзеру один фиг dmg будешь делать. будешь? будешь. положи туда все, кроме .svn, и будь счастлив.</p>
+<p>что касается локальной базы, то хранится она на сервере, бекапится периодически и раскидывается "по нескольим местам". хранить саму базу в инете я смысла не вижу. а вот бекапы заливать на какой-нибудь специальный сервер - это да.</p>
+<p>мне было бы стремно держать базу где-то далеко в интернете. вдруг ее завтра там не окажется ;) в инете надо хранить бекапы. один под подушкой, второй в шкафу, третий в инете. можно теще болванку нарезать раз в полгода. тогда это надежно ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-26 14:08</span>
+</div>
+<div class="comment-body">
+<p>Кроме юзеров есть еще переводчики, которые переводят .nib. Мне нужно их трекать.</p>
+<p>Как раз для этого и нужна распределенная система — чтобы не бекапить, а распределять :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">and</span> <span class="comment-date">2008-05-26 18:08</span>
+</div>
+<div class="comment-body">
+<p>Похоже Mercurial(hg) здесь табу.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-26 18:08</span>
+</div>
+<div class="comment-body">
+<p>hg не пробовал.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-26 18:08</span>
+</div>
+<div class="comment-body">
+<p>Расскажите, кстати, чем он (hg) выгодно отличается от git.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://outofcloud.net/">KBA-KBA</a></span> <span class="comment-date">2008-07-28 19:08</span>
+</div>
+<div class="comment-body">
+<p>по поводу hg vs git </p>
+<p><a href="http://piranha.org.ua/blog/2008/03/14/mercurial-vs-git/" rel="nofollow">http://piranha.org.ua/blog/2008/03/14/mercurial-vs-git/</a></p>
+</div>
+</div>
+</div>

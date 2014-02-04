@@ -1,0 +1,78 @@
+---
+author: "dchest"
+category: "Блогосфера"
+date: 2005-06-29 18:44:10 +00:00
+primary_category: "Блогосфера"
+status: "Publish"
+title: "WordPress 1.5.1.3"
+---
+<p>Обновился до самой свежей версии <a href="http://wordpress.org/">WordPress</a>. В прошлом релизе был обнаружен security-баг с XML-RPC (то, чего использует <a href="http://blogjet.com/">BlogJet</a> для управления блогом) и разработчики рекомендуют либо обновиться, либо удалить <em>xmlrpc.php </em>(потеряв возможность использования клиентов). </p>
+<p>И ещё, у меня наконец-то заработали уведомления администратора о новых комментариях по e-mail.</p>
+<p>Так что, товарищи вордпрессеры, ставьте <a href="http://wordpress.org/development/2005/06/wordpress-1513/">новую версию</a>.</p>
+<p>(Если что не так с Sellme.biz, <a href="/contacts/">напишите мне</a>, please).</p>
+<p><em>Обновление: </em>Если у вас в этой версии перестал работать редирект на страницу с записью после отправки комментария, в comments.php где-нибудь между &lt;form&#x2026; и &lt;/form&gt; добавьте:</p>
+<p><font face="Courier" color="#9a9a9a" size="2">&lt;input type="hidden" name="redirect_to" value="&lt;?php the_permalink(); ?&gt;" /&gt;</font></p><em>Обновление 2: </em>Русская версия уже доступна <a href="http://wordpress.ru/download/">тут</a>.
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.zcore.ru">Антон Скоробогатов</a></span> <span class="comment-date">2005-06-29 22:05</span>
+</div>
+<div class="comment-body">
+<p>А если подождать до завтра, то можно поставить и обновленную русскую версию :) </p>
+<p><a href="http://wordpress.ru" rel="nofollow">http://wordpress.ru</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.zcore.ru">Антон Скоробогатов</a></span> <span class="comment-date">2005-06-29 23:05</span>
+</div>
+<div class="comment-body">
+<p>Ждать не надо. Можно идти и скачивать.</p>
+<p><a href="http://wordpress.ru/download/" rel="nofollow">http://wordpress.ru/download/</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2005-06-30 01:05</span>
+</div>
+<div class="comment-body">
+<p>Антон -- это хорошо, я всем, кто спрашивает рекомендую именно русскую версию. А самому мне просто лень всё переделывать -- с шаблонами намучился :)</p>
+<p>Спасибо за сообщение!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.zcore.ru">Антон Скоробогатов</a></span> <span class="comment-date">2005-06-30 02:05</span>
+</div>
+<div class="comment-body">
+<p>Я представляю :)</p>
+<p>Кстати, Дима, не работает оповещение о комментариях. Галочку я поставил, но плагин, видимо, не занес меня в базу.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2005-06-30 02:05</span>
+</div>
+<div class="comment-body">
+<p>Ага, спасибо. Попробую завтра исправить (может плагин не совместим с этим новым WP?...)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.seotext.ru/">minaton</a></span> <span class="comment-date">2005-07-28 00:05</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, не знаю как лучше - решил сюда написать. BloJet 1.5.0 build37 и последний Wordpress: все нормально, но сделанная Blogjetом запись не отображается в календаре. Чей глюк и как можно исправить в домашних условиях? :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2005-07-28 01:05</span>
+</div>
+<div class="comment-body">
+<p>2 minaton: а в блоге появляется? Скорее всего, глюк календаря. Надо бы баг-репорт разработчикам WordPress послать.</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,80 @@
+---
+author: "dchest"
+date: 2009-11-11 16:19:09 +00:00
+markup: markdown
+status: "Publish"
+title: "Язык Go и новый \"Hello world\""
+---
+<img src="/pics/logo.png" alt="logo.png" border="0" width="153" height="55" style="float:right"/> Всем известно, что твиттер-клиенты — это новые "Hello world" в программировании.
+
+Google вчера выпустил очень интересный язык программирования [Go](http://golang.org).
+
+Я написал на нем мини-клиент для твиттера, который просто выводит последние записи из public timeline:
+
+	package main
+
+	import (
+		"http";
+		"io";
+		"fmt";
+		"json";
+		"os";
+		"regexp"
+	)
+
+	type User struct {
+		Screen_name string;
+	}
+
+	type Tweet struct {
+		Text string;
+		Source string;
+		User User;
+	}
+
+	type Timeline struct {
+		Tweets []Tweet;
+	}
+
+	func main() {
+		r, _, err := http.Get("http://twitter.com/statuses/public_timeline.json");
+
+		if err != nil {
+			fmt.Printf("Connection error: %s\n", err.String());
+			os.Exit(1);
+		}
+
+		if r.StatusCode != 200 {
+			fmt.Printf("Twitter returned: %s\n", r.Status);
+			os.Exit(1);
+		}
+
+		b, _  := io.ReadAll(r.Body);
+		r.Body.Close();
+
+		// Twitter sends malformed JSON, with top-level array. 
+		// Workaround: put it under 'tweets'.
+		s := `{"tweets" : ` + string(b) + `}`;
+
+		var timeline Timeline;
+		json.Unmarshal(s, &timeline);
+		re, _ := regexp.Compile("<a[^>]*>(.*)</a>");
+		for _, t := range timeline.Tweets {
+			// Source may be a link: <a href="...">source</a>
+			// Extract text of the link with regexp.
+			matches := re.MatchStrings(t.Source);
+			if matches != nil && len(matches) > 0 {
+				t.Source = matches[1];
+			}
+
+			if t.Text != "" {
+				fmt.Printf("%v: %v (%v)\n\n", t.User.Screen_name,
+				    t.Text, t.Source)
+			}
+		}
+	}
+
+Позже расскажу о своих впечатлениях от Go.
+
+*Обновление:* добавил вывод источника (web, Tweetie, etc.), чтобы показать работу с регулярными выражениями.
+

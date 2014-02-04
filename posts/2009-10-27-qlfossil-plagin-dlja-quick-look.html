@@ -1,0 +1,21 @@
+---
+author: "dchest"
+date: 2009-10-27 23:26:34 +00:00
+markup: markdown
+status: "Publish"
+title: "QLFossil — плагин для Quick Look"
+---
+Я уже писал про [Fossil](/2009/09/fossil.html), распределенную систему контроля версий с баг-трекером и вики. Тогда я сказал, что не собираюсь переключаться с Mercurial, но на самом деле переключился и пользуюсь Fossil с большим удовольствием (а также фиксю в ней баги и добавляю фичи — код очень понятный).
+
+Так вот, сегодня ночью я написал Quick Look-плагин для просмотра репозиториев. Репозитории Fossil состоят из одного SQLite-файла (в отличие от скрытых папок с хламом внутри рабочих директорий у других систем) и могут находится в любом месте (даже в скрытой папке внутри рабочей директории, если угодно. У меня они лежат в папке `~/Repos`). Это позволило написать плагин для просмотра названия и описания репозитория и истории изменений:
+
+<img src="/pics/screenshot.jpg" alt="Скриншот QLFossil" border="0" width="400" height="426" />
+
+Плагин не требует Fossil, он читает прямо из файла. Скачать QLFossil можно тут: <http://codingrobots.org/p/qlfossil>.
+
+Демонстрация этой красоты:
+
+<object width="560" height="340"><param name="movie" value="http://www.youtube.com/v/53d4txkdeq8&hl=en&fs=1&rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/53d4txkdeq8&hl=en&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340"></embed></object>
+
+А ваша VCS так может?
+

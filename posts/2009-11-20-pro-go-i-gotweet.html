@@ -1,0 +1,70 @@
+---
+author: "dchest"
+date: 2009-11-20 15:51:41 +00:00
+markup: markdown
+status: "Publish"
+title: "Про Go и gotweet"
+---
+[Интервью со мной на Open Voice](http://openvoice.ossreleasefeed.com/2009/11/dmitry-chestnykh-on-go-experiences-writing-a-twitter-client/) про Go и gotweet (на английском).
+
+*Добавлено 2011-02-27:* Так как ссылка мертва, вот интервью, выкопанное из почтового архива:
+
+
+**1) Welcome to Open Voice. To kick things off, please tell us a little more about yourself.**
+
+I'm a programmer, and a founder of Coding Robots. We do some friendly commercial software for Mac and Windows. And of course, we have a lot of code to share with community, so recently we made a website for our open source projects (http://codingrobots.org) -- this is where I host gotweet.
+
+As almost every real programmer, I'm very interested in programming languages. Most of my time is spend writing software in Objective-C and C, and for some projects I use Ruby or Python. I was excited to hear that a team of legendary software engineers released the Go language, and as soon as I've heard of it, I wanted to try it out. I decided to write a Twitter client, partly because Twitter clients are the new "Hello world" of programming, and partly because I wanted to check out Go's HTTP library.
+
+**2) What can users and developers do withe the current Twitter client you wrote using Go?**
+
+Gotweet is a command-line utility, so most users won't need it (unless they are geeks who "live" in terminal). However, one interesting use case is, like any other UNIX utility, it can be used in scripts.
+
+Developers can take a look at my implementation to learn language, but they should note that gotweet was put together while learning a language instead of being properly designed and programmed, so the quality of code may be not that good.
+
+**3) What was your experience developing with Go? Perhaps give us a broad overview and some negatives and positives you encountered while building the client.**
+
+First of all, one very important feature of Go that I didn't touch when writing gotweet is concurrency programming, so I cannot speak about this feature, but it is important and game changing.
+
+Anyway, learning Go was easy, and it really is an improvement on C. One nice thing that I especially like is that functions can return more than one result. This is very helpful for error handling.
+
+For example, in Objective-C, one has to pass an address of variable to receive an error from function:
+
+NSError *err;
+BOOL ok = [object someFunction:&err];
+
+While in Go you can get both (result and error) returned from the function:
+
+ok, err := someFunction();
+
+Also, I like that you can omit declarations of types for variables. The previous example can be written like this:
+
+var ok bool;
+var err os.Error;
+ok, err = someFunction();
+
+...but if compiler already knows that someFunction() returns bool and os.Error, why can't it be smart to recognize types of variables? Go compiler can. Not a big deal, you may think, but there are a lot of nice little things like this in Go, which, when combined, can increase a programmer's productivity and code safety. Oh, did I tell about garbage collection? Go has it.
+
+Another nice feature is interfaces. Go doesn't have a traditional object model, but it is object-oriented in an interesting way. Check out the tutorial on http://golang.org to learn more.
+
+As for negatives, the first thing you should note that Go is not yet ready for production environments, and libraries are not yet mature. Well, this is expected, because it's an experimental language, and it has been released only a week ago. For example, http package doesn't yet support authentication, so I had to write my implementation (basically by copy-pasting code from their http implementation, and adding a few lines).
+
+However, the team does really amazing work: when I found two bugs in JSON library, one has been fixed in less than an hour, and the other one in a day.
+
+Finally, it was difficult to get used to I/O stuff in Go, mostly because of the novel "interfaces" and unfamiliarity with libraries, however once I got them, it became easier. Some libraries can be extended, though, to accept more types (for example, in addition to having Base64 decoder handle io.Reader/io.Writer interfaces, why not add a function to simply take a bytes slice and return a string?). This is a minor feature suggestion, though.
+
+**4) Do you see Go becoming a language that major applications are going to be built on in future or, will it be something some people play with and then it will basically just be lost between the multitude of other languages?**
+
+Twitter client is actually not a good use case for Go. One can write a client in less time and with fewer lines of code in something like Python, but Go -- as a systems programming language -- shines where Python fades, which is performance (especially, in concurrency) and type safety.
+
+Go won't replace Python, Ruby or [insert your favorite dynamic language], but it can replace C, C++ and Java for performance sensitive projects.
+
+Another thing -- we live in interesting times: there are a lot of programming languages that are in active use. A decade ago the default choice for language was the one in which the operating system you're writing software for is written. With today's growth of web applications you no longer need to write software for users' computers -- you write software for your own servers, and since you control the environment, you can write in any language you like. That's why I don't think that Go will be lost between the multitude of other languages.
+
+**5) Thank you for joining me here at Open Voice. In closing, do you have any future plans where you are thinking of using Go?**
+
+Currently most of my time goes into writing desktop applications for Mac, and Go is not the language for this, because it doesn't have a GUI framework (and, remember, it's a systems programming language). However, I'll definitely use Go to write some utilities instead of C or Objective-C, mostly because it can compile (and cross-compile) the exact same source code for Mac and Linux.
+
+Thank you for having me at Open Voice!
+
+

@@ -1,0 +1,26 @@
+---
+- name: libs-css
+  files:
+    - assets/css/bootstrap.min.css
+    - assets/css/font-awesome.min.css
+    - assets/css/social-likes_birman.css
+  outname: $
+
+- name: site-css
+  files:
+    - assets/css/site.css
+  filter: cssmin
+  outname: $
+
+- name: global-css
+  files:
+    - $libs-css
+    - $site-css
+  outname: /assets/global.:hash.css
+
+- name: libs-js
+  files:
+    - assets/js/bootstrap.min.js
+    - assets/js/social-likes.min.js
+  separator: "\n"
+  outname: /assets/libs.:hash.js

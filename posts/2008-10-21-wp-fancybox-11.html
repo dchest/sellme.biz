@@ -1,0 +1,117 @@
+---
+author: "dchest"
+category: "Сайт и дизайн"
+date: 2008-10-21 22:47:08 +00:00
+primary_category: "Сайт и дизайн"
+status: "Publish"
+tags: "WordPress,plugin,wp-fancybox"
+title: "WP FancyBox 1.1"
+---
+<p>Cпасибо всем за отзывы и баг-репорты по поводу WP FancyBox. Я вообще-то делал это для себя и не планировал выпускать, поэтому настроек было ноль.</p>
+<p>Я сделал под плагин страничку на Google Code — <a href="http://code.google.com/p/wp-fancybox/">http://code.google.com/p/wp-fancybox/</a> — там можно скачать свежую версию, есть репозиторий, баг-репортилка и прочие прелести.</p>
+<p><strong>Что нового в 1.1?</strong></p>
+<p><ul></p>
+<p>	<li>Теперь не надо добавлять <code>class="fancybox"</code> к ссылкам на картинки — если вы постите картинку из админки WordPress и выбираете вставку маленькой картинки (Thumbnail/Миниатюра), FancyBox будет работать out of the box.</p>
+<p></li></p>
+<p>	<li>Добавлена страница настроек в админке WordPress (Settings/FancyBox) (в плагине WP FancyBox).</p>
+<p></li></p>
+<p>	<li>Исправлен баг с повторной загрузкой изображений (в самом FancyBox. Напомню, его писал не я).</p>
+<p></li></p>
+<p></ul></p>
+<p>Внимание: старый способ — <code>class="fancybox"</code> теперь работать не будет. В админке можно поменять обратно, чтобы он работал, но лучше перейдите на новый. Теперь с FancyBox работает вот это:</p>
+<p><blockquote><pre><code></p>
+<p>&lt;a href="большая_картинка.jpg"&gt;</p>
+<p>&lt;img class="size-thumbnail" src="маленькая_картинка.jpg"&gt;</p>
+<p>&lt;/a&gt;</p>
+<p></code></pre></blockquote></p>
+<p>Так как WordPress при вставке thumbnail сам вставляет класс size-thumbnail, <strong>вам вообще ничего не нужно делать — просто закачайте плагин, активируйте, и он будет автоматически работать.</strong></p>
+<p>Пока я не потрудился написать документацию, поэтому объясню настройки тут.</p>
+<p>Settings > FancyBox:</p>
+<p><strong>Hide content on click</strong> — убирать увеличенную картинку по клику на картинке (по умолчанию — только по клику на крестик).</p>
+<p><strong>Show overlay</strong> — затемнять фон (по умолчанию — нет).</p>
+<p><strong>Overlay opacity</strong> — прозрачность фона: значение от 0 до 1, дробное.</p>
+<p><strong>Zoom in speed</strong> — скорость появления картинки в миллисекундах.</p>
+<p><strong>Zoom out speed</strong> — скорость исчезания картинки в миллисекундах.</p>
+<p><strong>jQuery Expression</strong> — jQuery-выражение для поиска картинок, к которым применять FancyBox. По умолчанию <code>jQuery("img.size-thumbnail").parent()</code>, то есть для родителя img с классом size-thumbnail.</p>
+<p>Для тех, кто успел воспользоваться предыдущей версией:</p>
+<p><ul></p>
+<p>	<li>Удалить старый плагин (fancybox).</li></p>
+<p>	<li>Закачать новый (wp-fancybox) и активировать его.</li></p>
+<p>     	<li>Отметить галочку "Hide content on click".</li></p>
+<p>	<li>Если нужен старый способ применения эффекта к картинкам, вставить в jQuery Expression вот это: <code style="background-color: #FFFEF2">jQuery("a.fancybox")</code> (без parent()!). Но лучше перейти на новый ;)</li></p>
+<p></ul></p>
+<p>Как обычно, баг-репорты и пожелания, принимаются тут в комментариях, но лучше на <a href="http://code.google.com/p/wp-fancybox/">странице плагина</a> в разделе <a href="http://code.google.com/p/wp-fancybox/issues/list">Issues</a> и на английском языке :)</p>
+<p>Картинка:</p>
+<p><a href="/wp-content/uploads/2008/10/picture-1.png"><img src="/wp-content/uploads/2008/10/picture-1-300x300.png" alt="" title="picture-1" width="300" height="300" class="alignnone size-thumbnail wp-image-1198" /></a></p>
+<p>А, кстати, можно перевести плагин на русский стандартными средствами, так что если кто-то занимался переводом WordPress, присылайте перевод плагина — включу в поставку.</p>
+<p>P.S. В следующей версии добавлю возможность включения png-fix для IE6.</p>
+<p>P.P.S. Чуть не забыл! На googlecode есть code review, то есть вы можете оставлять комментарии к коду. Добавляются по дабл-клику. Удобно. <a href="http://code.google.com/p/wp-fancybox/source/browse/trunk/wp-fancybox.php">Попробуйте, найдите баги или кривокод</a>.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://socvestnik.ru/">Mio</a></span> <span class="comment-date">2008-10-21 23:08</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, не могли бы Вы выложить .po? Я бы перевёл.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 23:08</span>
+</div>
+<div class="comment-body">
+<p>Mio: буду благодарен, если сделаете .po на основе строчек отсюда <a href="http://code.google.com/p/wp-fancybox/source/browse/trunk/wp-fancybox.php" rel="nofollow">http://code.google.com/p/wp-fancybox/source/browse/trunk/wp-fancybox.php</a> - см. все _e("строка") — там их немного.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://mactrick.com">bm</a></span> <span class="comment-date">2008-10-21 23:08</span>
+</div>
+<div class="comment-body">
+<p>Спасибо! Теперь вообще то, что нужно. Пользуюсь с удовольствием.</p>
+<p>Вот бы только MarsEdit научить правильно картинки закачивать с правильными ссылками и классами.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 23:08</span>
+</div>
+<div class="comment-body">
+<p>bm: это без проблем, просто к тэгу img добавить class="size-thumbnail"</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://socvestnik.ru/">Mio</a></span> <span class="comment-date">2008-10-21 23:08</span>
+</div>
+<div class="comment-body">
+<p>У меня есть poedit и этот файл. Что делать дальше, как импортировать строки? (Сорри, я не кодер.)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 23:08</span>
+</div>
+<div class="comment-body">
+<p>Mio: прочитал как это делается, в следующей версии добавлю.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://mactrick.com">bm</a></span> <span class="comment-date">2008-10-22 02:08</span>
+</div>
+<div class="comment-body">
+<p>Там всё чуть-чуть сложнее. MarsEdit загружает картинку в блог и вставляет её просто как img без обрамления в a. (Не стал ставить угловые скобки вокруг тегов, чтобы парсер не покусал).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-22 03:08</span>
+</div>
+<div class="comment-body">
+<p>bm: а, то есть маленькие картинки придется вручную делать...</p>
+</div>
+</div>
+</div>

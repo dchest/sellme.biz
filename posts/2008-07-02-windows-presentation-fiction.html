@@ -1,0 +1,534 @@
+---
+author: "dchest"
+category: "Программирование"
+date: 2008-07-02 20:34:56 +00:00
+primary_category: "Программирование"
+status: "Publish"
+title: "Windows Presentation Fiction"
+---
+<p>Холивор!</p>
+<p>Комментарий к <a href="/2008/07/01/ya-lyublyu-kakao-chast-2">предыдущей заметке</a> позабавил:</p>
+<p><blockquote></p>
+<p>:)) XAML’ий binding и мощнее и более ортогонален всему WPF. А тут любимая Apple’ая манера поведения: присобачить нарост сбоку и получившейся «фичей» внушать неофитам ощущение собственной значимости.</p>
+<p></blockquote></p>
+<p>Позабавил тем, что WPF, в отличие от фич Cocoa, которые основаны на отличной архитектуре, как раз и есть нарост сбоку. </p>
+<p>Сначала Microsoft выпустили WinForms. Через лет пять после выхода WinForms наконец-то стали появляться коммерческие приложения для конечных пользователей, написанные на нем (пришлось смириться с тем фактом, что в Windows XP не включен .NET runtime, заставили юзеров его качать). <a href="http://en.wikipedia.org/wiki/WinForms">Википедия</a> прекрасно объясняет проблемы с ним прямо в описании WinForms:</p>
+<p><blockquote></p>
+<p>While it is seen as a replacement for the earlier and more complex C++ based Microsoft Foundation Class Library, it does not offer a paradigm comparable to <strong>model-view-controller</strong>. Some after-market and third party libraries have been created to address this issue.</p>
+<p></blockquote></p>
+<p>Microsoft поняли это и спустя несколько лет предложили совершенно другой фреймворк с другими виджетами (в XP они ведут себя и выглядят совсем не как нативные) — Windows Presentation Foundation. MVC дошло! Ура! Удачи в переписывании ваших прог.</p>
+<p>Дайте-ка вспомнить, какие end-user проги самой Microsoft написаны с использованием WinForms... Щас... Ах, помню — Windows Live Writer — прога, которую в MS написал купленный ею Onfolio. Дайте подумать что еще... Не думается, но кажется, уже многие программисты переключились на WinForms. Ага? Все-таки этой технологии уже больше 5 лет. Ой, правда, теперь надо о ней забыть и писать на новом WPF. Посмотрим, какие проги Microsoft написаны с использованием Windows Presentation Foundation...</p>
+<p>Программа синхронизации Zune, наверное на ней написана, ведь там модный интерфейс, да и программа достаточно свежая — Zune не так давно вышел.</p>
+<p><blockquote></p>
+<p>As others have pointed out, much of the GUI is written with an assembly/API called "Iris" (UIX.dll). It's managed code, and appears to be centered around web-oriented multimedia presentation. Why they're using this instead of WPF is anyone's guess.</p>
+<p></blockquote></p>
+<p>(<a href="http://www.pluralsight.com/community/blogs/mikeh/archive/2007/11/29/49319.aspx">источник</a>)</p>
+<p>Упс. Нет, что-то другое. </p>
+<p><blockquote></p>
+<p>Whilst all of this is all well and interesting, the thing that really captures my attention is why they would invest so much time into developing this framework and implementing it just for [t]his software when they have plenty of alternatives like Windows Presentation Foundation (WPF) to work with. I can’t stop wondering if this is going to become a new framework offering by Microsoft for all developers to use.</p>
+<p></blockquote></p>
+<p>(<a href="http://www.istartedsomething.com/20071116/microsoft-iris-uix-framework-zune/">источник</a>)</p>
+<p>Ну ладно. Посмотрим в <a href="http://en.wikipedia.org/wiki/Windows_Presentation_Foundation#WPF_Applications">википедии</a>:</p>
+<p><blockquote></p>
+<p>WPF is intended to be the next-generation graphics API for Windows applications on the desktop. The following are some of Microsoft's own products or other third-party mainstream applications written in WPF:</p>
+<p><ul></p>
+<p>	<li>Microsoft Expression Design</li></p>
+<p>	<li>Microsoft Expression Blend</li></p>
+<p>	<li>Yahoo! Messenger</li></p>
+<p>	<li>Nokia Music PC Beta</li></p>
+<p>	<li>Clear Office Spreadsheet [2]</li></p>
+<p>	<li>MuvUnder Cover: The Album Art Sleuth [3]</li></p>
+<p></ul></p>
+<p></blockquote></p>
+<p>Вау, программа редактирования файлов для WPF написана на WPF! Поразительно. А еще что? По-моему, я слышал, "Сапер" и "Косынка" в Vista написаны с использованием WPF. Упс, нет, оказалось неправдой:</p>
+<p><blockquote></p>
+<p>Q: Apparently the games use a custom framework and pure Direct3D. Are there any plans to take advantage of Windows Presentation Foundation, or is this planned for the next major version of Microsoft Windows?</p>
+<p>A: No plans at this time.</p>
+<p></blockquote></p>
+<p>(<a href="http://www.vistabase.co.uk/kb/inbuiltapps/windows-vista-games-faq">источник</a>)</p>
+<p>Ладно, дадим Windows Presentation Foundation пять лет, все-таки хороший фреймворк. Главное, чтобы Microsoft, пока мы привыкаем к нему, не выпустила еще какой-нибудь другой...</p>
+<p>* * *</p>
+<p>Как же не везет программистам Mac OS X! У них нихрена нового нет. Их фреймворк, который нынче называется Cocoa, был написан в конце 80-х, сразу по правильной методике MVC и с правильным динамическим языком. Cocoa развивается с каждым выпуском операционной системы. У нее практически нет "теоретических" фич — Apple придумывает что-то для своих программ, а потом дает те же инструменты сторонним разработчикам. Надоело писать код для контроллеров, который повторяется в приложениях? Давайте добавим класс встроенных контроллеров. Язык и фреймворк позволяет. Все стали использовать SQLite для программ? А почему бы не взять и не обернуть его в удобный для использования API — Core Data?</p>
+<p>КАК ЖЕ СКУЧНО! Почему бы не придумывать новые фреймворки каждые 5 лет? Хрен с ним, что придется все переписывать.</p>
+<p>* * *</p>
+<p>Правильная база важна для любого дела, а особенно для программирования. NeXT выбрали отличную архитектуру, которая работает уже около тридцати лет и развивается дальше без "наростов сбоку" — Objective-C и NeXTStep/Cocoa.</p>
+<p>Конечно, и у Apple были свои грешки — устаревшие ныне (но работающие) фреймворки, но они позволили безболезненно перейти с одной на совершенно другую операционную систему с малыми затратами (я говорю про Carbon, который используют большинство продуктов Adobe и Microsoft для OS X, и Java/Cocoa bridge). Тем не менее, проблема выбора фрейморка, под который надо писать программы для Mac OS X теперь не стоит — Cocoa.</p>
+<p>.NET — хорошая штука. WPF, наверное, хорошая штука. Проблема в том, что сама Microsoft не торопится их использовать для своих же продуктов. Они написаны исходя из теоретических задумок. Я был на "Платформе-2007", где много показывали демо-программ на WPF: вот, смотрите, можно сделать программу с такими кружочками и с такими квадратиками. Это все замечательно, но где реальные программы для конечного пользователя? Где реальная поддержка этих всех чудес операционной системой?</p>
+<p><blockquote></p>
+<p>Newer versions of the framework (3.5 and up) are not pre-installed on any versions of the Windows operating system. Some developers have expressed concerns about the large size (around 54 MiB for end-users with .NET 3.0 and 197 MiB with .NET 3.5) and reliability of .NET framework runtime installers for end-users.</p>
+<p></blockquote></p>
+<p>(<a href="http://en.wikipedia.org/wiki/.NET_Framework#Criticisms">источник</a>)</p>
+<p>Такая херня и возникает как раз из-за того, что программы, включенные в поставку ОС не написаны на фреймворках, которые рекламируются для сторонних программеров. И это тупо.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://myasnick.com/">MyasNick</a></span> <span class="comment-date">2008-07-02 21:08</span>
+</div>
+<div class="comment-body">
+<p>Трудно не согласиться. MS задолбала уже с этими своими скачками от одной технологии к другой. Да, и спасибо за наводку... (ушел читать про WPF).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-02 21:08</span>
+</div>
+<div class="comment-body">
+<p>дотнет удобен для:</p>
+<p>1. АСП.НЕТ'a</p>
+<p>2. разработки "корпоративных" приложений</p>
+<p>сейчас делаем автоматизацию эфира для телевидения - почти везде сплошной дотнет. от интерфейса пользователя (WinForms) до непосредственного управления устройствами. удобно, быстро, не глючно. довольны. переписывать в ближайшие лет пять не будем точно, никуда дотнет не денется. и винформс никуда не денется.</p>
+<p>другое дело - разработка мелких программ, в т.ч. shareware. был у меня опыт, писал на дотнете базку данных специфичную на продажу. оказывается в мире столько народу на модемах сидят... в итоге решил, что shareware это только native-приложения. и никак иначе.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-02 21:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий, угу, у моего регистратора cleverbridge платформа на .NET (интерфейс юзера на WinForms).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>а я баг с NSProgressIndicator повторил на 10.5.4 ;)</p>
+<p>идиотизм, если честно...</p>
+<p>заводишь таймер и в нем постепенно делаешь следующее:</p>
+<p>1. прячешь прогресс</p>
+<p>2. показываешь, сбрасываешь в 0</p>
+<p>3. увеличиваешь некоторое время</p>
+<p>4. сбрасываешь в 0</p>
+<p>5. прячешь</p>
+<p>6. ждешь</p>
+<p>7. показываешь</p>
+<p>8. двигаешь</p>
+<p>9. переходишь к 1</p>
+<p>такой вот цикл, вызываемый из таймера. если взять при этом окошко и потаскать, то прогресс подвисает, пока в него не кликнешь.</p>
+<p>самое смешное, что если убрать пункт 4, то не глючит ;)</p>
+<p>отправил им багрепорт, пусть чинят. мешается...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>А stopAnimation: если попробовать?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>Упс, это для других индикаторов.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Стас</span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>Дима, а если снять с глаз яблоки?</p>
+<p>Кокоа с 80-х? А на карбоне тоже перестали писать в 80-е а не год-два назад? </p>
+<p>Это Мс прыгала по процесорам? моторолла, поверпс (круче инткла 10 раз по тестам епла), и теперь перешли на "говно" интел который оказался круче поверпс.</p>
+<p>Тем кто пишет "кнопочки тем может и пох, а у кого низкоуровневый код очень весело.</p>
+<p>У меня мак не 1-й день, но по сути это говном было им и осталось, мак это интерфейс и все. </p>
+<p>Смешно вспоминать как лет 10 назад эпл смеялась над МС "накой эта многозадачность", "зачем защищенный режим процессора" мы круче в 5 раз. И в итоге перешли н аюникс, пизд№ц :(</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Rafiki</span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>Ну да, новых API не выдумывают. Зачем API? API, это же бесплатно нужно отдавать. Давайте ка мы пропишем в документации что-то типа "начиная с 10.5.*" и заставим всех поголовно купить наше ПО.</p>
+<p>Ой, злая Микрософт всех заставляет скачивать свои бесплатные библиотеки! ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>Rafiki: какие API?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>Стас: в плане программирования историю нужно вести не от Apple а от NeXT, поэтому моторолла и "многозадачность" с "защищенным режимом" не принимаются :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Rafiki</span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>Тот самый, Дима. Который потвоему мнению с динозавровых времён NEXT остался тем же. Cocoa.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-02 22:08</span>
+</div>
+<div class="comment-body">
+<p>И? А в чем прикол, что API не изменился?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Стас</span> <span class="comment-date">2008-07-02 23:08</span>
+</div>
+<div class="comment-body">
+<p>Просто тебя зомбировал эпл ыыыы.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://myasnick.com/">MyasNick</a></span> <span class="comment-date">2008-07-02 23:08</span>
+</div>
+<div class="comment-body">
+<p>Собственно, вот вам и обещаный холивор :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-02 23:08</span>
+</div>
+<div class="comment-body">
+<p>Отличный аргумент. Довольно стандартный, кстати.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-02 23:08</span>
+</div>
+<div class="comment-body">
+<p>MyasNick: ага :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-02 23:08</span>
+</div>
+<div class="comment-body">
+<p>Rafiki, я недавно спросил в рассылке эппла, посвященной cocoa. Как раз про обратную совместимость и надо ли рвать задницу, чтобы пахало на тигре, когда есть леопард. Ответ был простой и, наверное, очень правильный: те, кто еще не купил леопарда, вряд ли купят твою программу. так что не парься - не та целевая аудитория.</p>
+<p>мудро ведь, на самом деле.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Rafiki</span> <span class="comment-date">2008-07-03 00:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий, это не мудро. Это признак недоразвитого и узкого рынка. Если ты пишешь образовательное ПО, то эта мудрость уже сейчас яйца выеденного не стоит. А как только появится первое поколение домашних пользователей купившихся на красивую цацку, но в сущности не собирающиеся половину своих доходов отдавать джобсу, тогда и понадобится обратная совместимость. Оныем может не нужна очередная "мега-фича" от яблочников, но нужна новая версия вашего тупой до неприличия записной книжки. А она, так её, "только для Кота Камышового" :)</p>
+<p>Это бы ещё больше взыграло на корпоративном рынке, да похоже он надкусанным не по зубам.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-03 02:08</span>
+</div>
+<div class="comment-body">
+<p>Rafiki: зацените статистику ОС людей, использующих продукты крупного маковского разработчика OmniGroup — <a href="http://update.omnigroup.com/" rel="nofollow">http://update.omnigroup.com/</a></p>
+<p>После полугода с релиза у Leopard — 37.9% рынка. У Tiger — 61.8% и быстро падает. Остальные — 0.3%.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Rafiki</span> <span class="comment-date">2008-07-03 03:08</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, похоже, не читатель, Дмитрий - писатель :) Я именно об этом и писал.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-03 03:08</span>
+</div>
+<div class="comment-body">
+<p>О чем? О том, что пользователи Mac OS X быстро обновляют ее на самую свежую версию?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Rafiki</span> <span class="comment-date">2008-07-03 03:08</span>
+</div>
+<div class="comment-body">
+<p>Нет, о том, что не так уж и быстро. И чем распространеннее будет маковское железо, тем дольше будет адаптация очередных поделок конторы джобса.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://nonp.blogspot.com">Гоша Mазов</a></span> <span class="comment-date">2008-07-03 05:08</span>
+</div>
+<div class="comment-body">
+<p>Еще Джоэл Сполски (Joel Spolsky) говорил о том, что пока мы перетаскиваем на новый фреймворк свой код, мы топчемся на месте, т.к. ничего нового по сути не очень предлагаем пользователю (кроме новых багов, при перетаскивании на фреймворк). Microsoft же на месте в это время не стоит, а движется вперед.</p>
+<p>И потом возможности вроде "квадратики, кружочки" это хорошо - но это только возможности. Где хоть раз Microsoft говорит о том, зачем!!! мне это использовать? Кружочки я вполне и сам нарисую в VC++ 6.0, который вполне успешно работает и проблем не вызывает.</p>
+<p>По моему MS просто обкатывает технологии!?! Та же ведь песня была уже и с технологиями доступа к данным: не успевает прижиться предыдущая, уже выходит следующая. А зачем?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://nonp.blogspot.com">Гоша Mазов</a></span> <span class="comment-date">2008-07-03 05:08</span>
+</div>
+<div class="comment-body">
+<p>Сори, собственно сразу ссылку не нашел... Вот вроде бы ссылка на перевод той самой статьи Сполски: <a href="http://local.joelonsoftware.com/mediawiki/index.php/У_Microsoft_поехала_крыша" rel="nofollow">http://local.joelonsoftware.com/mediawiki/index.php/У_Microsoft_поехала_крыша</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://invisibleman.ru">Денис</a></span> <span class="comment-date">2008-07-03 11:08</span>
+</div>
+<div class="comment-body">
+<p>Я адепт MS поэтому точка зрения соответствующая.</p>
+<p>Обидно, но ощущение, что цикл статей про "Cocoa" призван только разогреть публику перед "секретным проектом" от кодирующих роботов :(.</p>
+<p>Про "Cocoa" вообще не знаю ни чего - интересуюсь, но подобные заметки не способствуют продолжению интереса - слишком поверхностные.</p>
+<p>Т.к. повторюсь, я не знаю ни чего про "Cocoa" - про нее и говорить не буду ни чего (даже если я начитался википедии, как Дима).</p>
+<p>Про WPF.</p>
+<p>1) WPF разрабатывался (и разрабатывается) уже больше 5 лет.</p>
+<p>2) Все НОВЫЕ продукты MS разрабатывает на НОВЫХ технологиях. IE, Office и 99% продуктов MS - это продолжения продуктов - которые уже написаны. И хорошо работают. Их незачем переписывать.</p>
+<p>3) Огромный сегмент ПО который не виден обычному пользователю это Enterprise (какой там сапер для простых смертных на WPF). Там только Java и WinForms там нет "Cocoa". Не потому что последняя плохая - потому что первые надежнее, дешевле, и быстрее в разработке.</p>
+<p>4) MS до сих пор сильно поддерживает и MFC и ATL на равне с WinForms и WPF. На чем хотите (уже написано) на том и пишите (поддерживайте/дописывайте)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">alberka</span> <span class="comment-date">2008-07-03 13:08</span>
+</div>
+<div class="comment-body">
+<p>Windows Forms отлично подходит для простых приложений. По-сути является управляемой оберткой для системных функций. Входит в состав .NET 2.0, который нормально работает на Windows 2000 (поддержка 9x как понимаю была упразднена в .net 2.0 sp1 - после 10 лет с момента выхода ОС!). Как видим - обратная совместимость, которая в масштабах большого парка машин играет весьма значительную роль. Не выгодно менять то, что работает и выполняет свои задачи! Это вам не home-user, которому деньги девать некуда...</p>
+<p>Теперь про WPF. Это абсолютно новая библиотека для создания графического интерфейса. Ни коем образом не связана с старыми системными библиотеками. Тесно интегрирована с DirectX - часть отрисовки производится с помощью GPU, тем самым освобождая ресурсы CPU. Она нативна в Windows Vista и доступна для скачивания в XP. С помощью нее можно делать симпотичные приложения, разделить дизайн и программирование... Но более требовательна к железу и любит более мощные видео-карточки. За сим, пока не для широкого применения. Хотя уже есть разработки под эту платформу - в том числе и бизнес-приложения (примеры на thevista.ru).</p>
+<p>Что касается самой .NET. Если посмотреть на компакт диск Windows XP SP2, можно найти в его меню автозапуска пунктик "установка .net 1.1". Версия 2.0 появилась позднее - так что в дистрибутиве ее быть не может :) На сколько знаю, .NET 2/3 устанавливаются через службу Windows Update наряду с IE7, WMP11 etc.</p>
+<p>p.s. Я не против Mac, я не против PC. Есть задача, есть ресуры, есть требования (в том числе - парк машин). Исходя из этого и выбирается решение</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-03 14:08</span>
+</div>
+<div class="comment-body">
+<p>alberka:</p>
+<p><blockquote>На сколько знаю, .NET 2/3 устанавливаются через службу Windows Update наряду с IE7, WMP11 etc.</blockquote></p>
+<p>К сожалению, нет.</p>
+<p>Денис:</p>
+<p><blockquote>Обидно, но ощущение, что цикл статей про «Cocoa» призван только разогреть публику перед «секретным проектом» от кодирующих роботов :(.</p>
+<p></blockquote></p>
+<p>Действительно был секретный проект для девелоперов, но, к сожалению, он сейчас отложен в долгий ящик. Так что не волнуйтесь :)</p>
+<p><blockquote></p>
+<p>Все НОВЫЕ продукты MS разрабатывает на НОВЫХ технологиях</p>
+<p></blockquote></p>
+<p>Ага, но не на тех, которые даются сторонним программистам. См. про Zune и игры в заметке.</p>
+<p><blockquote></p>
+<p>Огромный сегмент ПО который не виден обычному пользователю это Enterprise (какой там сапер для простых смертных на WPF). </p>
+<p></blockquote></p>
+<p>Именно поэтому я и использовал термины "коммерческие приложения для конечных пользователей" и "end-user проги". Эта заметка только их и касается, enterprise меня не интересует. (У моих партнеров по e-commerce приложение написано на .NET WinForms и я его счастливый пользователь.)</p>
+<p>Гоша Mазов:</p>
+<p>Ага, помню эту статью, очень классная.</p>
+<p>P.S. Для интересующихся — да, я писал на WFP один продукт (который не был дописан и не вышел). По-моему, это было где-то во время переименования Avalon в WPF.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://code-inside-out.blogspot.com/">meowth</a></span> <span class="comment-date">2008-07-03 18:08</span>
+</div>
+<div class="comment-body">
+<p>Не понял вот чего: автор хотел похвалить Cocoa или поругать все остальное, и его главного предстаителя - .net в лице m$?</p>
+<p>Уже достаточно долго пишу на .net 2.0 и претензий к нему почти нет - при наличии прямых рук это просто подарок разработчику почти любой области. А при наличии опенсорсных каркасов типа The Castle, Spring.net и NHibernate программирование вообще превращается в удовольствие. </p>
+<p>Кто сказал "мяу(т)"? :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://nonp.blogspot.com">Гоша Mазов</a></span> <span class="comment-date">2008-07-04 09:08</span>
+</div>
+<div class="comment-body">
+<p>О совместимости от Microsoft... Есть совместимость формальная, а есть фактическая. Формальная - на уровне интерфейса безусловно есть, по той простой причине что большинство оконного кода так или эдак юзит нечто вроде SendMessage(число_раз, число_2) (я про WPARAM, LPARAM). Причем число может интерпретироваться вызываемым кодом ОС как угодно: хендлы, флаги, указатели. Это так называемые "толстые" интерфейсы. Когда сам интерфейс вызова позволяет передавать в вызываемый код почти что угодно. Это в общем, то удобно, и тут я MS поддерживаю мне самому пришлось однажды делать именно таким способом, и пришел я к нему не сразу, поэтому понимаю выгоды и проблемы такого подхода.</p>
+<p>Но я чуть о другом: есть же еще и совместимость на уровне "черного ящика", когда вызывается некая сущность и ожидается, что она будет делать именно "A", а никак не "B". Когда я прошу отправить почту, я не жду, что начнется форматирование диска.</p>
+<p>Простой пример: есть такой компонент Windows RichEdit (к примеру редактор WordPad на нем и построен). В WinXP SP2 вышла его 5-ая версия с такой же заявленной совместимостью. А что оказалось на деле?</p>
+<p>- Поиск: заявлена совместимость. Де факто совместимость дале-е-еко не полная. В половине случаев он просто не работает. Пришлось переписать так эдак тысяч с 20 строк кода.</p>
+<p>- Подсветка гиперссылок. Совместимость заявлена. Де факто: формат совершенно иной, чем в предыдущей версии. Но мало того, сам алгоритм подсветки помечает текст как измененный. Это очень интересная такая совместимость от MS. Интересно, когда синтаксис кода в той же Visual Studio подсвечивается, код помечается как измененный? Т.е. мне все нужно перекомпилировать только от того, что я посмотрел на собственный же код? Думаю аналогии ясны. Поиск этого косяка Microsoft занял несколько недель.</p>
+<p>Работа с текстом: заявлена полная совместимость. А как же - компонент RichEdit это же редактор текста!?! Небольшая мелочь - вывод текста из редактора вовне работает самую малость иначе. Все предыдущие версии компонента выводили простой текст вместе со служебной инфой (невидимый текст, непечатаемые символы). В новой версии все самое - но о-ля-ля - только при этом вся служебная информация из текста УДАЛЯЕТСЯ. Всего лишь :) Пользователь отредактировал текст, сохранил и обана! ничего из служебной информации больше нет (невидимые информация по гиперссылкам, якоря в тексте, служебная разметка текста). </p>
+<p>Это я так, на вскидку написал - самые основные и умиляющие моменты совместимости. Когда новая версия этого компонента с хваленой Microsoft`овской совместимостью вышла, я с песнями и плясками помчался с ним ковыряться в области реализации таблиц. Успешно все это провернул за пару недель. А вот на борьбу с фактической совместимостью у меня ушло почти 5 с половиной месяцев, и релизе новой версии писать особенно было нечего кроме "обеспечена обратная совместимость" - пользователя это не интересует, это само собой разумеется. (А упомянутая корпорация в это время совместимостью не мучалась, она просто делала новый продукт. Именно в это время вышел новый OneNote, а не новая версия сапера. Ну да ладно, зато я получил весомое подтверждение что мои идеи не барахло, если даже Microsoft их реализует в том или ином виде).</p>
+<p> И разница между выходами RichEdit 4.xx и 5.0 всего в пару лет. Формальная совместимость? О да! Сколько хотите! А то, что немного винегрет из пользовательских данных сделает... Ну и что? Зато совместимость! Можно наплодить в собственном же коде вагон и тележку багов - нибида (С) - поправим. Но насмерть запоротые данные пользователя (текст, подборки веб страниц, архив почты и.т.д.) - как восстанавливать это!?! Данные пользователя всегда святы. Невозможное у нас займет один день, чудо чуть больше - но убитые пользовательские данные никакие сервиспаком не поднять!</p>
+<p>Я не адепт Microsoft, но и не хочу их ругать без оглядки. Изменять, создавать новое без изменения уже сделанного это действительно архисложно. Мне кажется, я понимаю их трудности. Нельзя без конца перестраивать "сарайчик", иногда его просто нужно снести и строить новый. И такие проблемы в IT имхо неизбежны из-за самой сути области - т.к. только решая задачу мы и находим ее оптимальное решение. В Microsoft работают, наверное, не слабые специалисты, но они не боги, и встречаются с теми же проблемами. Но одно дело Microsoft`овский маркетинговый посвист из серии "информация на кончиках пальцев", а совсем другое дело фактические реалии.</p>
+<p>И поверьте, ну никто не бросится переписывать миллионы строк кода на WPF только оттого, что Microsoft выпустила WPF. Эти строки существуют, их надо поддерживать, они должны решать проблемы конкретных пользователей, в конце концов пользователи именно за это и платят. И не очень то понятно, как аргументировать пользователю необходимость выложить еще XXX денюжек только потому, что теперь все и на WPF. А как часто выходят полностью новые продукты, и в каком соотношении их доля с новыми версиями?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://pesenki.in.ua">Petron</a></span> <span class="comment-date">2008-07-04 13:08</span>
+</div>
+<div class="comment-body">
+<p>.net отличная платформа</p>
+<p>если кто-то из крупных брендов не хочет тратить силы на ее поддержку - это его крупная ошибка</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://turristo.ru">Русо Туристо</a></span> <span class="comment-date">2008-07-04 17:08</span>
+</div>
+<div class="comment-body">
+<p>Чудят-чудят, а багов все равно выше крыши (</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.jitbit.com">Alex</a></span> <span class="comment-date">2008-07-06 00:08</span>
+</div>
+<div class="comment-body">
+<p>"Дайте-ка вспомнить, какие end-user проги самой Microsoft написаны с использованием WinForms…"</p>
+<p>Microsoft CRM, все клиентские тулзы для SQL Server 2005/2008, Exchange Server 2007, новые продукты офисной линейки и тп. Ты просто не в теме :)</p>
+<p>а еще прочти вот эту статью Джоела - <a href="http://www.joelonsoftware.com/articles/APIWar.html" rel="nofollow">http://www.joelonsoftware.com/articles/APIWar.html</a></p>
+<p>"How Microsoft Lost the API War"</p>
+<p>Там есть и про Эппл, и про Сан и про MS. Многое станет понятно.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-06 00:08</span>
+</div>
+<div class="comment-body">
+<p>Alex, прочитайте предложение, которое процитировали.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://sergey-zwezdin.blogspot.com/">Sergey Zwezdin</a></span> <span class="comment-date">2008-07-07 07:08</span>
+</div>
+<div class="comment-body">
+<p>Ребята, вы лучше б чем кости перемывать (на чем написана косынка), пошли бы и что-то полезное сделали.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 16:08</span>
+</div>
+<div class="comment-body">
+<p>Sergey Zwezdin: так мы делаем. Это не мешает иногда собраться и пообсуждать.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-07 16:08</span>
+</div>
+<div class="comment-body">
+<p>WinForms -- это general purpose framework, который, как мне кажется, появился из-за наличия большого количества VB6-разработчиков. Благодаря тому, что это general purpose framework, никто не мешает нахлобучить на него реализацию MVC, благо что data bindings у них есть, по-моему, с самого рождения. В WinForms 2.0 их развили с помощью data binding source, которые могут принимать обычные объекты, а не только data-bound компоненты. Получается вполне натуральный MVC -- было бы желание так писать.</p>
+<p>К тому же, Дмитрий, вам бы не пристало жаловаться на разработку в условиях отсутствия MVC -- каким-то образом данное обстоятельство (а в Borland Delphi MVC отсутствует) не помешало вам выпустить замечательный продукт. ;)</p>
+<p>Далее. Тут привели ссылки на джоэлевский Fire and Motion. Джоел хорошо расписал разнообразие фреймворков, однако "забыл" упомянуть, что появление нового фреймворка совершенно не обязывает никого переходить на него. ODBC, RDO, DAO, ADO и OLEDB могут существовать одновременно, а появление, скажем, WCF не отменяет работы .NET remoting и DCOM. Мне не понятно, почему WPF должно отменять WinForms. На моей памяти Microsoft серьёзно сломали совместимость только в случае с переходом VB6-&gt;VB.NET. И то, подсластили пилюлю наличием привычных WinForms и визардом, который конвертировал существующий код.</p>
+<p>Apple, насколько я понимаю, может предложить только переписать весь Carbon-код в Cocoa, чтобы всё работало в Snow Leopard.</p>
+<p>К слову сказать, мне очень сложно представить ситуацию в Wintel-мире, когда вендор калибра Adobe сидит уже который год и не может заставить работать свой код в соответствии со сложившимися реалиями -- да у них в штаб-квартире уже б давно команда из Редмонда жила.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 16:08</span>
+</div>
+<div class="comment-body">
+<p>jimbo: Заметно, что старые технологии MS не умирают. Хотя бы по <a href="http://arstechnica.com/articles/culture/microsoft-learn-from-apple-II.media/vista.png" rel="nofollow">интерфейсу</a>. Лучше бы уж заставить всех все переписывать :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 16:08</span>
+</div>
+<div class="comment-body">
+<p>Насчет Carbon: это же порт Macintosh Toolbox под новую операционку.  Тулбоксу лет больше чем Windows 3.11 — понятное дело, его пора убирать (кстати, с чего все взяли, что в Snow Leopard не будет Carbon — еще как будет! Просто будущее Carbon теперь — интеграция с Cocoa).</p>
+<p>Кстати, Adobe выпускала Illustrator для NeXT. А сейчас они переходят на "кроссплатформенные" языки со своими GUI-библиотеками (в Lightroom 40% кода написано на Lua).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-07 17:08</span>
+</div>
+<div class="comment-body">
+<p>Не забудьте о брёвнах в своём глазу:</p>
+<p><a href="http://tinyurl.com/69dbk7" rel="nofollow">http://tinyurl.com/69dbk7</a></p>
+<p><a href="http://tinyurl.com/6kmcas" rel="nofollow">http://tinyurl.com/6kmcas</a></p>
+<p><a href="http://tinyurl.com/5uj336" rel="nofollow">http://tinyurl.com/5uj336</a></p>
+<p><a href="http://tinyurl.com/35jquf" rel="nofollow">http://tinyurl.com/35jquf</a></p>
+<p><a href="http://tinyurl.com/5et5wd" rel="nofollow">http://tinyurl.com/5et5wd</a></p>
+<p>Кстати, если бы вы хотели уколоть Wintel больнее, то вот ссылка получше:</p>
+<p><a href="http://www.istartedsomething.com/taskforce/" rel="nofollow">http://www.istartedsomething.com/taskforce/</a></p>
+<p>Ваша идея "всё переписать" не нова. К сожалению, она хорошо работает только тогда, когда у вас 3-5% рынка и пользователи, готовые целовать вас в зад за продукт любого качества, а не 95% с огромным процентом людей, у которых бизнес завязан на ваши решения.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-07 17:08</span>
+</div>
+<div class="comment-body">
+<p>А, значит, это слух был насчёт Carbon. Сорри.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 17:08</span>
+</div>
+<div class="comment-body">
+<p><blockquote></p>
+<p>Не забудьте о брёвнах в своём глазу:</p>
+<p></blockquote></p>
+<p>Угу, исправлено в Leopard'е ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-07 17:08</span>
+</div>
+<div class="comment-body">
+<p>Ух ты! Всего-то 6 лет понадобилось, чтобы вычистить!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Victor Petrenko</span> <span class="comment-date">2008-07-08 17:08</span>
+</div>
+<div class="comment-body">
+<p>Adobe пришлось переписывать photoshop на cocoa, потому что Carbon не будет поддерживаться в 64х битных версиях MacOSX.</p>
+<p><a href="http://www.zathras.de/angelweb/blog-adobe-on-carbon-64-bit.htm" rel="nofollow">http://www.zathras.de/angelweb/blog-adobe-on-carbon-64-bit.htm</a></p>
+<p>К сожалению, всем остальным придется делать тоже самое. Либо так и остаться в мире 32х битных приложений.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-08 18:08</span>
+</div>
+<div class="comment-body">
+<p>Victor Petrenko: "переписывать photoshop" — это громко сказано. Переписывать придется, в основном, GUI код. А это делать уже давно пора.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-09 16:08</span>
+</div>
+<div class="comment-body">
+<p>Да-да. Особенно, если это популярное приложение с большой user base -- только и делать, что переписывать код по велению левой пятки Джобса.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Victor Petrenko</span> <span class="comment-date">2008-07-11 19:08</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, решение оставить ОС без возможности разрабатывать полноценные приложения на C++ это нормальное решение? :)</p>
+<p>Переписать GUI, сделать кросс-языковую интеграцию. Нда, Think Different, полагаю -)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-13 15:08</span>
+</div>
+<div class="comment-body">
+<p>Victor Petrenko: полноценные приложения на C++ писать можно. GUI компоненты Carbon не будут портированы на 64-битные процессоры, значит GUI-код придется переписывать. Я предполагаю, у Adobe уже есть свой фреймворк для кросс-платформенного GUI на Windows/Mac, соответственно, им придется переписать свои wrappers на Objective-C/Python/Ruby, либо сделать bridge Cocoa/C++.</p>
+<p>Не GUI код на C++ остается и эта часть Carbon портирована на 64 бит и никуда не денется.</p>
+</div>
+</div>
+</div>

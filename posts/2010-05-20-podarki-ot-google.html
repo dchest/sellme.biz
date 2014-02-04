@@ -1,0 +1,41 @@
+---
+author: "dchest"
+date: 2010-05-20 12:42:15 +00:00
+markup: markdown
+status: "Publish"
+title: "Подарки от Google"
+---
+1.
+
+Google открыли видеоформат [WebM](http://www.webmproject.org/) и кодек [VP8](http://en.wikipedia.org/wiki/VP8). Формат сделан на части Matroška, с кодеком VP8 для видео и Vorbis для аудио. Лицензия для кода — BSD, [лицензия на патент](http://www.webmproject.org/license/bitstream/) — безусловная неотзываемая royalty free.
+
+Я не знаю ни одной компании, кроме Google, которая бы потратила $133 миллиона долларов на покупку фирмы, разработки которой бы затем открыла для всех. А вы? (Конечно, Google преследует и свои интересы, но эти интересы совпадают с нашими.)
+
+В техническом плане VP8 пока далек от идеала, [судя по анализу одного из разработчиков x264](http://x264dev.multimedia.cx/?p=377).
+
+Посмотреть на видео в WebM можно через [специальные сборки Firefox](http://nightly.mozilla.org/webm/) или [Opera](http://labs.opera.com/news/2010/05/19/). Должен еще Chromium trunk поддерживать, но вчера у меня не получилось посмотреть через него. Само кино в новом формате есть на YouTube, например [Big Buck Bunny](http://www.youtube.com/watch?v=YE7VzlLtp-4&webm=1) ([инструкции как смотреть другие видео с YouTube в WebM тут](http://www.webmproject.org/users/)).
+
+<img src="/pics/fx-webm.png" alt="WebM в Firefox" border="0" width="500" height="355" />
+
+Кодировать видео можно через сервисы и программы, перечисленные в разделе ["Commercial Tools"](http://www.webmproject.org/tools/). Для мака там ничего готового не было вчера, поэтому я [скомпилировал ffmpeg с гугловскими патчами](http://twitter.com/codingrobots/status/14321079773). Если хотите попробовать, [скачайте](http://twitter.com/codingrobots/status/14321079773) и наберите, например, `ffmpeg -i откуда.mp4  куда.webm`.
+
+Ламерский тест: я попробовал кодировать небольшой скринкаст (оригинал был в lossless) в H.264 (QuickTime'овский кодировщик) и WebM. Качество WebM  получилось почти таким же, как при настройке H.264 "Web - Low", но хуже, чем "Web - High". Но это я не возился с [настройками VP8](http://www.webmproject.org/tools/encoder-parameters/), а использовал те, что идут по умолчанию. Размер файлов получился одинаковым у H.264 "Web - Low" и WebM, значит настройки сравнимы.
+
+*Обновление:* забыл сказать, что про качество и прочие параметры (например, сколько CPU жрет Firefox при просмотре WebM) еще рано говорить, потому что кодировщик/декодировщик только выпустили и все еще совсем сырое, особенно браузеры.
+
+2.
+
+[Google Font API](http://googlecode.blogspot.com/2010/05/introducing-google-font-api-google-font.html). Гугл хостит шрифты и выдает простой интерфейс для их использования. Пока доступны [18 шрифтов](http://code.google.com/webfonts) и только в Latin-1. Все шрифты [опенсорсные](http://code.google.com/p/googlefontdirectory/source/browse/). 
+
+3.
+
+ * [Prediction API](http://code.google.com/apis/predict/) — офигенная штука.
+ * [Buzz API](https://code.google.com/apis/buzz/) — начинайте писать клиенты.
+ * [Google Storage for Developers](http://code.google.com/apis/storage/) — что-то вроде S3, пока в закрытой бете.
+
+Наконец, не включаю в список подарков, но стоит посмотреть: [Chrome Web Store](https://chrome.google.com/webstore).
+
+\* \* \*
+
+Сегодня будет второй keynote на I/O, ждем еще подарков. Правда, там, скорее всего, будут говорить про Android.
+

@@ -1,0 +1,133 @@
+---
+author: "dchest"
+category: "Программирование"
+date: 2008-07-01 16:18:27 +00:00
+primary_category: "Программирование"
+status: "Publish"
+title: "Я люблю какао. Часть 2"
+---
+<p>Ненавижу какао.</p>
+<p>Я люблю Cocoa, потому что в нем не надо писать код. Код вреден. Его потом придется читать. Он будет содержать баги. Долой код!</p>
+<p>Сейчас покажу, что я имею в виду.</p>
+<p>Так как я беру пример из живого сверхсекретного проекта, который я пишу по заказу минобороны <a href="http://en.wikipedia.org/wiki/Magrathea">Магратеи</a>, я не буду раскрывать название программы и описывать точную задачу. Заодно я заблюрил намеки на картинках и в коде. Сорри.</p>
+<p><em>Задача:</em></p>
+<p>Сделать окно (sheet) для дополнительных настроек, на котором будет:</p>
+<p><ul></p>
+<p>	<li>возможность выбрать папку;</li></p>
+<p>	<li>два чекбокса с полями для ввода цифр; при активации/деактивации чекбоксов соответствующие поля ввода должны разрешать/запрещать ввод; в первое поле можно ввести только целое число больше 1, во второе — целое или дробное положительное число;</li></p>
+<p>	<li>две кнопки: Cancel для закрытия окна без сохранения изменений и Done для закрытия окна и сохранения изменений;</li></p>
+<p>	<li>настройки должны читаться из и сохраняться в файл настроек приложения (~/Library/Preferences/com.codingrobots.AppName.plist).</p>
+<p></li></ul></p>
+<p><a href='/wp-content/uploads/2008/07/settings_window2.png'><img src="/wp-content/uploads/2008/07/settings_window2-300x188.png" alt="" title="Настройки" width="300" height="188" class="alignnone size-medium wp-image-1049" /></a></p>
+<p><em>(Про Use Defaults я расскажу в отдельной заметке.)</em></p>
+<p>Как это обычно бывает, сначала я начал все делать через ж... (привычка из виндового прошлого). Я начал с написания кода. Очевидно, при нажатии на кнопку открытия окна надо загрузить все настройки из файла (<code>NSUserDefaults</code> нам в этом помогает, с файлами не надо работать) в контролы на окне. Потом написать код для enable/disable полей ввода при нажатии на соответствующие чекбоксы. И не забыть, что в поля можно вводить только особый вид данных (ну ладно, тут <code>NSNumberFormatter</code> можно кинуть на поле). При нажатии на Done надо взять из контролов данные и запихнуть их в <code>NSUserDefaults</code> и убрать окно. Cancel, конечно, должен просто убрать окно. Так я и сделал. Код занимал полтора-два экрана (в 1050 пикселей).</p>
+<p>Потом я подумал. И сократил код до одного экрана.</p>
+<p>Потом я подумал еще, покликал в Interface Builder'е и получил вот такой код:</p>
+<p><a href='/wp-content/uploads/2008/07/settings_code2.png'><img src="/wp-content/uploads/2008/07/settings_code2.png" alt="" title="Код для настроек" width="500" class="alignnone size-medium wp-image-1048" /></a></p>
+<p><em><code>nonImmediateUserDefaultsController</code> (<code>NSUserDefaultsController</code>) — это такая штука в IB (которую я перетащил из палитры), к которой прибайндены все контролы.</p>
+<p></em></p>
+<p>Все это благодаря отличной имплементации MVC (Model-View-Controller) в Cocoa. Models — это данные, views — это окна и все остальное, что рисуется в Interface Builder, controllers — это код, который мы пишем для связывания данных и интерфейса. Задача Apple — убрать код. Код для views убирается Interface Builder'ом — мы рисуем в нем окошки и контролы. Код для models убирается использованием <code>NSUserDefaults</code> в данном случае и Core Data в <a href="http://www.codingrobots.com/memoires/">Mémoires</a>. Код для controllers убирается использованием встроенных контроллеров: <code>NSUserDefaultsController</code>, <code>NSObjectController</code>, <code>NSArrayController</code>, <code>NSTreeController</code> и прочих. С каждым новым релизом Cocoa нам надо писать все меньше и меньше кода.</p>
+<p>Кстати, если бы нам не нужно было закрывать окно при нажатии на кнопки (странный случай), либо настройки надо было бы обновлять сразу, без нажатия Done (нормальный случай), то код вообще не надо было бы писать.</p>
+<p>Таким же образом в Cocoa не надо писать код для управления окнами, для вызова Open и Save диалогов при нажатии на соответствующие пункты меню... ну и вообще, многое просто "дано" (и это совсем не значит, что ничего нельзя поменять).</p>
+<p>Cocoa makes easy things easy and hard things possible.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://oleganza.wordpress.com">Oleg Andreev</a></span> <span class="comment-date">2008-07-01 16:08</span>
+</div>
+<div class="comment-body">
+<p>Еще пара таких заметок и я буду писать под макось.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.salikhovilyas.ru">muxx</a></span> <span class="comment-date">2008-07-01 18:08</span>
+</div>
+<div class="comment-body">
+<p>А руки-то чешуться) У меня пока что имеется опыт написания виджетов, до программ дело не дошло..</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://effman.ru">Алексей Глазков</a></span> <span class="comment-date">2008-07-01 18:08</span>
+</div>
+<div class="comment-body">
+<p>Дима, а для веба можно на cocoa писать? Я понимаю что rtfm, но если ответ нет, что толку тратить время :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-01 18:08</span>
+</div>
+<div class="comment-body">
+<p>Для веба на Cocoa — это как? А для веба на Win32 API можно писать? Или на wxWidgets? Qt? :))</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://effman.ru">Алексей Глазков</a></span> <span class="comment-date">2008-07-01 19:08</span>
+</div>
+<div class="comment-body">
+<p>пнятно))</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-01 19:08</span>
+</div>
+<div class="comment-body">
+<p>Тем не менее, если хочется похожего языка и фреймворка, то <a href="http://arstechnica.com/journals/apple.ars/2008/06/26/cocoa-on-the-web-280-north-objective-j-and-cappuccino" rel="nofollow">скоро выйдет Objective-J/Cappuccino</a> — интересная вещь.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Lab</span> <span class="comment-date">2008-07-01 20:08</span>
+</div>
+<div class="comment-body">
+<p>А почему нельзя писать для веба на вин32 апи? а если вебсервер под управлением винды стоит?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-01 20:08</span>
+</div>
+<div class="comment-body">
+<p>Lab: да можно, конечно. И на Cocoa можно, и на wxWidgets, и на Qt. Только смысл?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Rafiki</span> <span class="comment-date">2008-07-02 16:08</span>
+</div>
+<div class="comment-body">
+<p>:)) XAML'ий binding и мощнее и более ортогонален всему WPF. А тут любимая Apple'ая манера поведения: присобачить нарост сбоку и получившейся "фичей" внушать неофитам ощущение собственной значимости.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Lab</span> <span class="comment-date">2008-07-02 23:08</span>
+</div>
+<div class="comment-body">
+<p>да, хрен с ним, со смыслом, мне как недопрограмисту было интересно - есть ли _принципиальная_ возможность.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Victor Petrenko</span> <span class="comment-date">2008-07-03 16:08</span>
+</div>
+<div class="comment-body">
+<p>&gt; Еще пара таких заметок и я буду писать под макось.</p>
+<p>И только под макось, судя по всему. Эппловцы забили на Carbon большой болт, усложнив жизнь кросс-платформенным софтописателям. Например, Adobe ;). Интересно как они умудряются делать Lightroom и под винду, и под мак. Интерфейс конечно ненативный, что ж поделать :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-03 20:08</span>
+</div>
+<div class="comment-body">
+<p>Victor Petrenko: как раз Lightroom написан с использованием Cocoa. Правда, не напрямую — 40% кода написано на Lua, и наверное, связь с Cocoa через bridge.</p>
+</div>
+</div>
+</div>

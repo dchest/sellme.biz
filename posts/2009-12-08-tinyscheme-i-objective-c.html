@@ -1,0 +1,105 @@
+---
+author: "dchest"
+date: 2009-12-08 20:33:28 +00:00
+markup: markdown
+status: "Publish"
+title: "TinyScheme и Objective-C"
+---
+<img src="/pics/tinyscheme-logo.png" alt="TinyScheme Logo" border="0" width="146" height="73" style="float:right" /> Пару дней назад решил поизучать лиспы (наконец-то). Естественно, первая же мысль — а можно ли их связать с Cocoa? Есть [Clozure CL](http://trac.clozure.com/ccl) — Common Lisp для Мака, и я его еще не смотрел, но мне захотелось чего-нибудь очень маленькое, что можно встроить в свои приложения. И вспомнил про [TinyScheme](http://tinyscheme.sourceforge.net/home.html) — имплементацию Scheme в ~6000 строках кода. (Кстати, Apple с 10.5 [использует](http://www.apple.com/opensource/) TinyScheme для задания правил сэндбоксинга программ.)
+
+Исходники скаченные с сайта не компилировались, но там была инструкция как сделать так, чтобы все заработало. Впрочем, она там какая-то странная (а может не обновлялась давно) — я поменял меньше, чем там написано и получилось. Естественно, сразу выложил работающую версию на [GitHub](http://github.com/dchest/tinyscheme/), заодно изучил, как с ним общаться из Си, написал [example.c](http://github.com/dchest/tinyscheme/blob/master/example.c), ну и потом понеслось — захотелось общаться с Objective-C из Scheme. Одновременно учил Scheme и писал код. Получилось интересно.
+
+Интерфейс с Scheme у нас будет [классом TinyScheme](http://github.com/dchest/tinyscheme/blob/master/TinySchemeObjC/TinyScheme.h).
+
+	TinyScheme *ts = [[TinyScheme alloc] init];
+
+Та-дам! Интерпретатор готов. (Можно создавать сколько угодно объектов — у каждого будет свой интерпретатор.)
+
+Запустим какую-нибудь ерунду:
+
+	[ts loadString:@"(log \"Hello, world!\")"];
+
+Что выполнит `(log "Hello, world!")`.
+
+Или файл:
+	
+	[ts loadFileWithPath:@"init.scm"];
+
+Что интерпретирует файл `init.scm`.
+
+Если интерпретатор выдаст ошибку, ts выкинет исключение, которое можно поймать в `@try...@catch`:
+
+	@try {
+    	[ts loadString:@"((we-have error here)"];
+  	}
+  	@catch (NSException *e) {
+    	NSLog(@"The exception was: %@ reason: ``%@'')", [e name], [e reason]);
+  	}
+
+
+Больше примеров [тут](http://github.com/dchest/tinyscheme/blob/master/TinySchemeObjC/TinySchemeObjC.m).
+
+Ну а теперь самое интересное: работа с Objective-C из Scheme. Если мы хотим, чтобы объект был доступен в Scheme, нужно его зарегистрировать:
+	
+	NSNumber *magicNumber = [NSNumber numberWithInt:42];
+	[ts registerObject:magicNumber withName:@"magicNumber"];
+
+Он будет известен Scheme под символом `magicnumber` (заметьте, что он оказался в нижнем регистре, потому что Scheme нечувствителен к регистру).
+
+Теперь мы можем посылать ему сообщения, например:
+	
+	(obj-send 'magicNumber "className")
+
+вернет строку с именем класса ("NSCFNumber"), то есть сделает то же самое, что `[magicNumber className]` в Objective-C. 
+
+Можно и сократить:
+
+	(-> 'magicNumber "className")
+
+потому что `->` определен в [`objc.scm`](http://github.com/dchest/tinyscheme/blob/master/TinySchemeObjC/objc.scm) как:
+
+	(define -> objc-send)
+
+[Там](http://github.com/dchest/tinyscheme/blob/master/TinySchemeObjC/objc.scm) еще несколько хэлперов есть.
+
+Заметьте, что класс `TinyScheme` автоматически конвертирует Scheme типы в C/ObjC и обратно. Здесь мы вызвали метод `className`, который возвращает `NSString *`, а внутри Scheme он уже оказывается Scheme-типом `string`. Или, например, если у нас есть объект `test` класса `Test` в Objective-C с таким методом:
+
+	- (int)doSomethingWithDouble:(double)d andString:(NSString *)s
+	{
+		NSLog(@"string was: %@", s);
+		return 2 * d;
+	}
+
+то мы можем его вызывать из Scheme вот так:
+
+	(-> 'test "doSomethingWithDouble:andString:" 7.40 "Hello")
+
+и получим результат `14` (метод возвращает `int`), с которым можем обычным образом работать:
+
+	(+ 10 (-> 'test "doSomethingWithDouble:andString:" 7.40 "Hello"))
+
+вернет `24`.
+
+Оки-доки, но что если мы не хотим регистрировать свои объекты через `registerObject:withName:`? Можно ли создавать их прямо в Scheme? Можно. Для этого всего-навсего понадобилось написать процедуру `objc-class`, который автоматически регистрирует класс и возвращает его. 
+
+	(objc-class "NSString")
+
+Теперь мы можем создавать объекты!
+
+	(-> (-> (objc-class "NSFileManager") "alloc") "init")
+
+Расшифровываю: `(objc-class "NSFileManager")` возвращает класс `NSFileManager`, потом мы посылаем ему сообщение `alloc`, которое возвращает новый объект и этому объекту посылаем `init`, то есть как если бы мы сделали `[[NSFileManager alloc] init]`.
+
+В `objc.scm` есть хэлперы для упрощения этого (функция `new`, например). Смотрите:
+
+	(let ((fm (new "NSFileManager")))
+		(log "App folder name is" (-> fm "displayNameAtPath:" "/Applications")))
+
+покажет название папки `/Applications` (локализованное).
+
+Все это пока экспериментально, многого нет (например, хотелось бы как-то забайндить Scheme-процедуры и ObjC-методы, сделать какой-нибудь нормальный memory management), но очень интересно в плане изучения... внутренностей Objective-C. И это я еще не выучил Scheme :)
+
+Репозиторий: <http://github.com/dchest/tinyscheme/>
+
+PS Пока писалась заметка, родилась идея другого синтаксиса посыла сообщений: вместо `(-> object "doWithOne:andTwo:" 1 2)` сделать `(-> object "doWithOne:" 1 "andTwo:" 2)`. Надо подумать.
+

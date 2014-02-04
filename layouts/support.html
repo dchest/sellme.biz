@@ -1,0 +1,51 @@
+---
+layout: content
+---
+<div class="row">
+  <div class="col-md-4 col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading panel-menu-heading">
+        Select product
+      </div>
+      <div class="list-group">
+        <a class="list-group-item {{with .Page.product}}{{if eq . "memoires"}}active{{end}}{{end}}" href="/support/memoires/">Mémoires</a>
+        <a class="list-group-item {{with .Page.product}}{{if eq . "videomemoires"}}active{{end}}{{end}}" href="/support/videomemoires/">Video Mémoires</a>
+        <a class="list-group-item {{with .Page.product}}{{if eq . "blogjet"}}active{{end}}{{end}}" href="/support/blogjet/">BlogJet</a>
+        <a class="list-group-item {{with .Page.product}}{{if eq . "other"}}active{{end}}{{end}}" href="/support/other/">Other</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 col-sm-9">
+    <div id="support-content">
+      {{.Content}}
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    // Make collapsible Q&A.
+    $('#support-content > dl').each(function (i, dl) {
+      var questionId = 'q' + i;
+
+      // Turn DT elements into toggling links.
+      var dt = $(dl).children('dt').first();
+      dt.wrapInner('<a data-toggle="collapse" href="#' + questionId + '"></a>');
+
+      // Turn DD elements into toggled content.
+      var dd = $(dl).children('dd').first();
+      dd.wrap('<div id="' + questionId + '" class="collapse"></div>');
+      dd.collapse('hide');
+    });
+
+    // Load IFRAME from lost.codingrobots.org when showing it.
+    var iframe = $('#lostframe');
+    if (iframe) {
+      iframe.closest('.collapse').on('show.bs.collapse', function() {
+        if (!iframe.prop('src')) {
+          iframe.prop('src', iframe.data('src'));
+        }
+      });
+    }
+  });
+</script>

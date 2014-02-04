@@ -1,0 +1,33 @@
+---
+author: "dchest"
+date: 2012-03-28 20:47:30 +00:00
+markup: markdown
+status: "Publish"
+title: "Вышел Go 1"
+---
+[Go](http://golang.org) -- хороший язык программирования. Сегодня вышла его первая стабильная версия.
+
+Если вы еще не пробовали на нем что-нибудь написать, сейчас самое время. Можете начать с [тура по Go](http://tour.golang.org/).
+
+<a href="http://usyaka.wordpress.com/2011/11/02/usyaka-and-gopher/"><img alt="Гофер и Усяка" src="/pics/gopher-2.jpg" width="482" height="404" class="mt-image-none" style="" /></a><br><small><i>Усяка и Гофер</i> (by <a href="http://usyaka.wordpress.com/">Alexandra Zakharova</a>, Creative Commons BY-NC-SA 3.0)</small>
+
+Тем, кто будет программировать на нем для веба, возможно, пригодятся мои пакеты:
+
+<ul>
+
+<li><a href="https://github.com/dchest/captcha">captcha</a> - визуальная и аудио капча. Очень весело было писать этот пакет, особенно код для генерации звука. На трех языках говорит: на английском, русском и китайском. На картинке показывает цифры.
+
+</li><li><a href="https://github.com/dchest/authcookie">authcookie</a> - создание и верификация подписанных куки. Для случаев, когда надо держать пользователей залогиненными.
+
+</li><li><a href="https://github.com/dchest/passwordreset">passwordreset</a> - имплементация функции "сбросить забытый пароль". Генерирует токены, которые надо отослать пользователю, забывшему пароль, чтобы он мог его сбросить.
+
+</li><li><a href="https://github.com/dchest/passwordhash">passwordhash</a> - секьюрное "хеширование" паролей на основе PBKDF2.
+
+</li><li><a href="https://github.com/dchest/uniuri">uniuri</a> - правильная генерация рэндомных строк текста, которые подходят для URL. Например, "apHCJBl7L1OmC57n".
+
+</li><li><a href="https://github.com/dchest/blake256">blake256</a> - имплементация хэш-функции BLAKE-256. BLAKE -- кандидат в SHA-3, и я надеюсь, он победит. Но пока не победил, лучше не использовать для серьезных вещей.
+
+</li><li><a href="https://github.com/dchest/stemmer">stemmer</a> - cтеммер английских слов на основе алгоритма Porter2. Нормализует слова так, чтобы их можно было найти вне зависимости от окончаний и прочих преобразований. Например, и "delicious", и "deliciously", пропущенные через него,  дают "delici".
+
+</ul>
+

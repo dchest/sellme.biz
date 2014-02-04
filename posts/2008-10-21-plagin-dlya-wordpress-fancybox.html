@@ -1,0 +1,238 @@
+---
+author: "dchest"
+category: "Сайт и дизайн"
+date: 2008-10-21 02:38:29 +00:00
+primary_category: "Сайт и дизайн"
+status: "Publish"
+tags: "WordPress,plugin,wp-fancybox"
+title: "Плагин для WordPress: FancyBox"
+---
+<p><em>Я тут занимаюсь переделкой сайта <a href="http://www.codingrobots.com">Coding Robots</a> и рожаю небольшие плагины для WordPress, которые могут пригодиться в хозяйстве. Буду постить их в блог, может и вам окажутся полезными.</em></p>
+<p><strong>Обновление: <a href="/2008/10/21/wp-fancybox-11">смотрите новую версию</a></strong></p>
+<p>Я несколько месяцев искал хороший "zoom" для картинок. Lightbox, Thickbox и другие — отстой. Во-первых, они затемняют фон, а я этого не хочу. Во-вторых, они совершенно некрасивые. В-третьих, многие из них очень большие. Наконец, собственно, эффекта зума нет. Я хотел что-нибудь <a href="http://www.apple.com/macbook/features.html">в стиле Apple</a> и с небольшим весом. </p>
+<p>Кабель (имя такое — Cabel) из Паники (компания такая — Panic) сделал замечательную штуку <a href="http://www.cabel.name/2008/02/fancyzoom-10.html">FancyZoom</a>. Выглядит прекрасно, но: штука платная (39 $ за один сайт) и занимает 152 Кб.</p>
+<p>Наконец, пару недель назад я нашел чудо под названием <a href="http://fancy.klade.lv/">FancyBox</a>. Чем оно лучше? Во-первых, использует jQuery (а не нелюбимый мной prototype или чего-нибудь другое). Я и так "линкую" эту библиотеку с сайтом для других вещей, поэтому будет меньше трафика и HTTP-запросов (кроме того, jQuery включается в стандартную поставку WordPress). Во-вторых, занимает 27 Кб (в моей оптимизированной версии, включая картинки. Только CSS и JS — 12 Кб). Наконец, выглядит превосходно.</p>
+<p>Пример (кликните. В RSS, естественно, не работает, зайдите на <a href="/2008/10/21/plagin-dlya-wordpress-fancybox">сайт</a>):</p>
+<p><a class="fancybox" title="Медведь с пивом" href="http://farm4.static.flickr.com/3173/2891246981_946abe9340.jpg?rand=0"><img src="http://farm4.static.flickr.com/3173/2891246981_946abe9340_m.jpg" style="border: 1px solid black" class="size-thumbnail" /></a></p>
+<p>Я написал для WordPress плагинчик, чтобы включать FancyBox без заморочек.</p>
+<p>Распаковываете, закачиваете плагин в <em>wp-content/plugins/</em>, активируете в админке и используете следующим образом:</p>
+<p><del datetime="2008-10-21T18:48:10+00:00"><blockquote></p>
+<p><pre><code></p>
+<p>&lt;a class="fancybox" href="большая_картинка.jpg"</p>
+<p>  title="Заголовок, если надо"&gt;</p>
+<p>&lt;img src="маленькая_картинка.jpg"&gt;</p>
+<p>&lt;/a&gt;</p>
+<p></code></pre></p>
+<p></blockquote></p>
+<p></del></p>
+<p><del datetime="2008-10-21T18:50:24+00:00">То есть, просто добавляете <code>class="fancybox"</code> к ссылке на большую картинку. Все.</p>
+<p></del></p>
+<p><del datetime="2008-10-21T18:51:42+00:00">(Если охота использовать другим образом, поменяйте <a href="http://docs.jquery.com/Selectors">jQuery-селектор</a> <code>a.fancybox</code> в 16-й строке <em>fancybox.php</em>. Там же можно кастомизировать FancyBox — см. <a href="http://fancy.klade.lv/">сайт автора</a>. Кстати, <em>fancybox.css</em> и <em>fancybox-1.0.0.js</em>, те которые без <em>.min</em>, можно удалить, я оставил их на всякий случай.)</p>
+<p></del></p>
+<p><strong>Обновление: <a href="/2008/10/21/wp-fancybox-11">смотрите новую версию</a></strong></p>
+<p><big><a href="http://wp-fancybox.googlecode.com/files/wp-fancybox-1.1.0.zip"><strong>Скачать fancybox.zip</strong></a> (26 Кб)</big></p>
+<p>Нашли баги? <a href="mailto:dmitry@sellme.biz">Пишите</a>.</p>
+<p>P.S. Для IE6 нужен png-fix. У меня на сайте используется своя версия, поэтому я его не включил в поставку. Если нужен, он есть на <a href="http://fancy.klade.lv/">сайте FancyBox</a>. Засуньте <em>jquery.pngFix.js</em> в папку <em>fancybox</em> и добавьте в <em>fancybox.php</em> строчку:</p>
+<p><blockquote></p>
+<p><code>wp_enqueue_script('pngfix', </p>
+<p>'/wp-content/plugins/fancybox/jquery.pngFix.js');</code></p>
+<p></blockquote> где-нибудь до <code>add_action...</code>. Но лучше забейте на <em>гадов</em>, до сих пор использующих мозговыворачивающий браузер.</p>
+<p>P.P.S. <strike>Что-то он на Sellme.biz в дурацком браузере №2 (Opera) показывается в центре всей страницы, а не текущей позиции скролла. Посмотрим...</strike> Это был баг в jQuery. Залил исправленную версию fancybox, которая нормально работает с Opera.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.ugnich.com/">Ugnich Anton</a></span> <span class="comment-date">2008-10-21 03:08</span>
+</div>
+<div class="comment-body">
+<p>Не нужен тут спиннер. Пускай картинка выводится на экран естественным образом по мере загрузки. Будет и процесс видно, и отменить можно.</p>
+<p>Такая простая вещь - вывести картинку на экран. Обернули десятками килобайт джаваскрипта, оно начало тормозить и появились проблемы с кривыми браузерами. И это всё ради гламурной рамочки и анимации?! :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 03:08</span>
+</div>
+<div class="comment-body">
+<p>Нужен спиннер. Как картинку выводить по мере загрузки, если нужен эффект зума?</p>
+<p>Отменить можно -- кликните на спиннер.</p>
+<p>> Такая простая вещь - вывести картинку на экран.</p>
+<p>Какие будут предложения?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 03:08</span>
+</div>
+<div class="comment-body">
+<p>Кстати, а как вы используете прозрачные PNG в IE6? :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://socvestnik.ru/">Mio</a></span> <span class="comment-date">2008-10-21 04:08</span>
+</div>
+<div class="comment-body">
+<p>Отличный плагин, спасибо большое. Его стоит отправить в официальную директорию плагинов для WP.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 04:08</span>
+</div>
+<div class="comment-body">
+<p>Mio: ага, доки напишу, добавлю pngFix и отправлю. Попозже.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 04:08</span>
+</div>
+<div class="comment-body">
+<p>А лучше, конечно, найти нормального мэйнтейнера, который потрудится написать интерфейс для настройки FancyBox, ну и будет поддерживать его :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">zencd</span> <span class="comment-date">2008-10-21 06:08</span>
+</div>
+<div class="comment-body">
+<p>Firefox 3 / WinXP: медведь каждый раз грузится заново. На моих 33,6 кбпс это хорошо заметно :-).</p>
+<p>Кстати, а для чего вам нужен эффект зума?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 06:08</span>
+</div>
+<div class="comment-body">
+<p><blockquote>Кстати, а для чего вам нужен эффект зума?</blockquote></p>
+<p>Для эффекта зума :)</p>
+<p>Насчет бага — спасибо, посмотрю что там не так.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 06:08</span>
+</div>
+<div class="comment-body">
+<p>А, отбой, это не баг. Это просто Flickr каждый раз "новую" картинку выдает (добавляет ?rand=...).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 06:08</span>
+</div>
+<div class="comment-body">
+<p>А, нет, это как раз FancyBox добавляет rand=.... Странно, зачем? Завтра разберусь.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://bloknotus.ru">Андрей Берман</a></span> <span class="comment-date">2008-10-21 06:08</span>
+</div>
+<div class="comment-body">
+<p>Офигенный плагин! Мне очень понравилось, вот только что-то он чуть дольше грузится чем если бы картинка грузилась просто так.</p>
+<p>И еще не привычно как-то после того как погрузилась картинка, посмотрел ее, а потом еще раз захотел, а она опять грузится. Т.е. не запоминает ее что ли. </p>
+<p>Извините за тавтологию</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 07:08</span>
+</div>
+<div class="comment-body">
+<p>OK, это автор FancyBox так исправил баг с Safari :) Я переделал, теперь должно из кэша грузится. Пока дистрибутив не выложил, только тут в блоге активировал новую версию. Проверьте, плиз, мишку с пивом в ваших браузерах (и напишите тут в комментариях, в каком браузере проверялось) -- должно работать. Не забудьте кликнуть как минимум 3 раза, чтобы убедиться в том, что все работает.</p>
+<p>Завтра, еще сам проверю и если все ок, выложу новую версию.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://vzakharov.livejournal.com">Владимир</a></span> <span class="comment-date">2008-10-21 10:08</span>
+</div>
+<div class="comment-body">
+<p>Chrome всё тип-топ</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blogodatina.blogspot.com/2007/10/20.html">NikoNiko</a></span> <span class="comment-date">2008-10-21 11:08</span>
+</div>
+<div class="comment-body">
+<p>а где зум? (фф 2.х) у меня картинка только смещается чуть чуть и всё</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">sanch3z</span> <span class="comment-date">2008-10-21 11:08</span>
+</div>
+<div class="comment-body">
+<p>Есть такой замечательный скриптик – <a href="http://highslide.com/" rel="nofollow">http://highslide.com/</a></p>
+<p>Работает быстрее и мягче.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Сергей</span> <span class="comment-date">2008-10-21 12:08</span>
+</div>
+<div class="comment-body">
+<p>В FF тоже все ок</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 14:08</span>
+</div>
+<div class="comment-body">
+<p>sanch3z: Highslide проходили. Хорошо выглядит (анимация, все остальное -- плохо), но, опять же — $$$. Мне нужны open source BSD/MIT/GPL2/Apache/MPL...-решения. У Highslide вообще странная лицензия -- CC Attribution Non-commercial. Ее не рекомендуется применять к коду. Плюс еще ограничения дополнительно к этой лицензии.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://mactrick.com">bm</a></span> <span class="comment-date">2008-10-21 14:08</span>
+</div>
+<div class="comment-body">
+<p>Огромоное спасибо! Долго пытался прикрутить себе, не получилось. Теперь работает.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-21 14:08</span>
+</div>
+<div class="comment-body">
+<p><strong>Внимание, вопрос.</strong></p>
+<p>WordPress, если вставлять картинки с помощью встроенной Media Gallery, добавляет к маленькой картинке класс size-thumbnail. Мы можем применять FancyBox к ним с помощью такого селектора: jQuery("img.size-thumbnail").parent(). То есть, при вставке маленькой картинки в редакторе WordPress, не придется указывать class="fancybox".</p>
+<p>Как думаете, что лучше включить по умолчанию:</p>
+<p>1. Убрать a class="fancybox" и применять FancyBox для вставленных из WordPress картинок (img class="size-thumbnail").</p>
+<p>2. Оставить все как есть сейчас.</p>
+<p>3. Срабатывать и на то, и на другое.</p>
+<p>?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://mactrick.com">bm</a></span> <span class="comment-date">2008-10-21 17:08</span>
+</div>
+<div class="comment-body">
+<p>По мне так лучше третий вариант. Ну, или хотя бы инструкцию, как сделать так, чтобы это работало. </p>
+<p>А по-хорошему, наверное, нужен какой-то небольшой конфигуратор к плагину, чтобы можно было выбрать. Сразу говорю, не знаю, насколько это трудоёмкий процесс.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Сергей</span> <span class="comment-date">2008-10-23 18:08</span>
+</div>
+<div class="comment-body">
+<p>В IE вообще не работает, просто открывает картинку как по обычной ссылке и все. Как исправить?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-23 23:08</span>
+</div>
+<div class="comment-body">
+<p>Сергей: спасибо, исправил у себя, сейчас доделаю png-fix и выложу.</p>
+</div>
+</div>
+</div>

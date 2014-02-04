@@ -1,0 +1,53 @@
+---
+author: "dchest"
+date: 2010-01-03 05:58:06 +00:00
+markup: markdown
+status: "Publish"
+title: "Миф об strlen() в Linux и BSD"
+---
+Уже не первый раз попадаюсь на утверждение, что `strlen()` в линуксовом glibc оптимизирована, а у BSD нет. Утверждение "подтверждается" ссылками в соответствующие репозитории:
+
+1. [strlen() в glibc](http://sources.redhat.com/cgi-bin/cvsweb.cgi/~checkout~/libc/string/strlen.c?rev=1.1.2.1&cvsroot=glibc)
+2. [strlen() в OpenBSD](http://www.openbsd.org/cgi-bin/cvsweb/src/lib/libc/string/strlen.c?rev=1.7;content-type=text%2Fplain)
+
+Посмотрите какой длинный оптимизированный код у glibc и какой обычный тупой у BSD! Вот они, в перевернутом виде:
+
+<img src="/pics/strlen.png" alt="strlen.png" border="0" width="500" height="300" />
+
+Появляется еще один аргумент о превосходстве Линукса над BSD! Ура! 
+
+И так пока какой-нибудь чел (вроде меня) не полазает по репозиториям и не скажет, что **ни та, ни другая версия не используется во многих архитектурах**. Достаточно посмотреть, например, в [sysdeps/i386/strlen.c](http://sources.redhat.com/cgi-bin/cvsweb.cgi/libc/sysdeps/i386/strlen.c?rev=1.8&content-type=text/x-cvsweb-markup&cvsroot=glibc) в glibc:
+
+		size_t
+		strlen (const char *str)
+		{
+		  int cnt;
+
+		  asm("cld\n"                   /* Search forward.  */
+		      /* Some old versions of gas need `repne' instead of `repnz'.  */
+		      "repnz\n"                 /* Look for a zero byte.  */
+		      "scasb" /* %0, %1, %3 */ :
+		      "=c" (cnt) : "D" (str), "0" (-1), "a" (0));
+
+		  return -2 - cnt;
+		}
+
+и в [arch/i386/string/strlen.S](http://www.openbsd.org/cgi-bin/cvsweb/src/lib/libc/arch/i386/string/strlen.S?rev=1.3;content-type=text%2Fplain) в OpenBSD:
+
+		ENTRY(strlen)
+			pushl	%edi
+			movl	8(%esp),%edi		/* string address */
+			cld				/* set search forward */
+			xorl	%eax,%eax		/* set search for null terminator */
+			movl	$-1,%ecx		/* set search for lots of characters */
+			repne				/* search! */
+			scasb
+			notl	%ecx			/* get length by taking	complement */
+			leal	-1(%ecx),%eax		/* and subtracting one */
+			popl	%edi
+			ret
+
+или в [i386/string/strlen.s](http://opensource.apple.com/source/Libc/Libc-583/i386/string/strlen.s) в Apple'овской libc (где используется SSE3, тут приводить не буду, кликайте ссылку).
+
+Не повторяйте этот миф, пожалуйста.
+

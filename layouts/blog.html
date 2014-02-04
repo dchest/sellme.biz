@@ -1,0 +1,110 @@
+---
+layout: default
+---
+<div class="row">
+  <div class="col-md-8">
+
+    {{.Content}}
+
+  </div>
+
+  <div class="col-md-4 blog-sidebar">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="avatar pull-right">
+          <a href="/about.html">
+            <img src="/img/dchest.jpg" alt="Фото автора" width="90" height="90" class="img-circle">
+          </a>
+        </div>
+
+        <p><a href="/about.html">Об авторе и контакты <i class="fa fa-angle-right"></i></a></p>
+        <p><a
+          class="btn btn-default btn-donate"
+          href="https://coinbase.com/checkouts/b31ea1c3fb4f1ad25d416ed20ea18ec7"
+          target="_blank"><i class="fa fa-2x fa-bitcoin pull-left"></i> Поддержать<br>биткоинами</a></p>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Подписка
+      </div>
+      <div class="panel-body">
+        <form class="form-inline" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=SellMe', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+          <label for="email"><small>Получать новые посты по почте:</small></label>
+
+
+          <div class="input-group">
+            <input class="form-control" type="text" id="email" name="email" value="" placeholder="Адрес электропочты">
+
+            <span class="input-group-btn">
+              <button type=submit name="subscribe" class="btn btn-default">
+                <i class="fa fa-check"></i>
+              </button>
+            </div>
+            <!--hidden-->
+            <input type="hidden" value="SellMe" name="uri">
+            <input type="hidden" name="loc" value="ru_RU"/>
+            <!--/hidden-->
+          </form>
+
+        </div><!-- close panel body, list goes under -->
+
+        <div class="list-group">
+          <a class="list-group-item" href="/feed/">
+            <i class="fa fa-lg fa-rss-square" style="color:#4374e0"></i> RSS лента
+            <!--
+            <img src="http://feeds.feedburner.com/~fc/SellMe?bg=ffffff&amp;fg=000000&amp;anim=0"
+            height="26" width="88" alt="" style="opacity:0.4" class="pull-right" />
+            -->
+
+          </a>
+          <a class="list-group-item" href="{{.Site.Properties.urls.twitter}}">
+            <i class="fa fa-lg fa-twitter twitter-color"></i> Твиттер
+            <span class="text-muted">@{{.Site.Properties.twitter_name}}</span>
+          </a> 
+      </div>
+    </div>
+
+
+    <div class="panel panel-default panel-projects">
+      <div class="panel-heading">
+        Мои проекты
+      </div>
+        <div class="list-group">
+          <a class="list-group-item" href="http://www.codingrobots.com/memoires/">
+            <h4 class="list-group-item-heading">Mémoires</h4>
+            <p class="list-group-item-text">Программа для ведения дневников</p>
+          </a>
+          <a class="list-group-item" href="http://www.codingrobots.com/videomemoires/">
+            <h4 class="list-group-item-heading">Video Mémoires</h4>
+            <p class="list-group-item-text">Программа для видео-дневников</p>
+          </a>
+          <a class="list-group-item" href="http://www.properpicks.com">
+            <h4 class="list-group-item-heading">Proper Picks</h4>
+            <p class="list-group-item-text">Микроиздательство книжек</p>
+          </a>
+          <a class="list-group-item" href="http://github.com/dchest">
+            <h4 class="list-group-item-heading">github.com/dchest</h4>
+            <p class="list-group-item-text">Мои открытые проекты на Гитхабе</p>
+          </a>
+        </div>
+    </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Последние посты
+        </div>
+        <div class="panel-body">
+          <ul class="list-unstyled">
+            {{range .Site.Posts.Limit 10}}
+            <li><a href="{{.Meta.url}}">{{.Meta.title}}</a></li>
+            {{end}}
+            <li><a href="/archive/"><b>Список всех постов</b></a></li>
+          </ul>
+        </div>
+      </div>
+
+  </div>
+</div>

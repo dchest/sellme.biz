@@ -1,0 +1,21 @@
+---
+author: "dchest"
+date: 2009-11-12 21:00:42 +00:00
+markup: markdown
+status: "Publish"
+title: "gotweet"
+---
+<img src="/pics/CA9F5C25-6CB3-4B23-BFBD-83AA1004F25F.jpg" alt="CA9F5C25-6CB3-4B23-BFBD-83AA1004F25F.jpg" border="0" width="136" height="83" style="float:right" /> А вот и более-менее полноценный консольный клиент для твиттера, написанный на [Go](http://golang.org) прилетел/прибежал — [gotweet](http://codingrobots.org/p/gotweet/).
+
+Два дня возился, пытался понять как что устроено в библиотеках Go. Обнаружил отсутствие поддержки basic authentication в http, пришлось написать самому.
+
+Нашел [баг в парсинге JSON](http://code.google.com/p/go/issues/detail?id=73), который разработчики Go исправили меньше чем за час.
+
+Основные сложности были с io — долго пытался понять как им пользоваться ([]byte vs "bytes" package? io.Writer/Reader?).
+
+Кросс-компиляция рулит: оба бинарника для Mac OS X и Linux собраны на Маке.
+
+Качайте исходники или бинарники: <http://codingrobots.org/p/gotweet/>
+
+PS Впечатления о языке опять будут позже, устал я от него :-)
+

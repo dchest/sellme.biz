@@ -1,0 +1,20 @@
+---
+layout: blog
+---
+<div class="blog-post">
+  <h2 class="blog-post-title">{{.Page.title}}</h2>
+
+  <div class="blog-post-content">
+  {{.Content}}
+  </div>
+
+  <div class="blog-post-meta">
+    <div class="blog-post-date"><i class="fa fa-calendar"></i> {{.Page.date.Format "02.01.2006"}}</div>
+    <div class="social-likes" data-counters="no">
+      <div class="facebook" title="Поделиться ссылкой на Фейсбуке"></div>
+      <div class="twitter" data-via="sellmebiz" title="Поделиться ссылкой в Твиттере"></div>
+      <div class="vkontakte" title="Поделиться ссылкой во Вконтакте"></div>
+      <div class="plusone" title="Поделиться ссылкой в Гугл-плюсе"></div>
+    </div>
+  </div>
+</div>

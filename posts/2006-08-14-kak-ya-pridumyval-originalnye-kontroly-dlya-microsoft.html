@@ -1,0 +1,512 @@
+---
+author: "dchest"
+category: "Software Business"
+date: 2006-08-14 13:35:39 +00:00
+primary_category: "Software Business"
+status: "Publish"
+title: "Как я придумывал оригинальные контролы для Microsoft"
+---
+<p>История&#xA0;с картинками&#x2026;</p>
+<p>Первые версии BlogJet позволяли выбрать для заметки только одну категорию, что было оправдано, т.к. в то время немногие блог-серверы поддерживали множественные категории для одного поста. Соответственно, выбор категории был сделан в виде обычного комбобокса.</p>
+<p>Но потом пользователи стали просить возможность выбрать несколько категорий. Я долго думал и остановился на таком оригинальном решении: с виду штука похожа на комбобокс. При нажатии появляется окошко со списком категорий и возможностью поставить галочку (чеклистбокс). Когда галочка ставится &#x2014; если категория одна, то её название выводится в комбобоксе, а если их несколько, то названия не пишутся, а выводится количество выбранных категорий.&#xA0;Так как пользователю надо дать возможность обновить категорию, внизу списка&#xA0;поместил кнопку &#x201C;Обновить&#x201D;. Ну и конечно же, под всем этим хозяйством должна быть тень для красоты &#x2014; как же без тени!</p>
+<p>Вот что получилось (см. справа):</p>
+<p><a href="/pics/ripoff1.PNG"></a><a href="/pics/ripoff1.PNG"><img alt="Ripoff1" hspace="10" src="/pics/ripoff1_thumb.jpg" vspace="10" border="0" /></a><a href="/pics/ripoff1.PNG"></a></p>
+<p>Ой, простите, это не моя программа &#x2014; это Microsoft Life Writer. Вот же:</p>
+<p><a href="/pics/ripoff1original.PNG"><img alt="Ripoff1original" hspace="10" src="/pics/ripoff1original_thumb.jpg" vspace="10" border="0" /></a></p>
+<p>Кстати, решение с точки зрения юзабилити оказалось не очень удачным, поэтому в следующей версии BlogJet я избавляюсь от этого контрола. Но если кто соскучится &#x2014; теперь он будет жить у Microsoft.</p>
+<p>Другой элемент я придумал для изменения размера рисунка. Я точно не помню, придумал ли я его сам, или где подсмотрел. Но то, что ни в одной программе для постинга в блоги я его не видел&#xA0;&#x2014; это точно.</p>
+<p>Задача стояла такая. Пользователю всё время лень набивать в поля ввода размеры изображения. Поэтому ему надо дать возможность сохранить какие-то определённые размеры, и потом просто их выбрать. Для решения задачи был придуман вот такой контрол: три прямоугольника, вложенные друг в друга. Самый большой будет Large, поменьше Medium и ещё меньше &#x2013; Small. Таким образом мы даём пользователю целых три настройки. При нажатии на один из прямоугольников, картинка изменяет свои размеры на заданные, а прямоугольник выделяется.</p>
+<p>Вот как это выглядит:</p>
+<p><img alt="Ripoff2" hspace="10" src="/pics/ripoff2_small.jpg" vspace="10" border="0" /></p>
+<p>Тьфу ты, опять Life Writer! Извините. Вот картинка из BlogJet:</p>
+<p><img alt="Ripoff2original" hspace="10" src="/pics/ripoff2original_small.jpg" vspace="10" border="0" /></p>
+<p>Идея хорошая и она пока останется в следующей версии. Хотя если честно, если бы я начинал заново, я бы сделал обычный trackbar.</p>
+<p>Вот так мои оригинальные контролы живут и будут жить теперь в Microsoft. Или погодите&#x2026; Нет, там будут жить клоны. Потому что оригиналы остаются у меня.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://evilbot.ru">EvilBot</a></span> <span class="comment-date">2006-08-14 14:06</span>
+</div>
+<div class="comment-body">
+<p>Microsoft в своём стиле.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Maxim</span> <span class="comment-date">2006-08-14 14:06</span>
+</div>
+<div class="comment-body">
+<p>А кто Вас уверил что имнно Вы являетесь автором этих визуальных элементов? Обычный поиск в Интернет дает массу результатов обуждения как же вставить checkbox в dropdown элемент. Вы безусловно являетесь автром исходного кода, но уж никак не идеи, с таким же успехом можно сказать, что Вы ее взяли их у других (например R-Studio).</p>
+<p>И что значит "Microsoft в своём стиле."? Т.е. все всё придумывают и делают сами, а Microsoft всегда ворует?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">yakoff</span> <span class="comment-date">2006-08-14 14:06</span>
+</div>
+<div class="comment-body">
+<p>Дим, отлично! Просто ве-ли-ко-леп-но! :))</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">yakoff</span> <span class="comment-date">2006-08-14 14:06</span>
+</div>
+<div class="comment-body">
+<p>Максим, вы абсолютно правы и неправы одовременно. Дело не в том, кто чего придумал. Дело в том, что в любой области рано или поздно формируются индустриальные стандарты, типичные подходы и прочая унификация. И очень прикольно быть тем человеком, который эти стандарты в области впервые внедрил. Человеком, на которого ориентируются.</p>
+<p>Это дает несравненное чувство собственного величия :))</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Anton Kokin</span> <span class="comment-date">2006-08-14 14:06</span>
+</div>
+<div class="comment-body">
+<p>Да, не очень приятная новость от Microsoft. Дмитрий, судя по вашему посту, вы не намерены отступать? Хотя, надо признаться, блог-клиент мне показался достаточно удобным. Правда, его инсталяция уж как-то долго шла. Видимо я устанавливал много лишнего, что включалось в программу.</p>
+<p>Вот налицо ситуация, когда появляются препятствия (серьезные). И как-то надо реагировать. Или улучшать свой продукт и продолжать продавать его, или делать его тоже бесплатным, или переключаться на другой проект.</p>
+<p>Я, например, не знаю как бы поступил. А вы?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-14 14:06</span>
+</div>
+<div class="comment-body">
+<p>Maxim, найдите мне программу, в которой есть компонент с таким же видом и поведением, как #1.</p>
+<p>Антон, я в раздумьях :) Планчик есть, но сейчас оглашать не буду.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-14 14:06</span>
+</div>
+<div class="comment-body">
+<p>Кстати, скриншот BlogJet 2.0:</p>
+<p><a href="http://www.blogjet.com/blog/2006/08/14/blogjet-20-screenshot/" rel="nofollow">http://www.blogjet.com/blog/2006/08/14/blogjet-20-screenshot/</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://evilbot.ru">EvilBot</a></span> <span class="comment-date">2006-08-14 15:06</span>
+</div>
+<div class="comment-body">
+<p><b>Maxim</b>, это значит что Microsoft поглядела как сделано у других и приспособила под свои нужды.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">yakoff</span> <span class="comment-date">2006-08-14 15:06</span>
+</div>
+<div class="comment-body">
+<p>Разумный ход - продаться гуглу в этой ситуации. Кстати, а ты бы продался, буде такое предложение?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://billard.com.ua">Billard</a></span> <span class="comment-date">2006-08-14 15:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, а когда планируется выпуск BlogJet 2?</p>
+<p>Собираюсь приобрести... хотелось бы сразу эту версию...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Maxim</span> <span class="comment-date">2006-08-14 15:06</span>
+</div>
+<div class="comment-body">
+<p>Ну по поводу вида Вы, конечно, поспешили. Имея Windows XP и Themes найти такой же снимок экрана, это не реально. Найдите ради интереса хотя бы кнопку под Windows 3.11, которая бы выглядела как та жк копка на моем Windows XP? Почему в 3.11? Потому-что вот реальный вопрос реальной проблемы и даже более того, способ решения от 94-го года:</p>
+<p><a href="http://groups.google.com/group/comp.os.ms-windows.programmer.misc/browse_frm/thread/e9a6ecdda23773b6/5efff52c413bc095?lnk=st&amp;q=%22drop+down%22+%22with+check+boxes%22+&amp;rnum=3&amp;hl=en#5efff52c413bc095" rel="nofollow">http://groups.google.com/group/comp.os.ms-windows.programmer.misc/browse_frm/thread/e9a6ecdda23773b6/5efff52c413bc095?lnk=st&amp;q=%22drop+down%22+%22with+check+boxes%22+&amp;rnum=3&amp;hl=en#5efff52c413bc095</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Anton Kokin</span> <span class="comment-date">2006-08-14 15:06</span>
+</div>
+<div class="comment-body">
+<p>На мой взгляд, внешний вид Блог-клиента Microsoft похож до степени смешения с Блогджетом Дмитрия. Тут можно уже подумать о консультациях с юристами по авторским правам на предмет возможного иска.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-14 15:06</span>
+</div>
+<div class="comment-body">
+<p>yakoff: Microsoft хотели что-то вроде купить меня в сентябре прошлого года (сначала предложили работу, потом возможность включить BlogJet в PowerPack для Vista за какие-то деньги [в смысле, мне заплатят, а не я им :)]), но я сначала было согласился, а потом отказался.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-14 15:06</span>
+</div>
+<div class="comment-body">
+<p>Maxim: я имею в виду, найдите похожий контрол. Не обязательно, чтобы он выглядил 1 в 1.</p>
+<p>Кстати (викторина! :)), как вы думаете, почему окошко, которое появляется при нажатии на "комбобокс" выровнено по правой стороне, а не по левой, как принято?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-14 16:06</span>
+</div>
+<div class="comment-body">
+<p>Billard: ладно, объявлю "секретную информацию" для всех :) Переход с версии 1.х до 2.0 для российских (ну или СНГ) пользователей будет бесплатным. Так что можете уже сейчас отсылать мне деньги :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Maxim</span> <span class="comment-date">2006-08-14 16:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, ну мы же понимаем что говорим об одном и том же. Что у Вас такого чего нет в обычном выпадающем элементе с копками выбора (checkbox т.е.)? Я ни в коем случае не хочу сказать, что Вы не имеете право на авторство такого использования элменетов каого Вы добились. И то что Microsoft повторяет Вашу программу в целом и очень на нее похожа, это очевидно, это неприятно и это не верно. И поговорить с юристами наверно не лишнее, понятно что в суд Вы вряд-ли пойдете, но в конце концов, раз Вы отказались то материального предложения, то Вам предложили меньше, чем Вы того хотели (я предпологаю, что все было в разумных пределах). Раз так, значит можно попытаться через судебные процедуры получить больше, может и судиться не прийдется. Но говорить, что Вы придумали этот элемент, это, я считаю, не порядочно. И что Microsoft его у Вас украл, это не верно.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-14 17:06</span>
+</div>
+<div class="comment-body">
+<p>Maxim: да не буду я судиться, упаси боже :) Тут повода даже нет.</p>
+<p>Просто попользуйтесь и тем контролом и другим и поймёте, что я Великий и Могучий Единственный в Своём Роде Изобретатель обоих контролов.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">yakoff</span> <span class="comment-date">2006-08-14 17:06</span>
+</div>
+<div class="comment-body">
+<p>Дим, ну то что МС тебя в определенный момент попытается купить - это было очевидно донельзя. :) Кстати, а чем тебя не устроило включение в powerpack? Схемой (про сумму не спрашиваю) оплаты? Или религиозное нежелание мирового господства? ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Митяй</span> <span class="comment-date">2006-08-14 17:06</span>
+</div>
+<div class="comment-body">
+<p>Тезка,</p>
+<p>Вы же ведь интересуетесь блогоштучками. Я вот придумал блогоштучку, которой нигде в мире нет. Но боюсь, что один не потяну реализацию. Свяжитесь уж со мной по мылу. Обсудим, если есть интерес.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-14 19:06</span>
+</div>
+<div class="comment-body">
+<p>yakoff: не могу обсуждать :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-08-14 20:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, если не секрет, какие компоненты ты использовал для создания интерфейса BlogJet 2? Какой фирмы?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-14 20:06</span>
+</div>
+<div class="comment-body">
+<p>Алексей: ToolBar2000 + TBX.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-08-14 20:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий: Спасибо, Дмитрий!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://parkhomenko.com">Alex Parkhomenko</a></span> <span class="comment-date">2006-08-14 21:06</span>
+</div>
+<div class="comment-body">
+<p>Тут они рассуждают какой иновационный стал мелкософт: <a href="http://digg.com/tech_news/Windows_Live_Writer_Review_with_Many_Screenshots" rel="nofollow">ссылка</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.mukhach.com">Дмитрий</a></span> <span class="comment-date">2006-08-15 01:06</span>
+</div>
+<div class="comment-body">
+<p>Да уж, патент надо было получить :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">yakoff</span> <span class="comment-date">2006-08-15 09:06</span>
+</div>
+<div class="comment-body">
+<p>Гребаный майкрософт и шагу не ступит без NDA, понимаю :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.z1.com.ua/blog">woofer</a></span> <span class="comment-date">2006-08-15 11:06</span>
+</div>
+<div class="comment-body">
+<p>Как ни крутите, господа, но клиент "краденный-ворованный-слизанный" бесплатен, вот чем МС всех удивил. БЕСПЛАТЕН при близкой функциональности. FREE :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://parkhomenko.com">Alex Parkhomenko</a></span> <span class="comment-date">2006-08-15 11:06</span>
+</div>
+<div class="comment-body">
+<p>Так в бесплатности, собственно и вопрос: они копируют то, на чём малый бизнес зарабатывает деньги и бессовестно отдают это бесплатно, пользуясь финансовой мощью, забирают рынок, а потом делают с ним то, что хотят.</p>
+<p>Именно такие инциденты и послужили причинами антимонопольных исков.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.z1.com.ua/blog">woofer</a></span> <span class="comment-date">2006-08-15 11:06</span>
+</div>
+<div class="comment-body">
+<p>Подайте на них в суд, если у Вас у самих все с кодом чисто.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">yakoff</span> <span class="comment-date">2006-08-15 12:06</span>
+</div>
+<div class="comment-body">
+<p>woofer: стандартная ms-овская стратегия выхода на новые рынки. Практикуется ими со времен запуска MSIE. Практикуется успешно, не смотря ни на что. В чем проблема то?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://yashnikov.ru">Владимир Яшников</a></span> <span class="comment-date">2006-08-15 13:06</span>
+</div>
+<div class="comment-body">
+<p>woofer, когда MS сделает WLW частью Windows, тогда повод будет.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">yakoff</span> <span class="comment-date">2006-08-15 13:06</span>
+</div>
+<div class="comment-body">
+<p>Вот мне нравится ход мыслей множества читателей этого блога. Вместо того, чтобы заниматься продуктивной и приносящей прибыль деятельностью, азартно конкурировать и получать своё удовольствие от процесса - "а вы подайте в суд".</p>
+<p>А смысл?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Art</span> <span class="comment-date">2006-08-15 13:06</span>
+</div>
+<div class="comment-body">
+<p>BlogJet 2 сущеуствет только в screenshot'ах для внешней публики, а Microsoft Live Writer в форме готового продукта. </p>
+<p>Со временем нужно будет еще доказать, кто у кого что копировал :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Art</span> <span class="comment-date">2006-08-15 14:06</span>
+</div>
+<div class="comment-body">
+<p>Кстати, я решил копнуть чуть поглубже и посмотрел, кто написал Windows Live Writer -- J.J. Allaire.</p>
+<p>Тут про него: <a href="http://en.wikipedia.org/wiki/JJ_Allaire" rel="nofollow">http://en.wikipedia.org/wiki/JJ_Allaire</a></p>
+<p>Примечатльный мужик оказывается :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Ден</span> <span class="comment-date">2006-08-15 17:06</span>
+</div>
+<div class="comment-body">
+<p>контрол дропдаун совмещенный с чекбоксами встречался еще в интерфейсах софта win16 т.е. Windows 3.1</p>
+<p>первоткрыватели )</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-08-15 19:06</span>
+</div>
+<div class="comment-body">
+<p>'''''''''''''''''</p>
+<p>BlogJet 2 сущеуствет только в screenshot’ах для внешней публики, а Microsoft Live Writer в форме готового продукта. </p>
+<p>Со временем нужно будет еще доказать, кто у кого что копировал</p>
+<p>'''''''''''''''''</p>
+<p>Art, Вы не в теме, речь идет о контролах, которые уже существуют в BlogJet 1.x</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Art</span> <span class="comment-date">2006-08-15 20:06</span>
+</div>
+<div class="comment-body">
+<p>------</p>
+<p>Art, Вы не в теме, речь идет о контролах, которые уже существуют в BlogJet 1.x</p>
+<p>------</p>
+<p>Контролы? Я думал layout пёрли, да и то местами. А насчет темы -- blogjet я ставил давно, ради любопытсва. Сейчас увидел это замешательство -- сразу после выхода MS продукта у автора в блоге появилсь screenshots новой версии. Найди отличия называется. То есть для меня с выходом новой версии blogjet (если в ней не изменят ничего кардинально) как раз blogjet будет копировать и догонять MS продукт.</p>
+<p>Почему я заинтеровался этой темой -- автор в своем блоге утверждал, что он никогда не работал на кого-то, что он бизнесмен, что он один-человек-бизнес-будующего и т.д. Теперь мне интересно что в течении года станет с программой и автором. Первый тест всем его постам здесь.</p>
+<p>Пока же есть явно просматриваемая обида и недостаток опыта и то, что "классический бизнес" задавит "бизнес-будующего-в-одном-лице-потому-что-я-крутой" .</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-08-15 20:06</span>
+</div>
+<div class="comment-body">
+<p>Art, а Вы сами работаете "на дядю" или предприниматель? </p>
+<p>Я вижу, что по большому счету у нас нет никакого выбора. "На дядю" работают те, кто не может работать на себя, а на себя работаю те, кто не может работать "на дядю".</p>
+<p>Я вот физически не могу работать ни на кого, кроме себя. Я, конечно, пробовал работать в организациях (переводчиком у "Врачей без границ" и учителем в школе), но делал я это, насилуя себя. Любому терпению приходит конец, и моему тоже, поэтому я при первой же возможности уволился и стал заниматься своим делом, и занимаюсь им уже больше 5 лет (я, как и Дмитрий, разрабатываю программы). Не скажу, что добился больших успехов, но я по-другому просто не могу жить. Быть самому себе хозяином, реализовывать свои идеи (а у меня их очень много), свои проекты - что может быть интереснее, увлекательнее, да и просто круче? :)</p>
+<p>Так что желаю Дмитрию больших успехов с BlogJet 2, пусть он никогда не останавливается на достигнутом, создает много новых интересных и прибыльных проектов. </p>
+<p>Hang in there, Dmitry! :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Art</span> <span class="comment-date">2006-08-15 21:06</span>
+</div>
+<div class="comment-body">
+<p>Я стараюсь работаю так, чтобы финансово приуспеть. А это и работа "на дядю" и своё. Работа "на дядю" позволяет мне оплачивать съем квартиры в Москве, питание, не зазнаться. На себя -- это на данный момент скорее учеба. С корпорациями я сталкивался пока один раз -- когда они хотели выпустить коробочную версию продукта, который я разрабатывал сам. Опыт "столкновения" стоил мне $5K только только на переговорах. Тогда я узнал чем отличается детский восторг от некоторого количества продаж софта в месяц и от бизнес как он есть. Продолжаю учиться и работать на дядю. В работе на "дядю" ничего криминального не вижу -- это тоже опыт и у многих "дядь" есть чему поучиться.</p>
+<p>Я не считаю, что BlogJet конкурет продукту от MS, а вот MS продукт конкурет BlogJet. Разные весовые категории и подход к делу. </p>
+<p>И продолжаю следить, как поступит Дмитрий. Не только на сових ошибках учиться нужно :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.gregor.ru/">Григорий Ситнин</a></span> <span class="comment-date">2006-08-16 09:06</span>
+</div>
+<div class="comment-body">
+<p>А вот я нашёл -- не поверите -- одну штуку, которую Майкрософт забыла слизать с БлогДжета: это возможность редактирования Excerpta для отправки его пингом. В Райтере только пинговать можно, выдержка геенрится, видимо, сама.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Alex</span> <span class="comment-date">2006-08-16 11:06</span>
+</div>
+<div class="comment-body">
+<p>А ничего, что интерфейс BJ 2.0 -- цельнотянутый Office 2003? ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-16 12:06</span>
+</div>
+<div class="comment-body">
+<p>Alex: Office 2007, внимательней надо быть :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-08-16 13:06</span>
+</div>
+<div class="comment-body">
+<p><b>И продолжаю следить, как поступит Дмитрий. Не только на сових ошибках учиться нужно</p>
+<p></b></p>
+<p>И мне тоже это интересно. Ситуация действительно очень интересная.</p>
+<p>Вы знаете, а мне почему-то кажется, что выпуск Live Writer никак не скажется на продаваемости BlogJet (по карйней мере в худшую сторону). Я допускаю даже, что продажи BlogJet возрастут. :) </p>
+<p>Конечно, было бы здорово узнать, как будет на самом деле.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://sundaybytes.com">Anton Antich</a></span> <span class="comment-date">2006-08-16 13:06</span>
+</div>
+<div class="comment-body">
+<p>Ребята, я вообще не понимаю, что вы сравниваете :) Продуктов было дофига, и платных, и бесплатных, как Дима сам и отметил, при этом продажи БлогДжета росли. WLW будут скачивать миллионы людей, которые BJ бы не купили никогда и даже вряд ли бы про него узнали, просто засчет разницы в возможностях по рекламе - всякие пользователи Spaces, LJ, Blogger даже... От BJ может быть только откажутся некоторые из Майкрософтовских блоггеров - очень многие из них использовали BJ, но и то, мне интересно почитать что там у нас внутри в алиасе "блоггеры" происходит на эту тему, когда из отпуска выйду - BJ все любили, так что непонятно, на чьей стороне симпатии :)</p>
+<p>Но у BJ вполне будет своя ниша, среди западных про- и около-про блоггеров очень много майкрософто-ненавистников. Но вообще конечно Диме надо будет чем-то выделяться, в любом случае.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-08-16 13:06</span>
+</div>
+<div class="comment-body">
+<p>Я вот подумал, что если бы я заметил, что какая-нибудь "крутая" фирма типа Microsoft, заимствовала из моей программы какие-то элементы, во-первых, мне было бы это приятно, так как это говорило бы о неком признании, и во-вторых, это вызвало бы у меня естественное желание показать всем, у кого именно эта фирма позаимствовала идеи (и т.п.).</p>
+<p>Дмитрий, а у тебя какие чувства вызвало само по себе появление Live Writer (то есть бесплатного конкурента - безотносительно заимствований), а также сами заимствования?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Art</span> <span class="comment-date">2006-08-16 13:06</span>
+</div>
+<div class="comment-body">
+<p>2Алексей Винидиктов:</p>
+<p>&gt; Я допускаю даже, что продажи BlogJet возрастут.</p>
+<p>Не факт. Может возрастут, может упадут. Статистику смотреть нужно в течении след. месяцев.</p>
+<p>Просто, как я понял, у Microsoft есть четкий план действий, расписанный на ближайщее будующее. А у Дмитрия, читая его посты за последний месяц и его отчеты как он работал по 10 мин в день, такого плана нет. И еще не понятно, что Microsoft пытается прощупать с выходом беты и что у них в планах на перспективу. Ведь там Vista на выход готовиться и что если они включат Writer в Vista по умолчанию или как add-on в нагрузку?</p>
+<p>Кстати, за три дня вышло уже несколько плагинов для Writer, причем полезных.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Admin</span> <span class="comment-date">2006-08-17 16:06</span>
+</div>
+<div class="comment-body">
+<p>"Просто, как я понял, у Microsoft есть четкий план действий, расписанный на ближайщее будующее."</p>
+<p>к чему писать такую пургу? Microsoft как динозавр просто по-другому не может. В конце концов, ее будущее зависит от курса акций. А Дмитрий может за год выпустить что-то абсолютно из другой области. Так кто в выигрыше? Может ли M$ взять и за год пойти, скажем, курсом IBM? Или открыть код всех своих продуктов? Толковые разработчики давно не работают в M$ разработчиками (одни - топ-менеджерами с жирными пакетами акций:), другие свалили). Вся корпорация фактически держится на индусах, китайцах и некоторой части русских.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">yakoff</span> <span class="comment-date">2006-08-17 16:06</span>
+</div>
+<div class="comment-body">
+<p>Уже глубокий офф, но воспринимать MS как динозавра могут только глубоко некомпетентные люди, ни разу за последние пару лет не взаимодействовавшие с этой компанией по сколь угодно серьезному вопросу.</p>
+<p>MS уже давно не Evil Empire. Ни разу. Причем как классика, так и MBS (ныне Dynamics).</p>
+<p>Вот кстати кто действительно угрёбищный динозавр из вендоров - так это HP. И IBM, кстати, тоже. Но хулетт всех переплюнет.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Rouslan Grabar</span> <span class="comment-date">2006-08-18 00:06</span>
+</div>
+<div class="comment-body">
+<p>Дима, назло МС напиши свой оригинальный WYSIWYG редактор и выкинь нахрен этот MSHTML из своей программы!  ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.target-russia.org/">Pavel</a></span> <span class="comment-date">2006-08-18 23:06</span>
+</div>
+<div class="comment-body">
+<p>В чем проблема подать на MS в суд?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.z1.com.ua/blog">woofer</a></span> <span class="comment-date">2006-08-19 10:06</span>
+</div>
+<div class="comment-body">
+<p>Подать не проблема, проблема выиграть, НО пошуметь можно знатно за смешные деньги ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-20 16:06</span>
+</div>
+<div class="comment-body">
+<p>&gt; Я вот подумал, что если бы я заметил, что какая-</p>
+<p>&gt; нибудь “крутая” фирма типа Microsoft, заимствовала </p>
+<p>&gt; из моей программы какие-то элементы, во-первых, </p>
+<p>&gt; мне было бы это приятно, так как это говорило бы о </p>
+<p>&gt; неком признании, и во-вторых, это вызвало бы у </p>
+<p>&gt; меня естественное желание показать всем, у кого</p>
+<p>&gt; именно эта фирма позаимствовала идеи (и т.п.).</p>
+<p>Вот, и у меня то же самое.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-08-20 16:06</span>
+</div>
+<div class="comment-body">
+<p>В суд? За что?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.alec-c4.com">Alec C4</a></span> <span class="comment-date">2006-08-21 10:06</span>
+</div>
+<div class="comment-body">
+<p>Патентовать надо было :)</p>
+</div>
+</div>
+</div>

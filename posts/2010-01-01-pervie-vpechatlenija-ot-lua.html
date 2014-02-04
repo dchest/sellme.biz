@@ -1,0 +1,80 @@
+---
+author: "dchest"
+date: 2010-01-01 20:59:53 +00:00
+markup: markdown
+status: "Publish"
+title: "Первые впечатления от Lua"
+---
+<img src="/pics/lua.gif" alt="lua.gif" border="0" width="100" height="100" style="float:right"/>Начал недавно изучать Lua (читаю [Programming in Lua](http://www.lua.org/pil/)) и хочу поделиться первыми впечатлениями.
+
+Что нравится:
+
+**First-class functions, closures и lexical scoping**
+(простите, не знаю русских терминов).
+
+    local p = print
+
+    function counter (n)
+      return function (i)
+                if i ~= nil then n = n + i end
+                return n
+             end
+    end
+
+    c = counter(0)
+    p(c) --> function: 0x1001064e0
+    p(c()) --> 0
+    p(c(1)) --> 1
+    p(c(1)) --> 2
+    p(c(10)) --> 12
+
+    x = counter(99)
+    p(x) --> function: 0x100106880
+    p(x(1)) --> 100
+
+    p("c counter is " .. c() .. " and x counter is " .. x())
+    --> c counter is 12 and x counter is 100
+
+(как удобно, что комментарии в Lua начинаются с "`--`").
+
+
+**Неопределенные переменные и незаданные аргументы функций равны nil.**
+
+    local a = "something"
+    print(a) --> something
+    print(b) --> nil
+
+    function welcome (msg, name)
+      print(msg .. ", " .. (name or "неизвестный") .. "!")
+    end
+
+    welcome("Привет", "читатель") --> Привет, читатель!
+    welcome("Привет") --> Привет, неизвестный!
+
+**Функции могут возвращать несколько значений.**
+
+    function div_mul (a, b)
+      return a/b, a*b
+    end
+
+    d, m = div_mul(3, 4)
+    print("division: " .. d) --> division: 0.75
+    print("multiplication: " .. m) --> multiplication: 12
+
+Это особенно удобно для работы с ошибками:
+
+    local f, err = io.open("bogus filename")
+    if f == nil then
+      print("Error: " .. err)
+    end
+    --> Error: bogus filename: No such file or directory
+
+Наконец, весь Lua (или вся Lua?) состоит всего из ~16000 строчек ANSI C и у Lua один из самых быстрых интерпретаторов среди динамических языков.
+
+Что не нравится: 
+
+* забываю `then` после `if` :)
+* `local` для определения локальных переменных.
+
+Первое, правда сильно упрощает парсер, судя по всему.
+

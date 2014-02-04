@@ -1,0 +1,335 @@
+---
+author: "dchest"
+category: "Советы по финансам"
+date: 2008-11-28 00:25:00 +00:00
+primary_category: "Советы по финансам"
+status: "Publish"
+tags: "GnuCash,деньги,\"домашняя бухгалтерия\",программы,софт,\"учет финансов\",финансы"
+title: "Учет личных финансов в GnuCash"
+---
+<p>В поисках идеальной программы для учета личных финансов можно провести всю жизнь. Программ таких много, но 99% из них страдают такими недостатками:</p>
+<p><img src="/wp-content/uploads/2008/11/gnucash.png" alt="Пиктограмма GnuCash" width="62" height="58" class="alignright size-full wp-image-1354" style="float:right" /></p>
+<p><ul></p>
+<p>	<li>слишком просты или слишком сложны</p>
+<p></li></p>
+<p>	<li>ужасно выглядят</p>
+<p></li></p>
+<p>	<li>основаны на неправильной системе учета</p>
+<p></li></p>
+<p>	<li>не поддерживают многовалютность, или поддерживают ее неправильно</p>
+<p></li></p>
+<p>	<li>стоят дорого</p>
+<p></li></p>
+<p>	<li>не поддерживают такую-то операционную систему</p>
+<p></li></p>
+<p></ul></p>
+<p>Давайте разберем подробнее каждый пункт. </p>
+<p><h3>Простота, сложность и интерфейс</h3></p>
+<p>Нам не нужна слишком простая программа — раз уж вести учет финансов, так вести его в полном объеме. Но и слишком сложные не подходят – вряд ли нам захочется полгода учиться бухгалтерскому учету. В ужасно выглядящих программах могут работать только офисные работники, привыкшие к дебильным энтерпрайз программам, написанным левой ногой.</p>
+<p><h3>Система учета</h3></p>
+<p>Многие программы учета личных финансов применяют неправильную систему учета. Если в вашей программе есть категории для учета расходов, <em>вы делаете это неправильно</em>. Ваша система не учитывает движение денег, а учитывает их пропадание в черную дыру.</p>
+<p>Деньги дожны поступать откуда-то куда-то. Не в черную дыру под названием "расходы", где существуют категории, а на счет. Деньги переходят с одного счета на другой. Заправили машину? Деньги перешли со счета "Кошелек" на счет "Бензин". Получили на карточку зарплату? Деньги перешли со счета "Зарплата" на счет "Карточка".</p>
+<p><a href="/wp-content/uploads/2008/11/gnucash-11.png"><img src="/wp-content/uploads/2008/11/gnucash-11-450x332.png" alt="GnuCash - счета" width="450" height="332" class="alignnone size-thumbnail wp-image-1336" /></a></p>
+<p>Это называется <a href="http://ru.wikipedia.org/wiki/Двойная_запись">двойная запись</a>. Когда вы заправили машину, вы записали на счет "Кошелек" расход 500 рублей, и на счет "Бензин" — приход 500 рублей (дебет/кредит, если угодно).</p>
+<p><a href="/wp-content/uploads/2008/11/gnucash-93.png"><img src="/wp-content/uploads/2008/11/gnucash-93-450x322.png" alt="GnuCash - счет" width="450" height="322" class="alignnone size-thumbnail wp-image-1344" /></a></p>
+<p>Естественно, записываете вы только одну транзакцию, а вторую программа добавляет сама.</p>
+<p>Конечно, в компьютерном мире и эта система, и система категорий, не слишком различаются, но фактически, стоит только понять двойную запись и ее <em>простоту</em>, как все остальное будет казаться бессмысленной абстракцией.</p>
+<p><h3>Многовалютность</h3></p>
+<p>Из всех программ, которые я пробовал, большинство поддерживают многовалютность, но только две-три поддерживают ее правильно. </p>
+<p>Многовалютность позволяет держать счета в разных валютах и переводить финансы с одного счета на другой, пересчитывая деньги по курсу. В чем заключается правильность и неправильность? В том, что курс валюты может быть разным для разных транзакций, и за конвертацию валюты часто берется комиссия (поэтому курс валюты нам не очень важен). Это раз. Это многие программы могут делать. А два — самое важное — программа должна позволять вводить сумму, ушедшую со счета в <em>одной</em> валюте, и сумму, пришедшую на счет в <em>другой</em> валюте. Большинство же просят ввести курс валюты. Откуда я его знаю? Я поменял деньги или снял с карточки столько-то долларов и получил столько-то рублей. Вот тут двойная запись и проявляет свою простоту. </p>
+<p>Например, вы обменяли $100 на 2649 рублей. Так и записываем — на счет "Конверт (доллары)" пишем уход $100, на счет "Кошелек" — приход 2649 рублей. Естественно, в нормальных программах вы не пишете это два раза, а вводите полученную сумму в диалог перевода денег:</p>
+<p><a href="/wp-content/uploads/2008/11/gnucash-31.png"><img src="/wp-content/uploads/2008/11/gnucash-31-450x335.png" alt="GnuCash - многовалютность" width="450" height="335" class="alignnone size-thumbnail wp-image-1340" /></a></p>
+<p>Наконец, с помощью текущего курса валют (полученного из интернета), программа должна показывать балансы в удобной нам валюте.</p>
+<p><h3>GnuCash</h3></p>
+<p>Вот она, почти идеальная программа — <a href="http://gnucash.org">GnuCash</a>. Она позволяет делать все, о чем я написал и делать это <em>правильно</em>, плюс еще бюджеты, разнообразные отчеты (куда же без них — в них смысл учета), финансовый калькулятор и т.д. Если вы не используете какие-то фичи, они не мешают и не загромождают интерфейс.</p>
+<p>(Я использую англоязычную версию, но программа многоязычна и переведена на русский и украинский языки.)</p>
+<p><a href="/wp-content/uploads/2008/11/gnucash-61.png"><img src="/wp-content/uploads/2008/11/gnucash-61-450x332.png" alt="GnuCash - отчет" width="450" height="332" class="alignnone size-thumbnail wp-image-1341" /></a></p>
+<p>Программа совершенно бесплатна (GNU GPL) и замечательно выглядит. Потратьте на изучение GnuCash (методом тыка, естественно) минут двадцать и вам понравится.</p>
+<p>Я сделал небольшой скринкаст (без звука), чтобы продемонстрировать работу в программе:</p>
+<p><object width="504" height="360"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=2362002&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=2362002&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="504" height="360"></embed></object></p>
+<p>GnuCash поддерживает Linux, Windows и, теоретически, Mac OS X. Последнюю, он поддерживает с трудом — что является самым большим недостатком. Я пока запускаю программу в Ubuntu под VirtualBox, где она работает идеально. Хоть gnucash 2.x для Mac OS X есть и в MacPorts, и в fink, и там, и там порт сломан. Я пытался компилировать вручную, и у меня даже получилось, но он отказывается принимать ввод русскими буквами (хотя и показывает русский интерфейс при <code>LANG=ru_RU.UTF8</code>). Если кто умеет и у кого есть силы — будьте добры, сделайте нормальный <em>GnuCash.app</em>.</p>
+<p><div class="postsponsors"></p>
+<p><h3>Пост-спонсор</h3></p>
+<p><a rel="nofollow" href="http://blogoda.ru/">Блогода -- сервис для блоггеров.</a>
+<p>Фото-, видео-, аудио-хостинг, возможность зарабатывать, общаться, продвигать свои блоги, статистика и виджеты для блогов, OpenID-сервер и многое-многое другое.</p></p>
+<p class="fine">Тематические ссылки рекламной сети <a href="http://
+<p>loka.dextera.biz/"><img src="http://i.dextera.biz/loka/postsponsors-logo.gif" alt="Loka" /></a></p></p>
+<p></div></p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://twitter.com/nomoretears">nomoretears</a></span> <span class="comment-date">2008-11-28 00:08</span>
+</div>
+<div class="comment-body">
+<p>Привет.</p>
+<p>А есть такой сервис онлайн? Или подобного по удобству нет? Может сделать? Как думаешь?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-11-28 01:08</span>
+</div>
+<div class="comment-body">
+<p>nomoretears: Есть (см. adsense внизу поста, например :), но я бы не доверил свою финансовую информацию какому-нибудь неизвестному сервису.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://twitter.com/nomoretears">nomoretears</a></span> <span class="comment-date">2008-11-28 01:08</span>
+</div>
+<div class="comment-body">
+<p>Я имел именно системы с двойной записью, приближенные к твоему идеалу.</p>
+<p>В homemoney.com.ua я не увидел на слайдах ДЗ, только разные названия черных дыр. Хотя честно, триал не пробовал.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://acmeum.ru">Acme</a></span> <span class="comment-date">2008-11-28 07:08</span>
+</div>
+<div class="comment-body">
+<p>"Если в вашей программе есть категории для учета расходов, вы делаете это неправильно. Ваша система не учитывает движение денег, а учитывает их пропадание в черную дыру."</p>
+<p>Двойная запись используется не от того, что это правильно, лучше или позволяет точнее определить состояние финансов, а исключительно в силу исторических причин. Когда эта система появилась - просто не было концепции отрицательных чисел. Вот и пришлось бедным итальянцам выкручиваться. </p>
+<p>С точки зрения полноты отчетности ни у той ни у другой преимуществ нет, имхо. С точки зрения наглядности - одинарная запись выигрывает и читать ее неподготовленному человеку проще.</p>
+<p>А движения денег отражает не состояние счета само по себе, а транзакции. Иначе, говоря вашим языком, ДЗ представляло бы собой тоже операцию с черными дырами: Счет -&gt; черная дыра....черная дыра - &gt; другой счет.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Сергей Леньков</span> <span class="comment-date">2008-11-28 08:08</span>
+</div>
+<div class="comment-body">
+<p>А для iPhone'а есть что-нибудь с подобной системой учета?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">P S</span> <span class="comment-date">2008-11-28 08:08</span>
+</div>
+<div class="comment-body">
+<p>Есть менее монстрозная прога:</p>
+<p><a href="http://www.dervish.ru/cashalpha.php" rel="nofollow">http://www.dervish.ru/cashalpha.php</a></p>
+<p>Альфе уже три года активной разработки, так что не бояться.</p>
+<p>ИМХО предел гибкости, можно вести как двойной записью (переводами), так и методом "черной дыры". Валюты (в том числе и виртуальные), деревья расходов, доходов, контрагентов, проектов, да и вообще количество таких полей -- всё настраивается. </p>
+<p>При этом не требует установки, размер около 300 кб, замечательно работает под wine.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://romanzolotarev.com">Роман</a></span> <span class="comment-date">2008-11-28 09:08</span>
+</div>
+<div class="comment-body">
+<p>Спасибо за статью. А как в GnuCash с планированием бюджета?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://twitter.com/nomoretears">nomoretears</a></span> <span class="comment-date">2008-11-28 11:08</span>
+</div>
+<div class="comment-body">
+<p>А на счет безопасности..</p>
+<p>Если изначально сделать красивый и удобный сервис в возможностью экспорта данных в общем формате? Или даже свой клиент написать (как у Еверноут). А если хочешь шифровать, то два варианта:</p>
+<p>1) совсем шифрованный: сидишь из под клиента, данные шифруются пгп-ключем, отсылаются на сервер, в другой момент скачиваешь их и расшифровываешь их на своей локальной машине.</p>
+<p>2) менее параноидальный: соединение по хттпс, данные аналогично шифруются.</p>
+<p>Если я, конечно, все правильно понимаю, что есть хттпс, а что есть пгп. :)</p>
+<p>Мм?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-11-28 12:08</span>
+</div>
+<div class="comment-body">
+<p>Ну если клиент писать, тогда уж и можно "онлайн" часть убрать :-)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://twitter.com/nomoretears">nomoretears</a></span> <span class="comment-date">2008-11-28 12:08</span>
+</div>
+<div class="comment-body">
+<p>Нене, клиент для параноиков.</p>
+<p>Если делать сервис по подписке, то за клиент брать чуть больше. :)</p>
+<p>А у буржуев какие интересные онлайн-сервисы такие есть?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-11-28 12:08</span>
+</div>
+<div class="comment-body">
+<p><b>Роман:</b> Есть бюджет, <a href="http://i38.tinypic.com/2qdv86o.png" rel="nofollow"><a href="http://i38.tinypic.com/2qdv86o.png" rel="nofollow">http://i38.tinypic.com/2qdv86o.png</a></a>.</p>
+<p><b>nomoretears:</b> Ага, там их полно. Включая онлайн Quicken.</p>
+<p><b>Acme:</b> </p>
+<p><blockquote></p>
+<p>С точки зрения наглядности - одинарная запись выигрывает и читать ее неподготовленному человеку проще.</p>
+<p></blockquote></p>
+<p>А подготовленному какую проще читать? Учитывая то, что мы читаем ее в программе типа GnuCash.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-11-28 12:08</span>
+</div>
+<div class="comment-body">
+<p><b>Acme</b></p>
+<p><blockquote></p>
+<p>Иначе, говоря вашим языком, ДЗ представляло бы собой тоже операцию с черными дырами: Счет -> черная дыра….черная дыра - > другой счет.</p>
+<p></blockquote></p>
+<p>Это если записи на одном счете и на втором не связаны. Мы же не про бумажную бухгалтерию говорим.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Андрей</span> <span class="comment-date">2008-11-28 13:08</span>
+</div>
+<div class="comment-body">
+<p>Попробуйте <a href="http://dervish.ru/cashalpha.php" rel="nofollow">http://dervish.ru/cashalpha.php</a></p>
+<p>На альфу не обращайте внимания, программа юзабельна.</p>
+<p>Пользуюсь ей с 2003 года. По образованию -- экономист (бухгалтер).</p>
+<p>Все ваши пожелания там реализованы. Помимо этого, автор программы очень адекватный человек. Постоянно ее дорабатывает под пожелания пользователей. Есть форум <a href="http://dervish.ru/forum.php?forum_id=4" rel="nofollow">http://dervish.ru/forum.php?forum_id=4</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://vash-gazon.ru/">alex13</a></span> <span class="comment-date">2008-11-28 14:08</span>
+</div>
+<div class="comment-body">
+<p>Забыли небольшую деталь - GnuCash занимает 200мб(!) на жестком диске.</p>
+<p>+1 голос за AbilityCash от dervish.ru</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-11-28 16:08</span>
+</div>
+<div class="comment-body">
+<p>alex13: Это для Windows и Mac OS X она занимает 200 Мб (использует кучу библиотек), на Linux она столько не занимает. В любом случае, 200 Мб в конце 2008 года — это проблема?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://rainboo.com">Сергей Кириллов</a></span> <span class="comment-date">2008-11-28 17:08</span>
+</div>
+<div class="comment-body">
+<p>Пользуюсь GnuCash уже года полтора. Вся внутренняя бухгалтерия нашей небольшой команды (платежи за проекты, зарплаты сотрудникам, расходы на офис, оборудование и т.д.) на нём. </p>
+<p>Сначала конечно потребовалось несколько раз внимательно почитать доки. Зато теперь нормально.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://vash-gazon.ru/">alex13</a></span> <span class="comment-date">2008-11-28 17:08</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, ну места много не бывает :) Особенно на ноуте или флешке. </p>
+<p>Одних локализаций интерфейса на 40мб запихнули.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.goldsoftware.ru">Alexei A. Korolev</a></span> <span class="comment-date">2008-11-28 21:08</span>
+</div>
+<div class="comment-body">
+<p>скачал программу. Дмитрий, это то, что надо. выглядит очень удобно для начинающего, попробую с ней работать. Спасибо за эту заметку.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://google.com">Григорий</a></span> <span class="comment-date">2008-11-29 15:08</span>
+</div>
+<div class="comment-body">
+<p>Как работать с долгом? Есть стандартный виртуальный счет типа "Задолженность", но как сюда могут попасть средства?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://google.com">Григорий</a></span> <span class="comment-date">2008-11-29 16:08</span>
+</div>
+<div class="comment-body">
+<p>о, маны рулят.</p>
+<p>"A Personal Loan to a friend (How-To)"</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.dominsoft.ru">Анастасия</a></span> <span class="comment-date">2008-12-02 12:08</span>
+</div>
+<div class="comment-body">
+<p>Насчет правильной системы учета, это весьма спорный вопрос. </p>
+<p>В чем-то двойная запись хороша, но обычный подход домашних бухгалтерий (есть счета, а есть товары или категории расходов) проще для понимания, а отчеты и анализ позволяет получить не хуже, разве нет? Или есть все-таки что-то, что делает двойную запись явно лучше?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://sbblog.ru/">Елена</a></span> <span class="comment-date">2008-12-09 11:08</span>
+</div>
+<div class="comment-body">
+<p>Хорошая и удобная программа! Я обычно собираю чеки, а в конце недели забиваю всё!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://l2news.ru">Kovan</a></span> <span class="comment-date">2008-12-09 12:08</span>
+</div>
+<div class="comment-body">
+<p>Двойная запись логически более правильная. С ней гораздо меньше путаницы, все четко и прозрачно.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://MyComp.se">Donet</a></span> <span class="comment-date">2008-12-09 15:08</span>
+</div>
+<div class="comment-body">
+<p>alex13: посмотрел в убунте, хотя пользуюсь этой замечательной программой в Gentoo</p>
+<p>Следующие НОВЫЕ пакеты будут установлены:</p>
+<p>  gnucash gnucash-common gnucash-docs guile-1.6 guile-1.6-slib libcrypt-ssleay-perl libdate-manip-perl libfinance-quote-perl </p>
+<p>  libgoffice-0-4 libgoffice-0-common libgsf-gnome-1-114 libgtkhtml3.8-15 libhtml-tableextract-perl libofx4 libosp5 psfontmgr slib </p>
+<p>0 пакетов обновлено, 17 установлено новых, 0 пакетов отмечено для удаления, и 0 пакетов не обновлено.</p>
+<p>Необходимо получить 20,4MБ архивов. После распаковки 53,5MБ будет занято.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://tolyanych.blogspot.com">Роман</a></span> <span class="comment-date">2008-12-29 22:08</span>
+</div>
+<div class="comment-body">
+<p>Раз для личных финансов подходит, то и для небольшой компании должна подойти - кроме Сергея Кириллова кто-нибудь еще ее использует для работы?</p>
+<p>2 Сергей Кириллов - а что за заsады с программой, что пришлось "несколько раз внимательно почитать доки"?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Paul Kemp</span> <span class="comment-date">2009-01-29 10:09</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий Честных, спасибо за статью.</p>
+<p>Не могли бы Вы подсказать, как GnuCash можно установить под мак ос или где можно найти подробный мануал по установке?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-01-29 13:09</span>
+</div>
+<div class="comment-body">
+<p>У самого не получилось нормально установить, так что не могу :(</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://bananadev.com">Сергей Леньков</a></span> <span class="comment-date">2009-05-15 14:09</span>
+</div>
+<div class="comment-body">
+<p>Извиняюсь за поднятие старой темы и рекламу, но не так давно закончил бету своей программы для учета финансов для мака, делал с оглядкой на GNU Cash. Программу ведет учет по принципу двойной записи. Уже работают все основные функции. Т.е. можно заводить счета (сейчас поддерживаются 4 вида счетов: доходы, расходы, депозиты, долги), перекидывать между ними деньги, смотреть состояние счетов, поддерживается многовалютность. В разработке отчеты и мелкие доработки. К сожаления программу еще рано куда-либо выкладывать, но если кому интересно стать бета тестером, пиши на почту (serglazy (собака) gmail.com), вышлю версию для ознакомления и тестирования.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Tara</span> <span class="comment-date">2009-08-19 22:09</span>
+</div>
+<div class="comment-body">
+<p>Пользуюсь программой  уже  полтора года.Для  домашних  целей  очень  хорошо  подходит.  Но  хотелось  бы  ,чтобы  продолжили  описание подробностей  работы .</p>
+<p>  Потому  что  хотела  приспособить  счет-фактуры  для  разработки  чека  из  магазина,но  как-то  получается  совсем  не  то,  что  я  хотела.Но  вообще-то  это  мелочи. А  так  удобная  программа.И  очень  информативно  и  все  видно.</p>
+</div>
+</div>
+</div>

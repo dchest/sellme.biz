@@ -1,0 +1,172 @@
+---
+author: "dchest"
+category: "Сайт и дизайн"
+date: 2008-10-26 20:08:26 +00:00
+primary_category: "Сайт и дизайн"
+status: "Publish"
+tags: "WordPress,plugin"
+title: "Плагин для WordPress: CR Recent Posts"
+---
+<p><em>Я продолжаю заниматься переделкой сайта <a href="http://www.codingrobots.com">Coding Robots</a> и рожать небольшие плагины для WordPress, которые могут пригодиться в хозяйстве. Буду постить их в блог, может и вам окажутся полезными.</em></p>
+<p>Мне нужно выводить на странице (Page в WordPress) несколько последних заметок из блога, и чтобы для этого не приходилось менять шаблог. Я написал плагин-фильтр <em>CR Recent Posts</em>.</p>
+<p>Работает таким образом: прямо в содержимом записи (Post) или страницы (Page) пишете:</p>
+<p><code>[POSTS <em>количество_заголовков</em>]</code></p>
+<p>или</p>
+<p><code> [POSTS <em>количество_заголовков</em> <em>имя_или_slug_категории</em>]</code></p>
+<p>Например, чтобы вывести двенадцать последних заголовков блога, пишете <code>[POSTS 12]</code>, и получаете примерно такое:</p>
+<p><ul></p>
+<p>	  	<li><a href="http://blog.codingrobots.com/2008/07/08/memoires-1240-released/">Mémoires 1.2.43 released</a> <span class="small-date">Jul 8</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2008/06/24/wordpress-26-will-have-api-disabled-by-default/">WordPress 2.6 will have API disabled by default</a> <span class="small-date">Jun 24</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2008/06/17/blogjet-this-extension-for-firefox-3/">BlogJet This! extension for Firefox 3</a> <span class="small-date">Jun 17</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2008/05/30/mobile-me-is-the-new-name-of-mac-heres-the-confirmation/">Mobile Me is the new name of .Mac. Here&#8217;s the confirmation</a> <span class="small-date">May 30</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2008/05/30/mac-re-branding-is-coming/">.Mac re-branding is coming</a> <span class="small-date">May 30</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2008/05/14/support-center-and-forum-changes/">Support center and forum changes</a> <span class="small-date">May 14</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2008/03/25/flickr-export-plugin-for-acorn/">Flickr Export Plugin for Acorn</a> <span class="small-date">Mar 25</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2008/02/21/memoires-1140-released/">Mémoires 1.1.40 Released</a> <span class="small-date">Feb 21</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2007/12/23/ho-ho-ho/">Ho-ho-ho!</a> <span class="small-date">Dec 23</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2007/12/10/memoires-1139-released/">Mémoires 1.1.39 released</a> <span class="small-date">Dec 10</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2007/11/26/memoires-1138-final-released/">Mémoires 1.1.38 Final released</a> <span class="small-date">Nov 26</span></p>
+<p>    </li>  </p>
+<p>			  	<li><a href="http://blog.codingrobots.com/2007/11/19/memoires-1137-beta-released/">Mémoires 1.1.37 beta released</a> <span class="small-date">Nov 19</span></p>
+<p>    </li>  </p>
+<p>			</ul></p>
+<p>Чтобы вывести последние 5 заметок из категории "Mémoires" (у которой slug — короткое имя для ссылки — memoires), используйте <code>[POST 5 memoires]</code> или <code>[POST 5 Mémoires]</code>.</p>
+<p><big><a href="/files/cr_recent_posts.zip"><strong>Скачать cr_recent_posts.zip</strong></a> (766 байтов)</big></p>
+<p>Установка как обычно: распакуйте, загрузите <em>cr_recent_posts.php</em> в <em>wp-content/plugins/</em> и активируйте в админке.</p>
+<p><em>Обновление (31/10):</em> Версия 1.1:</p>
+<p><ul></p>
+<p>	<li>Исправлены названия функций для избежания возможных конфликтов с другими плагинами.</li></p>
+<p>	<li>Убран ненужный захват вывода.</li></p>
+<p></ul></p>
+<p>Качать <a href="/files/cr_recent_posts.zip">по той же ссылке</a>.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Alex Parkhomenko</span> <span class="comment-date">2008-10-27 10:08</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, я тут для одного из сайтов чуть-чуть переделал Similar Posts, чтобы он работал с русским языком, добавив простой stemming из открытого источника. Хочется дать сообществу, а руки не доходят. Не нужно Вам?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.chanishvili.org">Roland Chanishvily</a></span> <span class="comment-date">2008-10-29 15:08</span>
+</div>
+<div class="comment-body">
+<p>Дим, get_titles - плохое имя для функции, очень очевидно. Значит будут конфликты с другими плагами.</p>
+<p>И хорошо-бы покешить результат этой функции. Про файловый кеш в WP я писал тут - <a href="http://www.chanishvili.org/wp-cache251/" rel="nofollow">http://www.chanishvili.org/wp-cache251/</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-29 17:08</span>
+</div>
+<div class="comment-body">
+<p>Roland: точно. Функцию брал из неплагина, который сейчас на сайте использую, поэтому забыл переименовать. Исправил.</p>
+<p>Насчет кэша -- в смысле, отдельно писать свой кэш? Мне это не надо, у меня WP-Super-Cache.</p>
+<p>А у кого не стоит -- разница между 13 и 14 запросами небольшая.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">BOB</span> <span class="comment-date">2008-11-14 15:08</span>
+</div>
+<div class="comment-body">
+<p>всё хорошо, кроме того что зачем дублировать те посты которые и так уже видны на данной страницы? было бы хорошо получить 12-ть последних постов..которых не видно на главной!!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-11-14 17:08</span>
+</div>
+<div class="comment-body">
+<p>BOB: Делалось это для того, чтобы выводить последние посты на страницах, а не в постах.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Денис</span> <span class="comment-date">2009-05-02 00:09</span>
+</div>
+<div class="comment-body">
+<p>Здравствуйте. Не могу разобраться как публиковать посты на специально созданные подстраницы сайта? Например "О нас", или "литература". Перерыл весь интернет.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-05-02 06:09</span>
+</div>
+<div class="comment-body">
+<p>То, что тебе нужно, называется "категории", а не "подстраницы".</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Денис</span> <span class="comment-date">2009-05-02 13:09</span>
+</div>
+<div class="comment-body">
+<p>Вобщето я гуглил вопрос "как публиковать посты на специально созданные страницы", замена слова на категории дала тот же результат. По-моему у меня одного этот вопрос возник, что странно. Мне кажется очевидным что функционал внутренних страниц должен соответствовать функционалу главной. И должна быть возможность постить на не главные страницы, вместо главной.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-05-02 13:09</span>
+</div>
+<div class="comment-body">
+<p>Денис, страницы - это именнно "статичные" страницы, а не разделы сайта. Тебе нужны категории. Публикуешь пост в категорию x - получаешь на страничке категории x твой пост. Например, <a href="/category/programmirovanie" rel="nofollow">/category/programmirovanie</a></p>
+<p>Можешь в настройках убрать "category" и тогда будет example.com/programmirovanie</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-05-02 13:09</span>
+</div>
+<div class="comment-body">
+<p>И, RTFM: <a href="http://codex.wordpress.org/ru:Main_Page" rel="nofollow">http://codex.wordpress.org/ru:Main_Page</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Денис</span> <span class="comment-date">2009-05-02 13:09</span>
+</div>
+<div class="comment-body">
+<p>Спасибо, буду разбираться. Категории отличаются от рубрик? У меня нигде нет слова категории в админке)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-05-02 13:09</span>
+</div>
+<div class="comment-body">
+<p>Да, в русской версии это называется "рубрики".</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.freemasonry.ru">SPA</a></span> <span class="comment-date">2009-06-10 20:09</span>
+</div>
+<div class="comment-body">
+<p>Плагин не работает если хочется разместить несколько лент на одной странице/посте. Ниже преведена обновленная функция.</p>
+<p>function cr_recent_posts($content)</p>
+<p>{</p>
+<p>	$regex = "/\[POSTS (\d+)[ ]?(.+)?\]/";</p>
+<p>	if (preg_match_all($regex, $content, $matches, PREG_SET_ORDER)) {</p>
+<p>		for ($i = 0; $i &lt; count($matches); $i++)</p>
+<p>			$content = str_replace($matches[$i][0], cr_recent_posts_get_titles($matches[$i][1], $matches[$i][2]), $content);</p>
+<p>	}</p>
+<p>	return $content;</p>
+<p>}</p>
+</div>
+</div>
+</div>

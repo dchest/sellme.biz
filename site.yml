@@ -1,0 +1,15 @@
+name: Sellme.biz
+permalink: /:year/:month/:name.html
+url: https://sellme.biz
+#search_index: /search/data/search-index.js
+
+filters:
+  .html: [htmlmin, scripts, styles]
+
+properties:
+  author: "Дмитрий Честных"
+  tagline: "блог о бизнесе и маркетинге своими силами"
+  like_title: "Sellme.biz"
+  twitter_name: sellmebiz
+  urls:
+    twitter: https://twitter.com/sellmebiz

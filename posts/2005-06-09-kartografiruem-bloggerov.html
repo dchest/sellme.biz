@@ -1,0 +1,53 @@
+---
+author: "dchest"
+category: "Блогосфера"
+date: 2005-06-09 20:47:54 +00:00
+primary_category: "Блогосфера"
+status: "Publish"
+title: "Картографируем блоггеров"
+---
+<p>Блоггеры, присоединяйтесь к <a href="http://www.feedmap.net/blogmap/neighblogs.aspx?feed=https://sellme.biz/feed/rss2">карте</a> (см. главную страничку <a href="/">Sell Me.ru</a>). Я пробовал добавить себя в на <a href="http://www.feedmap.net/">feedmap.net</a>&#xA0;пару месяцев назад, но у меня ничего не вышло &#x2013; вводил географические координаты Долгопрудного, а меня отправляли в Атлантический океан.</p>
+<p>Недавняя <a href="http://blogs.msdn.com/rentgen/archive/2005/06/08/426657.aspx">заметка на Воскресных байтах</a>&#xA0;заставила меня попробовать снова. Опять не выходило, в итоге я решил вводить не координаты, а адрес. Я и раньше это пробовал, но Долгопрудного не было. Оказалось, что он там всё-таки есть под именем Dolgoprudnyy, а точнее:</p>
+<p><blockquote dir="ltr" style="MARGIN-RIGHT: 0px"></p>
+<p dir="ltr" style="MARGIN-RIGHT: 0px"><!--StartFragment -->Address line: Dolgoprudnyy <br />Primary city: (none) <br />State: (none) <br />Zip: (none) <br />Country: Russia</p></blockquote>
+<p dir="ltr" style="MARGIN-RIGHT: 0px">Причём, меня определили в &#x201C;city&#x201D; MOSKVA, что видимо, является Московской областью. Так что, если кто из области, вот вам руководство.</p>
+<p dir="ltr" style="MARGIN-RIGHT: 0px"><a href="http://www.feedmap.net/BlogMap/submit.aspx">Submit your blog!</a></p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://yuri.shilyaev.com/">Yuri Shilyaev</a></span> <span class="comment-date">2005-06-17 11:05</span>
+</div>
+<div class="comment-body">
+<p>Дима, такой вопрос: пытаюсь добавить свой сайт, эта штука пишет, что нее может найти на нем RSS. Что не так?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2005-06-17 11:05</span>
+</div>
+<div class="comment-body">
+<p>Попробуй дать прямую ссылку на RSS.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://baltcity.ru/log/">Lab</a></span> <span class="comment-date">2005-08-18 13:05</span>
+</div>
+<div class="comment-body">
+<p>Научи ставить кнопку от feedburner - плз</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2005-08-18 15:05</span>
+</div>
+<div class="comment-body">
+<p>Lab: в FeedBurner: таб My Feeds &gt; Publicize..., выбираем код и вставляем себе в шаблон блога (wp-content/themes/default/sidebar.php).</p>
+<p>Затем либо меняем все ссылки на feed'ы на FeedBurner'овские (в том числе в &gt;head&lt;), либо делаем как я:</p>
+<p>в .htaccess ставим редирект фидов на FeedBurner'овские: для WordPress строчка ...^feed/rss2... меняется на такую:</p>
+<p>RewriteRule ^feed/rss2/?$ <a href="http://feeds.feedburner.com/" rel="nofollow">http://feeds.feedburner.com/</a><em>SellMe</em> [QSA,L] </p>
+</div>
+</div>
+</div>

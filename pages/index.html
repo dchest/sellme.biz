@@ -1,0 +1,52 @@
+---
+layout: blog
+title: Sellme.biz
+seo_title: Sellme.biz - блог о бизнесе и маркетинге своими силами
+---
+
+{{range .Site.Posts.Limit 10}}
+<div class="blog-post">
+  <h2 class="blog-post-title"><a href="{{.Meta.url}}">{{.Meta.title}}</a></h2>
+
+  <div class="blog-post-content">
+    {{.Content}}
+  </div>
+
+  <div class="blog-post-meta">
+    <div class="blog-post-date">
+      <i class="fa fa-calendar"></i> 
+      <a href="javascript:void(0)"
+        data-container="body" data-toggle="popover" data-placement="right" data-html="true"
+        data-content="<div class='permalink-popover'><label>Ссылка на пост (<a href='{{.Meta.url}}'>открыть</a>):<br><input type='text' onfocus='permalinkFocus(this)' class='form-control' size=250 value='{{$.Site.URL}}{{.Meta.url}}'></label></div>"
+       >
+        {{.Date.Format "02.01.2006"}}
+      </a>
+      </div>
+      <div
+        class="social-likes"
+        data-counters="no"
+        data-url="{{$.Site.URL}}{{.Meta.url}}"
+        data-title="{{.Meta.title}}"
+      >
+      <div class="facebook" title="Поделиться ссылкой на Фейсбуке"></div>
+      <div class="twitter" data-via="sellmebiz" title="Поделиться ссылкой в Твиттере"></div>
+      <div class="vkontakte" title="Поделиться ссылкой во Вконтакте"></div>
+      <div class="plusone" title="Поделиться ссылкой в Гугл-плюсе"></div>
+    </div>
+  </div>
+</div>
+{{end}}
+
+<div class="blog-footer"><a href="/archive/" class="btn btn-primary">Все посты</a></div>
+<script>
+  $(function() {
+    $('a[data-toggle="popover"]').popover();
+  });
+
+  function permalinkFocus(that) {
+    window.setTimeout(function() {
+     $(that).select();
+    }, 100);
+  }
+
+</script>

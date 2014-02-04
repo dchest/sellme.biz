@@ -1,0 +1,337 @@
+---
+author: "dchest"
+category: "Блогосфера"
+date: 2006-09-29 19:02:36 +00:00
+primary_category: "Блогосфера"
+status: "Publish"
+title: "Как я сломал и починил блог"
+---
+<p>РџРёР·РґРµС†, какой был день!</p>
+<p>Я решил перед обедом обновить WordPress (движок, на котором работает этот блог) до самой последней версии (2.0.4), потому как Sellme.biz работал на очень старой версии – 1.5.2. Файлы все заменил успешно, тема работала как раньше. Но сломалась кодировка – вместо положеной UTF-8 буквы оказались… в той самой UTF-8, если её смотреть в CP1251. Подозрения сразу пали на базу, так как всё остальное, что хранится в файлах, а не в MySQL, показывалось нормально.</p>
+<p>Я полез в phpMyAdmin… и тут у меня отключился интернет. У подлого провайдера не вовремя вырубился свет!</p>
+<p>ОК, у меня для таких случаев есть телефон с GPRS. Включил, залез в phpMyAdmin. Оказалось, у меня в базе всё хранилось в UTF-8 в полях CP1251. Вот так прошлые версии WordPress нахимичили (да и MySQL, который год назад стоял на сервере, по-моему, плевался от юникода). Надо выяснять, как бы всё это сконвертировать. Эх, как же всё медленно на этом GPRS’е! EDGE ещё до Долгопрудного не дошёл. В общем, всё было похоже на модем под 2400 бод.</p>
+<p><img hspace="10" border="0" align="right" alt="Motorola" src="/wp-content/uploads/2006/09/motorola_small.jpg" />И тут у меня села батарейка в телефоне. #$%@! Товарищи из Motorola забыли сделать такую штуку, как зарядка телефона от USB-порта. Кроме того, они сделали такое извращенский порт на телефоне, что его нельзя одновременно заряжать и подключать к компьютеру. Выключаю телефон, ставлю на зарядку. Жду минут 10. Опять включаю. Пробую решить проблему с кодировками. Заряд опять кончается. Заряжаю… И так несколько циклов, пока мне не надоело.</p>
+<p>Когда мне всё-таки надоело, я нарисовал такую картинку, вставил в шаблон блога:</p>
+<p align="center"><a href="/wp-content/uploads/2006/09/iknow.png"><img border="0" alt="Iknow" src="/wp-content/uploads/2006/09/iknow_thumb.jpg" /></a></p>
+<p>…и ушёл гулять.</p>
+<p>Вернулся вечером – интернет включили! Ура! Начал искать способ конвертации кодировки в MySQL. Нашёл. Запустил скриптик. Готово. Посмотрел — всё нормально, кроме того, что посты в блоге – не посты, а огрызки какие-то — на первой же букве “ш” или “И” всё обрывается. То же и в базе.</p>
+<p>Хорошо, что сделал бэкап. Восстановил. Помучился. Не получается. Опять восстановил…</p>
+<p>В общем, пришлось конвертировать вручную:</p>
+<p><ul></p>
+<p>	<li>В оригинальном тексте (не перекодированном) заменить все “P?” (что означало букву “И”) на “&lt;***&gt;” (метка).</li></p>
+<p>	<li>Сохранить текст.</li></p>
+<p>	<li>Открыть в текст браузере.</li></p>
+<p>	<li>Выбрать кодировку UTF-8.</li></p>
+<p>	<li>Скопировать текст из браузера в редактор.</li></p>
+<p>	<li>Заменить все “квадратик-?” на “ш”.</li></p>
+<p>	<li>Заменить все “&lt;***&gt;” на “И”.</li></p>
+<p>	<li>Скопировать таблицу в базу.</li></p>
+<p></ul></p>
+<p>Ещё пару мучений и ковыряний в базе и блог был восстановлен.</p>
+<p>Прошу прощения у тех, кто хотел чего-нибудь почитать, но не смог.</p>
+<p>Вот вам пример того, почему блоги надо доверять хостить и обслуживать <a href="http://www.blogservice.ru/">профессионалам</a>.</p>
+<p>О, великий Блогобог! Спасибо, что дал мне возможность вернуться в блогосферу.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-09-29 19:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, что у тебя за модель телефона? Надо знать, чтоб себе случайно такой не купить. </p>
+<p>У меня Моторола С380 может заряжаться и быть одновременно подключенной к компьютеру. Правда, зарядное устройство подключается через отдельный разъем.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-09-29 20:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, комментарии с блога стали приходить в таком виде (это не исходный код, а то, как отображается текст в ThunderBird):</p>
+<p>MIME-Version: 1.0</p>
+<p>Content-Type: text/plain; charset="utf-8"</p>
+<p>Message-Id: </p>
+<p>Date: Fri, 29 Sep 2006 19:15:35 +0400 (MSD)</p>
+<p>а�аОб�аВаИаЛб�б� аНаОаВб�аЙ аКаОаМаМаЕаНб�аАб�аИаЙ аК аЗаАаПаИб�аИ "а�аИб�аНаОб�б�аНб�аЙ б�аОб�б� аПаО аМаЕб�аОаДб� аЄб�аАаНаКаЛаИаНаА"</p>
+<p><a href="/2006/09/28/lichnostnyi_rost_po_metodu_franklina" rel="nofollow">https://sellme.biz/2006/09/28/lichnostnyi_rost_po_metodu_franklina</a></p>
+<p>а�аВб�аОб� : а�аМаИб�б�аИаЙ аЇаЕб�б�аНб�б�</p>
+<p>а�аОаМаМаЕаНб�аАб�аИаЙ:</p>
+<p>а�аЛаЕаКб�аЕаЙ: б�аАаМ аЖаЕ аОаГб�аОаМаНаАб� аКаАб�б�аИаНаКаА аБб�аЛаА б� аОаБб�б�б�аНаЕаНаИаЕаМ  :)  а�аОб� -- <a href="/2006/09/29/kak_ya_slomal_i_pochinil_blog" rel="nofollow">https://sellme.biz/2006/09/29/kak_ya_slomal_i_pochinil_blog</a></p>
+<p>аЂаЕаПаЕб�б� б�аАаБаОб�аАаЕб�.</p>
+<p>а�аОб�аМаОб�б�аЕб�б� аВб�аЕ аКаОаМаМаЕаНб�аАб�аИаИ:</p>
+<p><a href="/2006/09/28/lichnostnyi_rost_po_metodu_franklina#comments" rel="nofollow">https://sellme.biz/2006/09/28/lichnostnyi_rost_po_metodu_franklina#comments</a></p>
+<p>аЃаПб�аАаВаЛаЕаНаИаЕ аПаОаДаПаИб�аКаОаЙ аНаА аКаОаМаМаЕаНб�аАб�аИаИ аИ аБаЛаОаКаИб�аОаВаКаОаЙ аВб�аЕб� б�аОаОаБб�аЕаНаИаЙ:</p>
+<p><a href="/wp-subscription-manager.php" rel="nofollow">https://sellme.biz/wp-subscription-manager.php</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-09-29 20:06</span>
+</div>
+<div class="comment-body">
+<p>> У меня Моторола С380 может заряжаться и быть </p>
+<p>> одновременно подключенной к компьютеру.</p>
+<p>Ага, у меня предыдущий телефон был C350 - тоже мог (и зарядка+компьютер, и просто от компьютера). А сейчас V635.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-09-29 20:06</span>
+</div>
+<div class="comment-body">
+<p>Насчёт комментариев - посмотрю, спасибо.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://webous.com/">Val</a></span> <span class="comment-date">2006-09-29 22:06</span>
+</div>
+<div class="comment-body">
+<p>Отличное начало постинга!</p>
+<p>А насчёт танцев с телефоном: именно поэтому я брал ноут и телефон с синими зубами. Очень удобно gprsиться.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://cmslist.ru">Алексей Новиков</a></span> <span class="comment-date">2006-09-30 01:06</span>
+</div>
+<div class="comment-body">
+<p>А у меня старый Siemens ME45, который со мной уже года 3-4. Недавно отмечал 2 гигабайта по нему :-) Никаких голубых зубьев. Инфракрасный порт :)))</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://webous.com/">Val</a></span> <span class="comment-date">2006-09-30 02:06</span>
+</div>
+<div class="comment-body">
+<p>Мне нравится возможность завалиться с ноутом на диван.</p>
+<p>С инфракрасным портом наверное тоже можно, но кайф не тот.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-09-30 12:06</span>
+</div>
+<div class="comment-body">
+<p>Val: у меня он тоже с синими зубами, только и Sony Vaio, и Apple iBook у меня беззубые :( А отдельную хреньку покупать для того, что требуется раз в два-три месяца неохота.</p>
+<p>Алексей: ИК тоже нет :)</p>
+<p>Val: заваливаюсь на диван я с помощью wi-fi ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://arturpaikin.org.ru">Артур Пайкин</a></span> <span class="comment-date">2006-09-30 13:06</span>
+</div>
+<div class="comment-body">
+<p>А я потиху пишу себе собственный мини-движок под дневник, статьи и другие проекты. Не хочу заморочек с БД, Вордпрессом (о ужас!) и вообще.</p>
+<p>Приятно, когда точно знаешь, что происходит внутри твоего сайта.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-09-30 13:06</span>
+</div>
+<div class="comment-body">
+<p>Артур: приятно, конечно. Но (это не утверждения для всех, мои личные наблюдения) часто оказывается так, что потом свою накодированную лапшу разобрать сложнее, чем поставить новую версию стороннего скрипта :)</p>
+<p>P.S. WordPress рулит.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.billard.com.ua/">Billard</a></span> <span class="comment-date">2006-09-30 20:06</span>
+</div>
+<div class="comment-body">
+<p>А меня что-то WP не вдохновил. Поставил недавно его на одном полузаброшенном прожекте. Поигрался... и решил, что лучше DataLife Engine (не сочтите за рекламу) нет! Жальтолько, что не бесплатный он.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.mblog.ru">Юрий</a></span> <span class="comment-date">2006-10-01 03:06</span>
+</div>
+<div class="comment-body">
+<p>А меня WP вдохновил - за сутки с MT съехал :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-01 18:06</span>
+</div>
+<div class="comment-body">
+<p>Юрий: наконец-то :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://atrunet.ru">Coolmax</a></span> <span class="comment-date">2006-10-02 09:06</span>
+</div>
+<div class="comment-body">
+<p>Я бы тоже с MT съехал, очень уж он крут для меня, половину его функций не использую. Но вот WP тож чего-то не вдохнавляет. Вот бы скриптик какой чтоб на Drupal перехать...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://beta.delta-z.com">Алексей</a></span> <span class="comment-date">2006-10-02 15:06</span>
+</div>
+<div class="comment-body">
+<p>Мы по граблям с кодировками в MySQL гуляли в начале года. Незабываемые воспоминания! Подробности описаны <a href="http://beta.delta-z.com/index.php/archives/147" rel="nofollow">здесь</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.typepad.ru">Pierre</a></span> <span class="comment-date">2006-10-02 17:06</span>
+</div>
+<div class="comment-body">
+<p>Vot potchemu luche izpolzovat typepad ;-))</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.typepad.ru">Pierre</a></span> <span class="comment-date">2006-10-02 17:06</span>
+</div>
+<div class="comment-body">
+<p>Kstate esli kto to chotchet "tips" po Movabletype (3.16, 3.2 i 3.3) mojno toje dat.</p>
+<p>mi sdelali vo frantis ne plokhie vechi s MT i s Typepad (www.atikal.fr, www.meotec.com http:/:textinthecity.typepad.fr  s typepad  i www.gammedeschefs.net  www.elenbi.com itd  s Movabletype). esli voprossi pichite ! (i napominaiu chto daem poka besplatno typepad PRO vssem blogeram kotorie khotiat)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-02 17:06</span>
+</div>
+<div class="comment-body">
+<p>Pierre: верно :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vinidiktov.ru">Алексей Винидиктов</a></span> <span class="comment-date">2006-10-02 17:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, комментарии по email так и продолжают приходить в нечитаемом виде. Раньше все было нормально, с других Wordpress-powered сайтов тоже приходят нормально.</p>
+<p>У меня ThunderBird 1.5.0.5</p>
+<p>Кстати, в Gmail комментарии, по-моему отображаются правильно.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://alexatpoint.blogspot.com/">Alex Dybenko</a></span> <span class="comment-date">2006-10-02 18:06</span>
+</div>
+<div class="comment-body">
+<p>Эх, надо было сначала пообедать :-)</p>
+<p>А вообще - может пора менять приверженость к брендам? :-))</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-02 20:06</span>
+</div>
+<div class="comment-body">
+<p>Алексей Винидиктов: пытаюсь отловить багу. В Gmail, кстати, читаются нормально -- интересно, это Gmail так великолепно парсит письма?..</p>
+<p>Alex Dybenko: другие блог-движки что-то ну как-то не так вот мне %) (хе-хе). Это как язык программирования или фрэймворк -- если хорошо знаешь, то трудно заставить себя перейти на что-то другое.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://developers.org.ua">Max Ischenko</a></span> <span class="comment-date">2006-10-02 23:06</span>
+</div>
+<div class="comment-body">
+<p>Знакомые до боли проблемы. ;-(</p>
+<p><a href="http://www.developers.org.ua/archives/max/2006/05/25/war-story-o-hosterah-mysql-i-php/" rel="nofollow">моя история</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://sergeybiryukov.ru/">Сергей Бирюков</a></span> <span class="comment-date">2006-10-03 10:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, насчёт комментариев по e-mail — я немного доработал плагин wp_mail_cyrillic для корректной работы с UTF-8 (с указанием кодировки в заголовках по RFC 2047), <a href="http://files.sergeybiryukov.ru/wordpress/wp_mail_cyr.phps" rel="nofollow">попробуй</a> :-)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://maxm.ru/">maximum</a></span> <span class="comment-date">2006-10-08 03:06</span>
+</div>
+<div class="comment-body">
+<p>Но сломалась кодировка – вместо положеной UTF-8 буквы оказались… в той самой UTF-8, если её смотреть в CP1251. </p>
+<p>Что, прямо сама взяла и сломалась, на хостинге, или у нас админы хостов чтобы развлечь себя кодировки в клиентских базах меняют?</p>
+<p>Хорошо, что сделал бэкап. Восстановил. Помучился. Не получается. Опять восстановил…</p>
+<p>В общем, пришлось конвертировать вручную:</p>
+<p>А как же бекап? </p>
+<p>Всё дело в грамотном импорте..</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-08 09:06</span>
+</div>
+<div class="comment-body">
+<p>maximum: предыдущая версия WordPress сохраняла в другой кодировке. Does it make sense?</p>
+<p>"А как же бекап" -- всмысле?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://maxm.ru">maximum</a></span> <span class="comment-date">2006-10-17 22:06</span>
+</div>
+<div class="comment-body">
+<p>В какой же, если не в UTF-8?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-18 00:06</span>
+</div>
+<div class="comment-body">
+<p>CP1251 на MySQL</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.agelt.com/node/38">Agel Scam</a></span> <span class="comment-date">2006-10-26 08:06</span>
+</div>
+<div class="comment-body">
+<p>У меня был похожий случай, только я переводил сайт с одного хостинга на другой. Проблема также оказалась в базе.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.vipgo.net/article139.html">Leadership</a></span> <span class="comment-date">2006-10-30 15:06</span>
+</div>
+<div class="comment-body">
+<p>Хорошо, когда все оканчивается благополучно. А я дал "знатоку" обновить, дак он и вовсе мне все добил. Дебил!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://bairov.com">Alex</a></span> <span class="comment-date">2006-11-08 16:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, Макс, до боли - это не то слово, запомню букву ш до конца жизни (к счастью, у украинском языке нет большой буквы И).</p>
+<p>Наверное, стоит выложить конвертор в открытый доступ.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://designmilana.ru">Виктор</a></span> <span class="comment-date">2008-05-07 14:08</span>
+</div>
+<div class="comment-body">
+<p>Столкнулся с похожей проблемой в прошлом. Сменил базу, помогло. Теперь все нормально работает.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.bratec.ru/">волкодав</a></span> <span class="comment-date">2008-07-04 16:08</span>
+</div>
+<div class="comment-body">
+<p>приму к сведению. ведь на чужих ошибках учатся)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.skazki-mira.ru">клава</a></span> <span class="comment-date">2008-07-07 16:08</span>
+</div>
+<div class="comment-body">
+<p>да, такие чудеса не редкость)</p>
+</div>
+</div>
+</div>

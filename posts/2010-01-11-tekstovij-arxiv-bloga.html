@@ -1,0 +1,47 @@
+---
+author: "dchest"
+date: 2010-01-11 16:50:00 +00:00
+markup: markdown
+status: "Publish"
+title: "Текстовый архив блога"
+---
+Пару дней назад сделал текстовый архив блога с прикольными названиями файлов.
+Мне лень было разбираться с форматом SQLite-базы Movable Type (кроме того,
+заметки я писал в HTML, Textile и Markdown в разные времена), поэтому я просто
+сделал
+
+    wget -m https://sellme.biz
+
+и получил копию блога у себя на диске. Потом написал [скриптик][1], который
+проходился по всем страничкам и выдергивал содержание заметок и комментариев.
+На выходе получался кусок HTML, который я пропускал через [html2text.py][2] и
+получал красивый простой текст с Markdown-разметкой ([пример][5]).
+
+Но этого мне показалось мало: что за названия файлов такие
+[`reshil-uznat--russkie-slova.txt`][3]? Поэтому из каждой заметки я выдернул
+заголовок, пропустил его через Google Translate, убрал лишние пробелы, заменив
+остальные на "-", и получил красивые имена файлов типа
+`i-decided-to-learn-russian-words.txt` (а иногда и смешные:
+`davydov-quot-modern-teaching-omarketinge-is-poluideologie.txt`).
+
+
+[Скачать архив sellme-2010-01-09.zip][4] (1.9 МБ)
+
+Это только текст, картинки не включены. Распакованный архив весит 4.5 мегабайт;
+ `wc` выдает, что я написал 380079 слов. Это уже почти три тома универсальной
+ единицы словоизмерения:
+ 
+    $ wc -w war_and_peace*.txt 
+    139059 war_and_peace_vol_1.txt
+    127219 war_and_peace_vol_2.txt
+    134185 war_and_peace_vol_3.txt
+    112377 war_and_peace_vol_4.txt
+    512840 total
+
+[1]:http://gist.github.com/272559
+[2]:http://www.aaronsw.com/2002/html2text/
+[3]:https://sellme.biz/2010/01/reshil-uznat--russkie-slova.html
+[4]:https://sellme.biz/pics/sellme-2010-01-09.zip
+[5]:http://gist.github.com/274253
+
+

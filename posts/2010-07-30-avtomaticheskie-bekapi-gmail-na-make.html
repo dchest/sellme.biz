@@ -1,0 +1,86 @@
+---
+author: "dchest"
+date: 2010-07-30 15:29:40 +00:00
+markup: markdown
+status: "Publish"
+title: "Автоматические бэкапы Gmail на Маке"
+---
+Хочется, чтобы Gmail автоматически бэкапился на компе без запуска каких-то программ, без окошек, индикаторов, мигалок и т.п.
+
+Решение:
+
+Установка Getmail
+-----------------
+
+    $ curl -O http://pyropus.ca/software/getmail/old-versions/getmail-4.20.0.tar.gz
+    $ tar xvf getmail-4.20.0.tar.gz
+    $ cd getmail-4.20.0
+    $ sudo python setup.py install
+
+Настройка Getmail
+-----------------
+
+	$ mkdir ~/.getmail
+
+Создать файл `~/.getmail/getmail.gmail` с таким содержимым:
+
+    [retriever]
+    type = SimpleIMAPSSLRetriever
+    server = imap.gmail.com
+    username = ИМЯ@gmail.com
+    password = ПАРОЛЬ
+    mailboxes = ("[Gmail]/All Mail",)
+
+    [destination]
+    type = Maildir
+    path = ~/Gmail/
+
+    [options]
+    delete = false
+    read_all = false
+
+Не забудьте заменить ИМЯ и ПАРОЛЬ на соответствующие. Кроме того, `"[Gmail]/All Mail"` у вас может называться по-другому (зависит от локали Gmail) -- посмотрите в любом IMAP-клиенте как оно называется.
+
+Создать папки для архива почты:
+
+	$ mkdir ~/Gmail && cd ~/Gmail && mkdir tmp cur new
+
+Настройка launchd
+-----------------
+
+Создать файл `~/Library/LaunchAgents/com.codingrobots.gmail-backup.plist` c таким содержимым:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" 
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.codingrobots.gmail-backup</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/usr/local/bin/getmail</string>
+            <string>-q</string>
+            <string>-r</string>
+            <string>/Users/ИМЯ_ПОЛЬЗОВАТЕЛЯ/.getmail/getmail.gmail</string>
+        </array>
+        <key>LowPriorityIO</key>
+        <true/>
+        <key>Nice</key>
+        <integer>1</integer>
+        <key>StartInterval</key>
+        <integer>10800</integer>
+        <key>AbandonProcessGroup</key>
+        <true/>
+    </dict>
+    </plist>
+
+Не забудьте заменить ИМЯ_ПОЛЬЗОВАТЕЛЯ на имя вашего аккаунта в Mac OS&nbsp;X. `StartInterval` задает период получения новой почты в секундах (10800 -- каждые три часа).
+
+	$ launchctl load ~/Library/LaunchAgents/com.codingrobots.gmail-backup.plist
+	$ launchctl start com.codingrobots.gmail-backup
+
+Бекапилка должна стартовать (чтобы убедиться, можете посмотреть в Activity Monitor, запущен ли Python). Она скачает всю почту в папку `~/Gmail/new` и потом будет автоматически докачивать новые письма каждые три часа.
+
+*Добавлено:* обнаружился недостаток: getmail помечает письма как прочитанные. Мне это не мешает, но может кто-нибудь знает как это отключить? Может read_all = true?
+

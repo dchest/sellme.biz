@@ -1,0 +1,451 @@
+---
+author: "dchest"
+category: "Программирование"
+date: 2008-07-07 18:41:26 +00:00
+primary_category: "Программирование"
+status: "Publish"
+title: "Я люблю какао. Часть 3"
+---
+<p>Языыык!!!</p>
+<p>Один пример, и я заткнусь (на сегодня). (Осторожно, заметка представляет из себя недефрагментированные мысли из головы.)</p>
+<p>Пишем метод, который берет такие параметры: имя файла (строка), надо ли сжимать файл (bool), и callback для индикации прогресса (указатель на метод). Как вызывать этот метод для объекта doc, с файлом test.txt, с компрессией и отсутствием коллбэка?</p>
+<p>C++:</p>
+<p><code>bool success = doc->WriteFile("test.txt", true, NULL);</code></p>
+<p>C#:</p>
+<p><code>bool success = doc.WriteFile("test.txt", true, null);</code></p>
+<p>Python:</p>
+<p><code>success = doc.write_file("test.txt", True, None);</code></p>
+<p>Ruby:</p>
+<p><code>success = doc.write_file("test.txt", true, nil);</code></p>
+<p>А теперь запустим симуляцию программера, который писал это ночью, проснулся к обеду и забыл про определение метода; посмотрим на код вызова. Что за хрени эти <code>"test.txt"</code>, <code>true</code> и <code>nil</code>? Чего мы передаем в функцию? С именем файла вроде понятно, а остальное — это что?</p>
+<p>Вот что <a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml">официальные правила кодирования на C++ в Google</a> говорят:</p>
+<p><blockquote>When you pass in NULL, boolean, or literal integer values to functions, you should consider adding a comment about what they are, or make your code self-documenting by using constants. For example, compare:</p>
+<p><pre><code></p>
+<p>bool success = CalculateSomething(interesting_value,</p>
+<p>                      10,</p>
+<p>                      false,</p>
+<p>                      NULL);  // What are these arguments??</p>
+<p></code></pre></p>
+<p>versus:</p>
+<p><pre><code></p>
+<p>bool success = CalculateSomething(interesting_value,</p>
+<p>                      10,     // Default base value.</p>
+<p>                      false,  // Not the first time we're calling this.</p>
+<p>                      NULL);  // No callback.</p>
+<p></code></pre></p>
+<p></blockquote></p>
+<p>Бедные вечнокомментирующие гугловские программисты, так жаль их.</p>
+<p>Встречайте Objective-C:</p>
+<p><code>BOOL success = [doc writeFileToPath:@"test.txt" withCompression:YES callback:nil];</code></p>
+<p>Знаю, что глаза у вас затуманенны с непривычки. Вам подсветить?</p>
+<p><code><span style="color:#CD4D5F">BOOL</span> success = [<span style="color:#48899C">doc</span> writeFileToPath:<span style="color:red">@"test.txt"</span> withCompression:<span style="color:#CD4D5F">YES</span> callback:<span style="color:#CD4D5F">nil</span>];</p>
+<p></code></p>
+<p>Опа, нам не надо заглядывать в определение функции (или писать комментарий), потому что название метода уже содержит всю нужную информацию. Это именно название метода — <code>writeFileToPath:withCompression:callback:</code>, а не передача параметров в виде хэша/словаря, как это можно сделать в Ruby/Python.</p>
+<p>Вот, если хотите, большой метод:</p>
+<p><pre><code></p>
+<p>NSAlert *alert = [NSAlert alertWithMessageText:<span style="color:red">@"Passwords do not match"</span></p>
+<p>			  defaultButton:<span style="color:red">@"OK"</span></p>
+<p>			  alternateButton:<span style="color:#CD4D5F">nil</span></p>
+<p>		 	  otherButton:<span style="color:#CD4D5F">nil</span> </p>
+<p>			  informativeTextWithFormat:<span style="color:red">@"Crap! Can you type?"</span>];</p>
+<p></code></pre></p>
+<p>* * *</p>
+<p>Objective-C — компилируемый язык, всего лишь небольшая объектно-ориентированная надстройка над C (в отличие от C++,  который совсем другой язык). Он динамический, и в нем не обязательно делать типизацию (<code>NSString *myString</code> — с типом, <code>id myString</code> — пофиг на тип).</p>
+<p><blockquote></p>
+<p>Одной из отличительных черт Objective-C является его динамизм — целый ряд решений, обычно принимаемых на этапе компиляции, здесь откладывается непосредственно до этапа выполнения.</p>
+<p>Ещё одной из особенностей языка является то, что он message-oriented в то время как С++ — function-oriented. Это значит, что в нём вызовы метода интерпретируются не как вызов функции (хотя к этому обычно все сводится), а именно как посылка сообщения (с именем и аргументами) объекту, подобно тому, как это происходит в Smalltalk-е.</p>
+<p>Такой подход дает целый ряд плюсов — так любому объекту можно послать любое сообщение. Объект может вместо обработки сообщения просто переслать его другому объекту для обработки (так называемое делегирование), в частности именно так можно легко реализовать распределенные объекты (то есть объекты находящиеся в различных адресных пространствах и даже на разных компьютерах).</p>
+<p></blockquote></p>
+<p>(<a href="http://ru.wikipedia.org/wiki/Objective-C">википедия</a>)</p>
+<p>С Objective-C можно делать многое интересное, что можно сделать с языками вроде Python и Ruby и нельзя сделать с языками типа C++. При этом, так как это Си с надстройкой, код можно смешивать: в Си-функциях использовать посылку сообщений ObjC объектам, а из ObjC-методов вызывать функции Си. В Objective-C 2.0 есть properties и (опциональная) сборка мусора.</p>
+<p>Товарищи, на этом языке писать — одно удовольствие!</p>
+<p>* * * </p>
+<p>Напоследок, еще немножко примеров с <a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml">Google'овскими рекомендациями по C++</a>:</p>
+<p><blockquote></p>
+<p><strong>Doing Work in Constructors</strong></p>
+<p>Do only trivial initialization in a constructor. If at all possible, use an Init() method for non-trivial initialization. </p>
+<p>* There is no easy way for constructors to signal errors, short of using exceptions (which are forbidden).</p>
+<p>* If the work fails, we now have an object whose initialization code failed, so it may be an indeterminate state.</p>
+<p>* If the work calls virtual functions, these calls will not get dispatched to the subclass implementations. Future modification to your class can quietly introduce this problem even if your class is not currently subclassed, causing much confusion.</p>
+<p>* If someone creates a global variable of this type (which is against the rules, but still), the constructor code will be called before main(), possibly breaking some implicit assumptions in the constructor code. For instance, gflags will not yet have been initialized.</p>
+<p>Decision: If your object requires non-trivial initialization, consider having an explicit Init() method and/or adding a member flag that indicates whether the object was successfully initialized.</blockquote></p>
+<p>В Objective-C нет конструкторов по умолчанию, и принято писать init-методы: например, <code>init</code>, <code>initWithFileName</code>, <code>initWithSomethingCool:doMore:</code> и т.п. Создание объекта происходит таким образом: <code>[[SomeClass alloc] initWithFileName:fileName]</code>. Другой способ — метод класса, который сам возвращает инициализированный объект (см. пример с <code>NSAlert</code> выше).</p>
+<p><blockquote></p>
+<p><strong>The #define Guard</strong></p>
+<p>All header files should have #define guards to prevent multiple inclusion. The format of the symbol name should be <em>project_path_file_H_</em>. </p>
+<p>link</p>
+<p>To guarantee uniqueness, they should be based on the full path in a project's source tree. For example, the file foo/src/bar/baz.h in project foo should have the following guard:</p>
+<p><pre><code></p>
+<p>#ifndef FOO_BAR_BAZ_H_</p>
+<p>#define FOO_BAR_BAZ_H_</p>
+<p>...</p>
+<p>#endif  // FOO_BAR_BAZ_H_</p>
+<p></code></pre></p>
+<p></blockquote></p>
+<p>Бедняжки. В Objective-C можно использовать <code>#include</code>, но для защиты от того, чтобы файл не включился повторно, есть <code>#import</code>:</p>
+<p><code>#import "foo/src/bar/baz.h"</code></p>
+<p>* * * </p>
+<p>Кстати, есть еще Objective-C++ — это если лень переписывать существующий C++ код.</p>
+<p>* * *</p>
+<p>Ну а если вам неохота писать на Objective-C, тогда для обращения к Cocoa можно использовать Ruby или Python (они поставляются с Mac OS X) — благодаря тому, что рантайм ObjC (на котором написан Cocoa) весь такой из себя динамический. И это не теория — например, <a href="http://checkoutapp.com/">Checkout</a> написан на PyObjC.</p>
+<p>* * *</p>
+<p><em>Обновление:</em> Про категории забыл! В Objective-C, как в Ruby, можно добавить метод в любой класс — например, добавить метод для перевода строки в "LOLspeak" сразу в NSString:</p>
+<p><pre><code></p>
+<p>@interface NSString (LOLSpeak_Additions)</p>
+<p>  - (NSString *)lolSpeakStringFromString:(NSString *)normalString;</p>
+<p>@end</p>
+<p></code></pre></p>
+<p>Это очень полезная вещь, я вам говорю.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">alberka</span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>А в C# (Visual Studio) он наведет курсором на открывающую скобку, нажмет ctrl+shift+space и получит подробное описание каждого передаваемого параметра (разумеется, если не поленился написать это описание)...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>alberka: Так это и так понятно, что типичный C# программист не умеет писать код вне IDE :) Впрочем, аргумент неважный — зачем писать код вне IDE я не знаю :)</p>
+<p>Дело в том, что код чаще читается, чем пишется. А мышка не заменит глаз — лучше, когда все сразу видно.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.niksite.ru/">Nikolay</a></span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>А что мешает использовать в питоне именованные аргументы?</p>
+<p>То есть писать не success = doc.write_file("test.txt", True, None);</p>
+<p>но success = doc.write_file(tofilewithname="test.txt", withCompression=True, callback=None);</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>Во-первых, пример с компрессией и коллбэком очень неудачный. В ОО-языке, где document -- это объект, неплохо бы использовать events. Параметр колбэк отпадает. Флаг true/false можно заменить на enum и всё будет читабельно. Вывод: неплохо бы иметь нормальный стиль разработки.</p>
+<p>Во-вторых, в MS C++ есть #pragma once, которая работает #define guard.</p>
+<p>В-третьих, в чём прелесть написания софта вне IDE? Можно, конечно, обходиться Notepad и командной строкой, но зачем? IDE не мешает автоматизировать билд, если нужно, но предоставляет уйму полезных инструментов. Почему-то никого не удивляет, что хорошему столяру нужна мастерская...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>Вообще, после сентенции о "бедных всёкомментирующих гуглерах" пример с написанием имени каждого параметра выглядит весьма забавно. :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>Nikolay: </p>
+<p>keyword arguments в питоне рулят. Без них под wxPython писать было бы в 1000 раз геморройнее.</p>
+<p>jimbo:</p>
+<p><blockquote></p>
+<p>Во-первых, пример с компрессией и коллбэком очень неудачный.</p>
+<p></blockquote></p>
+<p>Нормальный пример. Какая разница, коллбэк-не коллбэк — смысл в том, что не читабельны параметры. enum — выход. Ага, придется enum'ы для всех true/false делать.</p>
+<p><blockquote></p>
+<p>Во-вторых, в MS C++ есть #pragma once, которая работает #define guard.</p>
+<p></blockquote></p>
+<p>Ключевое слово — MS C++.</p>
+<p><blockquote></p>
+<p>В-третьих, в чём прелесть написания софта вне IDE? Можно, конечно, обходиться Notepad и командной строкой, но зачем?</p>
+<p></blockquote></p>
+<p>Я про это и говорю.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>дима, а чего комменты не публикуются? цензура? ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>а этот опубликовался. а два больших до этого - нет. абыдно. еще раз написать?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>или у тебя фильтр на слова "obective-c" и "дебильный" в одном сообщении? ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий: в админке нету, антиспама никакого кроме капчи не стоит. Модерация только для комментирующих в первый раз. Глюк какой-то что ли? Напищи еще если не лень.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>начну с конца. с категорий. дима, ты представляешь что категории сделают с мало-мальски серьезным проектом? десять программистов добавили по методу в NSString. убиться. вообще их не рекомендуют использовать всерьез. так, изредка и в рамках файла - не вопрос. еще ими удобно описывать private-методы.</p>
+<p>имена переменных. в С++ предпочтительны ошибки времени компиляции, Obj-C предпочитает ошибки времени выполнения. оставим это уродство за кадром, хочется провести аналогию, но наоборот. программист с++ будет вспоминать завтра названия параметров. а программист obj-c должен будет вспомнить их уже сегодня, чтобы хоть что-то написать ;) да, есть кнопка Esc, но так и в Visual Studio есть Ctrl+Space и, кстати, получше работающая ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-07 19:08</span>
+</div>
+<div class="comment-body">
+<p>едем дальше, скобки. ненавижу скобки. у меня в проекте ядро на с++, надо строчками меняться. знаешь как весело городить эти скобки (не дает форум кусок кода вставить).</p>
+<p>вряд ли знаешь, иначе бы не писал про скобочки хорошие слова ;) </p>
+<p>скобки - уродство. эппл косвенно с этим соглашается, вводя проперти и пряча от нас половину скобок за автогенерацией.</p>
+<p>сборка мусора. на ADС видел статейку про создание классов, которые одинаково успешно могут работать с retain/release и с GC. статью написали. большую... не все так просто, да? ;)</p>
+<p>резюмирую: cocoa - очень неплохой фреймворк, но язык - дебильный.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-07 20:08</span>
+</div>
+<div class="comment-body">
+<p>че-то не то с форумом. пытаюсь кусок кода написать - сообщения не публикуются. клево ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 20:08</span>
+</div>
+<div class="comment-body">
+<p>Виталий:</p>
+<p><blockquote> а программист obj-c должен будет вспомнить их уже сегодня, чтобы хоть что-то написать ;)</blockquote></p>
+<p>Зато ему же потом читать удобней.</p>
+<p><blockquote></p>
+<p>начну с конца. с категорий. дима, ты представляешь что категории сделают с мало-мальски серьезным проектом?</p>
+<p></blockquote></p>
+<p>Про десять программистов и серьезные проекты не знаю, но категории удобны для добавления того, чего не хватает во встроенных классах.</p>
+<p>Перечисляю категории для Mémoires:</p>
+<p>@interface NSString (CRAdditions) </p>
+<p>- (NSString *)stringByWrappingWithLineLength:(unsigned)lineLength;</p>
+<p>- (NSString *)stringByRemovingWhiteSpace;</p>
+<p>@end</p>
+<p>@interface NSData (NSDataAdditions)</p>
+<p>+ (NSData *) dataWithBase64EncodedString:(NSString *) string;</p>
+<p>- (id) initWithBase64EncodedString:(NSString *) string;</p>
+<p>- (NSString *) base64Encoding;</p>
+<p>- (NSString *) base64EncodingWithLineLength:(unsigned int) lineLength;</p>
+<p>- (BOOL) hasPrefix:(NSData *) prefix;</p>
+<p>- (BOOL) hasPrefixBytes:(void *) prefix length:(unsigned int) length;</p>
+<p>@end</p>
+<p>(копи-пейст, кто-то странно категорию назвал. Надо переделать).</p>
+<p>@interface NSData (AQDataExtensions)</p>
+<p>- (NSData*)dataEncryptedWithPassword:(NSString*)password;</p>
+<p>- (NSData*)dataDecryptedWithPassword:(NSString*)password;</p>
+<p>@end</p>
+<p>@interface NSFileManager (CRAdditions)</p>
+<p>- (void)securelyRemoveFileAtPath:(NSString *)path;</p>
+<p>@end</p>
+<p>@interface NSMutableAttributedString (CRAdditions)</p>
+<p>- (unsigned int)replaceOccurrencesOfString:(NSString *)target withString:(NSString*)replacement options:(unsigned)opts range:(NSRange)searchRange;</p>
+<p>@end</p>
+<p>Что в них плохого? Удобство заключается в том, что не нужно переписывать существующий код для использования других классов, достаточно поменять вызов метода (например, в предыдущих версиях вызывался removeFileAtPath:handler:, в нынешней — securelyRemoveFileAtPath:.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-07 20:08</span>
+</div>
+<div class="comment-body">
+<p>а еще (ну а где мне еще жаловаться? ;) они в IB3.0 отрубили возможность Ctrl+Drag'а action'ов от кастомных контролов. кидаешь какой-нибудь NSButton - и от него отлично тащишь action. а кинешь NSView, поставишь ему свой класс наследник NSControl - а там раз и нету группы Sent Action. охренеть. написал им багрепорт - в 2.5 все работало. одно смущает: никто не замечал этого почти год?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-07 20:08</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, ключевое слово "Objective C". Который вообще не похож C. Код с #pragma once хотя бы скомпилируется другими, поскольку #pramga -- это стандартная фича C++.</p>
+<p>Можно, конечно, думать об enum'ах в пределах true/false, а можно подумать о Compression_Deflate/Compression_Deflate64/Compression_LZMA. Возвращаясь к дизайну класса document, можно бы вообще иметь проперть Compression в самом документе, что убирает ещё один из параметров метода.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">jimbo</span> <span class="comment-date">2008-07-07 20:08</span>
+</div>
+<div class="comment-body">
+<p>Добавлю: если очень хочется посмеяться над "ущербным" C++, то достаточно попробовать описать тип колбэка-члена класса, не заглядывая ни в какие howto. Полчаса веселья обеспечено! :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 20:08</span>
+</div>
+<div class="comment-body">
+<p><blockquote>едем дальше, скобки. ненавижу скобки.</blockquote></p>
+<p>Осторожно, сейчас придут злобные лисписты и закидают тебя своими скобками!</p>
+<p>Скобки — окей. Не то, чтобы хорошо, но и не плохо. Просто по-другому. Хорошо, что не "->".</p>
+<p><blockquote></p>
+<p>сборка мусора. на ADС видел статейку про создание классов, которые одинаково успешно могут работать с retain/release и с GC. статью написали. большую… не все так просто, да? ;)</p>
+<p></blockquote></p>
+<p>Неа, все просто. Статья — про создание фреймворков, которые люди будут хотеть присоединить как к GC-проектам, так и к reference counted.</p>
+<p><blockquote>пытаюсь кусок кода написать - сообщения не публикуются. </blockquote></p>
+<p>Плохой код не принимается. Смотри — мои категории принялись :-)))</p>
+<p>(На самом деле, хз почему — пришли мне на мыло, я вставлю в твой комментарий — dmitry@sellme.biz).</p>
+<p><blockquote></p>
+<p>а еще (ну а где мне еще жаловаться? ;) они в IB3.0 отрубили возможность Ctrl+Drag’а action’ов от кастомных контролов.</p>
+<p></blockquote></p>
+<p>Наверное, ты забыл, что у NSControl action и target возвращают action/target Cell.</p>
+<p>Я попробовал и все получилось:</p>
+<p>@implementation MyControl</p>
+<p>+ (Class)cellClass;</p>
+<p>{</p>
+<p>	return [NSActionCell class];</p>
+<p>}</p>
+<p>- (void)mouseDown:(NSEvent *)theEvent;</p>
+<p>{</p>
+<p>	if ([self target] != nil && [[self target] respondsToSelector:[self action]])</p>
+<p>	     [[self target] performSelector:[self action] withObject:self];</p>
+<p>}</p>
+<p>@end</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-07 21:08</span>
+</div>
+<div class="comment-body">
+<p><a href="http://i32.tinypic.com/r2wc5u.png" rel="nofollow">картинко</a>. и <a href="http://i31.tinypic.com/2psei53.png" rel="nofollow">еще</a>.</p>
+<p>(хотя я юзаю Xcode 3.1 — в Xcode 3.0 не проверял)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://mekal88.com">mekal</a></span> <span class="comment-date">2008-07-07 22:08</span>
+</div>
+<div class="comment-body">
+<p>я прочитал первую строчку... и последнюю! и я поверил!!1)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-07 22:08</span>
+</div>
+<div class="comment-body">
+<p>дима, а покажи @interface... на самом деле это задница. потому что у меня, в принципе, все то же самое. включая +cellClass. впрочем, в .h-файле его нет, по идее IB о нем и не знает.</p>
+<p>я пишу минимальный вариант</p>
+<p>@interface MyControl : NSControl</p>
+<p>{</p>
+<p>}</p>
+<p>@end</p>
+<p>вполне легальный "контрол", который по мнению IB2.5 мог посылать экшены. в 3.0 отказывается.</p>
+<p>вопрос номер два: где взять IB3.1?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.prudnikov.com/">Vladimir</a></span> <span class="comment-date">2008-07-07 23:08</span>
+</div>
+<div class="comment-body">
+<p>Начал писать про именованные аргументы в Python, но потом заметил что уже написано выше про них. Еще добавлю что в Python 3 есть новая фича для документирования.</p>
+<p>def foo (x: "First parameter", y: "Second parameter") -&gt; "Summ":</p>
+<p>    return x + y</p>
+<p>После имени каждого параметра функции через двоеточие можно задать любое выражение, которое может быть вычислено на момент описания функции. Это выражение будет связано с именем параметра в специальном словаре. Также после описания всех параметров, но до символа : можно задать выражение (с помощью оператора -&gt; ), которое будет связано с возвращаемым значением. Самым очевидным применением этой возможности является задание текстовых строк, описывающие входные параметры и возвращаемое значение.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-08 00:08</span>
+</div>
+<div class="comment-body">
+<p>а, все. сам нашел, скачал, поставил. да, в 3.1 все отлично пашет, группа Sent Actions есть и все таскается. а в 3.0, который раздают мак-девелоперам - не пашет. скотство какое...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-08 01:08</span>
+</div>
+<div class="comment-body">
+<p>Интерфейс такой же. IB 3.1 из iPhone SDK beta 8.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Виталий</span> <span class="comment-date">2008-07-08 18:08</span>
+</div>
+<div class="comment-body">
+<p>еще чуток подумал: а ты не совсем прав в -mouseDown</p>
+<p>по идее ведь надо так:</p>
+<p>[self sendAction:[self action] to:[self target]]</p>
+<p>нет?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-08 18:08</span>
+</div>
+<div class="comment-body">
+<p>Ага, верно.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://shep.pp.ru/">Сергей Шепелев</a></span> <span class="comment-date">2008-07-09 23:08</span>
+</div>
+<div class="comment-body">
+<p>Бедные, бедные гугловские плюсники...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://vzakharov.livejournal.com">Владимир Захаров</a></span> <span class="comment-date">2008-07-13 15:08</span>
+</div>
+<div class="comment-body">
+<p>ВАААУ, круто, прям как в Visual Basic'e Ж))</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-13 16:08</span>
+</div>
+<div class="comment-body">
+<p>Владимир Захаров: не гони, в VB функций с названиями, перемежающимися аргументами.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-07-13 16:08</span>
+</div>
+<div class="comment-body">
+<p>^^ имелось в виду "нет".</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://icq2u.ru">D@rkNeo</a></span> <span class="comment-date">2008-07-20 15:08</span>
+</div>
+<div class="comment-body">
+<p>брр. мне кажется, objective-c - извращение какое-то, а вот вариант..</p>
+<p>&gt;When you pass in NULL, boolean, or literal integer </p>
+<p>&gt;values to functions, you should consider adding a </p>
+<p>&gt;comment about what they are, or make your code </p>
+<p>&gt;self-documenting by using constants.</p>
+<p>.. мне намного симпатичней. </p>
+<p>времени убьешь больше - зато читать удобней. намного. имхо</p>
+</div>
+</div>
+</div>

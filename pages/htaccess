@@ -1,0 +1,114 @@
+---
+layout: none
+permalink: .htaccess
+---
+#
+# Basics
+# ------
+#
+
+# Disable php
+RemoveHandler .php .phtml .php3
+RemoveType .php .phtml .php3
+
+# Index
+DirectoryIndex index.html index.htm
+
+# 404 error
+ErrorDocument 404 /404.html
+
+# Redirect http to https
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+# Redirect sellme.ru to sellme.biz
+RewriteCond %{HTTP_HOST}   !^sellme\.ru [NC]
+RewriteCond %{HTTP_HOST}   !^$
+RewriteRule ^/(.*)         https://sellme.biz/$1 [L,R]
+
+SSLCipherSuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:ECDHE-RSA-RC4-SHA:ECDHE-ECDSA-RC4-SHA:AES128:AES256:RC4-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!3DES:!MD5:!PSK
+
+
+#
+#  Rewrites and redirects
+#  ----------------------
+#
+
+# Password page
+RedirectPermanent /p/ /password/password.html
+RedirectPermanent /p2/ /password2/password2.html
+RedirectPermanent /pi/ /password2/ios.html
+
+RewriteEngine on
+# Sellme runned on multiple CMS since 2005. We'd like to keep links working.
+# WordPress
+RewriteRule ^([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(.+)?$ https://sellme.biz/$1/$2/$4.html [R=permanent,L]
+RewriteRule ^([0-9]{4})/([0-9]{1,2})/(.*)\_(.*)$ https://sellme.biz/$1/$2/$3-$4
+
+# Uploads.
+RewriteRule ^wp-content\/uploads\/(.*)$ https://sellme.biz/pics/$1 [R=permanent,L]
+
+# Webby
+RedirectPermanent /articles/essense.html /2009/08/essense.html
+RedirectPermanent /articles/tableview-browsing.html /2009/04/tableview-browsing.html
+RedirectPermanent /articles/ellipticlicense-preview.html /2009/03/ellipticlicense-preview.html
+RedirectPermanent /articles/mosso-cloud-servers.html /2009/03/mosso-cloud-servers.html
+RedirectPermanent /articles/change.html /2009/03/change.html
+# Pages
+RedirectPermanent /about/ /about.html
+RedirectPermanent /contacts/ /about.html
+
+
+# RSS Feed: redirect to FeedBurner.
+RewriteRule ^rss\/?$ http://feeds.feedburner.com/SellMe [R=permanent,L]
+RewriteRule ^rss\/?(.*)/?$ http://feeds.feedburner.com/SellMe [R=permanent,L]
+RewriteCond %{HTTP_USER_AGENT} !FeedBurner 
+RewriteRule ^feed\/?(.*)/?$ http://feeds.feedburner.com/SellMe [R=permanent,L]
+RewriteRule ^category\/podcasts\/feed\/?(.*)$ http://feeds.feedburner.com/SellMe [R=permanent,L]
+RewriteRule ^wp-rss2.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
+RewriteRule ^wp-atom.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
+
+#
+# Optimizations
+# -------------
+#
+
+# TODO: tighten.
+
+# Enable gzip compression
+SetOutputFilter DEFLATE 
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/javascript text/css application/x-javascript
+
+# For all browsers turn on html, css and javascript gzip compression 
+# For old browsers turn OFF all gzip compression 
+# For IE6 gzip html only 
+# Allow gzip compression for html, css, and javascript 
+AddOutputFilterByType DEFLATE text/html text/javascript text/css application/x-javascript 
+# Netscape 4.x has some problems... 
+BrowserMatch ^Mozilla/4 gzip-only-text/html 
+# Netscape 4.06-4.08 have some more problems 
+BrowserMatch ^Mozilla/4\.0[678] no-gzip 
+# MSIE masquerades as Mozilla, but it is fine 
+BrowserMatch \bMSIE\s7 !no-gzip !gzip-only-text/html 
+# Turn off gzip for images, pdf, zips and swfs 
+SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary 
+SetEnvIfNoCase Request_URI \.pdf$ no-gzip dont-vary 
+SetEnvIfNoCase Request_URI \.zip$ no-gzip dont-vary 
+SetEnvIfNoCase Request_URI \.swf$ no-gzip dont-vary 
+ 
+# Set far future expiration
+ExpiresActive On
+ExpiresByType text/javascript "access plus 1 years"
+ExpiresByType application/x-javascript "access plus 1 years"
+ExpiresByType text/css "access plus 1 years"
+ExpiresByType image/png "access plus 1 years"
+ExpiresByType image/jpeg "access plus 1 years"
+ExpiresByType image/gif "access plus 1 years"
+ExpiresByType image/vnd.microsoft.icon "access plus 1 years"
+
+# Cache-control for html
+<FilesMatch "\.(xml|txt|html|htm)$">
+# 2 HOURS
+Header set Cache-Control "max-age=7200"
+</FilesMatch>

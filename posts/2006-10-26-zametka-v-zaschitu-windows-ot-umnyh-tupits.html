@@ -1,0 +1,621 @@
+---
+author: "dchest"
+category: "Технологии"
+date: 2006-10-26 17:36:40 +00:00
+primary_category: "Технологии"
+status: "Publish"
+title: "Заметка в защиту Windows от умных тупиц"
+---
+<p>Меня раздражает, когда умные люди&#x2026; (тут&#xA0;я надолго задумался, как же это назвать)&#x2026; тупят.</p>
+<p>Например, недавняя мемешка от 37signals &#x2014; <a href="http://37signals.com/svn/posts/84-web-developers-microsoft-has-no-idea-whats-going-on">видео-сравнение установки скрипт-дебаггера в бета-версии Vista и в релизе Mac OS X</a>&#xA0;с далеко идущими выводами о том, что &#x201C;Microsoft has no idea what&#x2019;s going on&#x201D;.</p>
+<p>Сначала они говорят, что у них нет опыта работы с Windows. Блин, я когда Мак купил тоже не сразу врубился в тему, потому что пятнадцать лет думал по-майкрософтовски. Но я не постил в блог о том, что на моём iBook&#x2019;е <strong>нет кнопки Delete </strong>(серьёзно! её дублирует комбинация fn-Backspace), зато есть кнопка, которой я ни разу не пользовался, с выводами о том, что Apple &#x2014; отстой.</p>
+<p>Я уже не говорю о том, что &#x201C;для шоу&#x201D; на видео записан самый длинный путь к верификации копии Windows &#x2014; Alternate way, вместо простого за пару кликов.</p>
+<p>Но самое главное &#x2014; они не показали, как деинсталлировать эту штуку. А потому что, если бы они показали как удалять программы в Mac OS, заголовок бы читался как &#x201C;Apple has no idea what&#x2019;s going on&#x201D;.</p>
+<p>Я расскажу. Чтобы удалить программу в Windows, надо зайти в Панель управления, кликнуть &#x201C;Установка и удаление программ&#x201D;, выбрать программу и нажать &#x201C;Удалить&#x201D;. Всё.</p>
+<p>Вот как удаляется программа в Mac OS:</p>
+<p><ul></p>
+<p><li>Заходите в ~/Applications/, переносите иконку с программой в корзину.</li></p>
+<p><li>Далее нам предстоит <strong>вручную</strong> найти&#xA0;всё, что программа оставила у нас на диске.&#xA0;</li></p>
+<p><li>Заходите в ~/Library/Application Support/ и удаляете папку с именем программы.</li></p>
+<p><li>Заходите в ~/Library/Preferences и там находите файл с названием, похожим на имя программы (обычно com.example.softwarename, но может и по-другому называться &#x2014; на усмотрение разработчика программы) и удаляете его.</li></p>
+<p><li>Ещё можно поискать спотлайтом другие служебные файлики, которые понаделала программа и удалить их.</li></ul></p>
+<p>Снять видео? Если всё это неохота делать вручную &#x2014; купите <a href="http://appzapper.com/">AppZapper</a> за $12 (The uninstaller Apple forgot &#x2014; &#x201C;Деинсталлятор, который забыла Apple&#x201D;) и он поможет вам отыскать все файлики.</p>
+<p>Ну что, &#x201C;Apple has no idea what&#x2019;s going on&#x201D;? Простой частный пример, где Microsoft лучше продумала систему, чем Apple. Как и у 37signals в блоге, только наоборот.&#xA0;И что? Из таких частных случаев нельзя сделать вывод о том, что какая-то компания &#x2014; отстой, а какая-то &#x2014; суперрр.</p>
+<p>Let the flame wars&#xA0;begin!</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://kotov.phpwars.net/blog/">Vasiliy Kotov</a></span> <span class="comment-date">2006-10-26 18:06</span>
+</div>
+<div class="comment-body">
+<p>кстати вся та же фигня тврится и с Linux и....... и не Linux :) Вот кто-то сделает функциональность в  одной nix проге и все линуксоиды кричат что "нафиг вам вындовс".</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-26 18:06</span>
+</div>
+<div class="comment-body">
+<p>&gt;&gt;Let the flame wars begin!</p>
+<p>:-)</p>
+<p>&gt;&gt;Я расскажу. Чтобы удалить программу в Windows, надо зайти в Панель управления, кликнуть “Установка и удаление программ”, выбрать программу и нажать “Удалить”. Всё.</p>
+<p>Не все. Есть чудное изобретение под названием реестр. Там следы остаются. Есть чудная папочка Application Data с ровной той же самой информацией что и на маке. Есть еще папка Windows и в ней System куда некоторые тоже любят гадить. Посему следов в Windows остается далеко не так мало как кажется. Иногда даже и больше. Я специально попробовал удалить пару программ. Одна например не смогла удалить свою папку в program files.</p>
+<p>Так что если вынести за скобки информацию о настройках программы и ее данных, то само удаление программы простым перетягиванием в корзину несравненно более простое, чем заход в Панель управления (типичный пользователь даже не знает что это такое, не стоит забывать, что Вы программист ;-) ) Посему в плане удаления программ Microsoft действительно не догоняет ;-) Отправить программу в корзину по мне более удобное и логичное решение. Хотя и его можно доработать. Научить людей ходить в Панель управление несколько сложнее, чем научить их просто удалять один "файл" причем его расположение известно пользователю. Там откуда его можно удалить его обычно запускают.</p>
+<p>&gt;&gt;Простой частный пример, где Microsoft лучше продумала систему, чем Apple.</p>
+<p>Не продумала. Решение гораздо более кривое, чем перетягивание проги в корзину.</p>
+<p>Впрочем признаю честно. Это мое субъективное восприятие непрограммиста. Хотя непрограммистов пожалуй большинство среди пользователей.</p>
+<p>А судя по удобству и простоте своих продуктов ребята из 37signals не такие уж и дураки в области разработки интерфейсов. Или как Вы написали, не такие уж и тупицы ;-)</p>
+<p>Впрочем если отвлечься от конкретного примера, как 37signals так и Вашего, по одной частной задаче вывод об адекватности целой компании делать действительно не стоит. Впрочем в каждой конкретной области такие выводы делать можно. Например в области установки и удаления ПО. Или в области настройки и подключения к интернету. Или работы со шрифтами. Или еще какой-нибудь мелочи.</p>
+<p>Успехов и спасибо за интересный блог.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.micromarketing.ru/">Алексей Новиков</a></span> <span class="comment-date">2006-10-26 18:06</span>
+</div>
+<div class="comment-body">
+<p>На мой взгляд, если бы все у Microsoft было бы так плохо, то они не были бы первыми. Сейчас гики подымут вой о том, что это все маркетинг у них виноват, впаривают, мол.</p>
+<p>Маркетинг и виноват. Microsoft ориентировалась на пользователя. Да, она создавала не самые "юзабельные" продукты, не самые быстрые, не самые "безглючные".</p>
+<p>Но в целом, Microsoft ориентирована на пользователя и его потребности больше многих других компаний.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-26 19:06</span>
+</div>
+<div class="comment-body">
+<p>Посмотрите как-нибудь на PowerPoint и на Keynote. И сравните заботу о пользователе со стороны Microsoft и Apple. Или например можно обсудить сколько времени у них заняло создание многотабовости в браузере. Это ведь никому не нужная задача. Как и куча других мелочей. Давайте не будем обсуждать заботу о пользоателях, а будем говорить о более конкретных вещах. Впрочем смысл переубеждать кого бы то ни было именно в обсуждении данной темы практически отсутствует. Каждый голосует своим кошельком. И я рад, что здесь собрались люди, которые принимают сознательные решения при выборе платформы и поставщика ПО.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-26 19:06</span>
+</div>
+<div class="comment-body">
+<p>Артем: </p>
+<p>> Не все. Есть чудное изобретение под названием реестр. </p>
+<p>> Там следы остаются. </p>
+<p>Не, ну это уже зависит от программы. Нормальные программы всё за собой чистят. (Может быть, только шароварные пару ключей в реестре оставляют для определения того, что они были установлены, но это мелочь.)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.micromarketing.ru/">Алексей Новиков</a></span> <span class="comment-date">2006-10-26 19:06</span>
+</div>
+<div class="comment-body">
+<p>Артем, забота о пользователе сводится не только к красивости Keynote или табам.</p>
+<p>Они смогли создать такую ситуацию, при которой под их ОС пользователь (не гик или фан) имеет меньше всего проблем. Проблема -- это не только отсутствие табов или зависание. Проблема -- это отсутствие нужного софта под ОС или необходимость призывать шамана-сисадмина чтобы что-то там настроить.</p>
+<p>В конце концов, все эти табы и имею в Firefox, Opera или Maxthon именно под управлением ОС от Microsoft.</p>
+<p>Артем, о каких же "конкретных вещах" Вы предлагаете поговорить? О закладочках в браузере?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://frst.ru">frst</a></span> <span class="comment-date">2006-10-26 21:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, вы гоните.</p>
+<p>Вот например я сделал кучу настроек в какойто проге, например, о ужас, переопределил расцветку синтаксиса. И что теперь когда я ее удалю - у меня все это должно похерится?</p>
+<p>Нормальные программы и на вин и на мак все настройки оставят.</p>
+<p>А то что вы роетесь в потрохах файловой структуры удяляя их - это ваш странный бзик.</p>
+<p>Если бы опера при деинсталляции рюхнула мне почту, все пароли и закладки - я бы головой об стену убился наверное :)</p>
+<p>Другое дело что например в винде есть такая забавная штука как реестр, который не в файловой системе, и там сложно чото найти и удалить, а тем более перенести, ибо структура его одному бгу известна (вроде мокрософт уже потихоньку от реестра избавляется)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Tester</span> <span class="comment-date">2006-10-26 22:06</span>
+</div>
+<div class="comment-body">
+<p>Holy Wars на Sellme.biz :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://yashnikov.ru">Владимир Яшников</a></span> <span class="comment-date">2006-10-26 23:06</span>
+</div>
+<div class="comment-body">
+<p>Никогда не было Apple, но как же не поучаствовать в таком флейме? ;)</p>
+<p><blockquote>Нормальные программы всё за собой чистят.</blockquote></p>
+<p>...</p>
+<p><blockquote>Если всё это неохота делать вручную — купите AppZapper за $12 (The uninstaller Apple forgot — “Деинсталлятор, который забыла Apple”) и он поможет вам отыскать все файлики.</blockquote></p>
+<p>Большинство программ под Windows всё же за собой не чистят, оставляя немало следов. Поэтому многие используют Ashampoo и прочие анисталлеры. А стоит Ashampoo побольше AppZapper :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.micromarketing.ru/">Алексей Новиков</a></span> <span class="comment-date">2006-10-26 23:06</span>
+</div>
+<div class="comment-body">
+<p>А можно и такую прогрмму написать, которая специалльно будет мусорить в реестре :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-26 23:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий,</p>
+<p>&gt;&gt;Не, ну это уже зависит от программы. Нормальные программы всё за собой чистят. (Может быть, только шароварные пару ключей в реестре оставляют для определения того, что они были установлены, но это мелочь.)</p>
+<p>Нормальные программы сохраняют свои настройки и данные в Application Data и немного в реестре.</p>
+<p>А вот очистить реестр для обычного пользователя это почти подвиг ;-)</p>
+<p>Причем по сравнению с этим удаление парочки папок это очень простая операция. Кстати знаете что случится если под макосом удалить эти папочки, а прогу оставить. говорят, что будет работать с чистого листа. Как новенькая. А как такой же фокус сделать в винде?</p>
+<p>Алексей,</p>
+<p>&gt;&gt;Артем, забота о пользователе сводится не только к красивости Keynote или табам.</p>
+<p>Забота о пользователе сводиться прежде всего к отстутствию необходимости делать нелогичные вещи. И к удобству пользования. Надеюсь у Вас будет возможность поработать пару дней за маком, чтобы у Вас появилось собственное впечатление о том, почему я предпочитаю именно эту платформу.</p>
+<p>&gt;&gt;Они смогли создать такую ситуацию, при которой под их ОС пользователь (не гик или фан) имеет меньше всего проблем</p>
+<p>По любым тестам и опросам проблем у макюзеров меньше.</p>
+<p>&gt;&gt;Проблема — это отсутствие нужного софта под ОС или необходимость призывать шамана-сисадмина чтобы что-то там настроить</p>
+<p>Никакого отсутствия нужного софта под МакОС не существует. Скорее хорошего софта не достает Windows.</p>
+<p>А на счет шамана это верно. Я настроил bluetooth адаптер минуты за 2. Еще через 3 минуты я сохранил собственную телефонную книгу с сотового на комп. Вообще без дополнительных драйверов. Такой же фокус в XP у меня не прошел. Адаптер даже не заработал.</p>
+<p>шаман нужен в windows чаще чем в макос.</p>
+<p>&gt;&gt;В конце концов, все эти табы и имею в Firefox, Opera или Maxthon именно под управлением ОС от Microsoft.</p>
+<p>Я то же самое но с меньшим количеством проблем имею на маке. И благодарить за это Microsoft особой надобности не вижу. Видя же похожесть висты на макос я вполне определенно знаю кто кого и за что должен благодарить ;-)</p>
+<p>&gt;&gt;Артем, о каких же “конкретных вещах” Вы предлагаете поговорить? О закладочках в браузере?</p>
+<p>Да о каких угодно. Начиная от количества незакрытых дыр и заканчивая отличиями дока от таскбара. "В целом" мы ничего не обсудим. Каждый останется при своем. А оно нам надо? ;-)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Просто Иван</span> <span class="comment-date">2006-10-27 00:06</span>
+</div>
+<div class="comment-body">
+<p>Камменты чего-то большие - значит не по делу. Не читал.</p>
+<p>Яблоки не пользовал. Все что видел портированное оттуда: адобовские и макромедиевские поделки - редкостный отстой в плане интерфейса.</p>
+<p>Спасибо Диме, укрепил мое мнение об маках как о говне с понтами.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 00:06</span>
+</div>
+<div class="comment-body">
+<p>frst: Это вы гоните -- надо отличать настройки от служебных файлов.</p>
+<p>Артем: </p>
+<p>> А вот очистить реестр для обычного пользователя это почти подвиг ;-)</p>
+<p>А зачем его чистить? Я его ни разу не чистил.</p>
+<p>Просто Иван: не говно. Просто немного другой мир.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 01:06</span>
+</div>
+<div class="comment-body">
+<p>> Кстати знаете что случится если под макосом удалить эти </p>
+<p>> папочки, а прогу оставить. говорят, что будет работать с </p>
+<p>> чистого листа. Как новенькая. А как такой же фокус </p>
+<p>> сделать в винде?</p>
+<p>Инсталляция у большинства продуктов под Mac OS X -- это практически идеал (разве что кроме этих образов дисков). Лучше только в... Линуксе, когда надо галочку поставить напротив продукта, который хотим установить :) Но мы говорим об удалении. Безусловно, кидать значок программки в трэш -- это супер, но здесь надо было бы сделать какой-нибудь фокус с автоматическим вызовом деинсталлятора при попадании программки в корзинку. Технически ведь программа=папка.app. Вот если бы в ней бинарник uninstall был и его "корзинка" вызывала -- было бы супер.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 01:06</span>
+</div>
+<div class="comment-body">
+<p>> заканчивая отличиями дока от таскбара. </p>
+<p>Вот! После стольких лет использования таскбара, без него непривычно работать. А док -- это его жалкое подобие.</p>
+<p>Но если бы я 15 лет работал на маках, мне бы, наверное, док был удобнее (не было его правда 15 лет назад :)).</p>
+<p>Товарищи из 37signals работают на Маках. Соответственно, когда они запускают Windows -- им там всё неудобно.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 01:06</span>
+</div>
+<div class="comment-body">
+<p>Просто Иван:</p>
+<p>> Все что видел портированное оттуда: адобовские и </p>
+<p>> макромедиевские поделки - редкостный отстой в плане </p>
+<p>> интерфейса.</p>
+<p>Вот по этому точно судить нельзя -- у адоби универсальный интерфейс, который одинаково отстоен и там, и там :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://thinking.ru">Александр Зубков</a></span> <span class="comment-date">2006-10-27 09:06</span>
+</div>
+<div class="comment-body">
+<p>Вообще супер-продвинутость и удобство Mac-ов - это миф, удачная работа маркетологов.</p>
+<p>Так же как владелец Range Rover или Ferrari не признается, что купил не надежную машину, так и владелец Mac-а не скажет, что ему неудобно и вообще достало.</p>
+<p>Иметь Mac - это круто. "О, у тебя Mac? Да ты крутой чувак!" И всё :)</p>
+<p>У меня знакомые работали на PC все время, а сейчас, в связи с работой в издательстве, сидят за навороченными Mac-ами. Да, так много фишек, которые вызывают умиление. Да, там много удобного. Но все тоже самое можно найти и в Windows, а с выходом Vista вообще Mac-ам будет совсем туго.</p>
+<p>И еще мои знакомые на Mac-ах занимаются тем, как сделать что-то, что на Windows делается простыми средствами. А на Mac-ах надо шаманить, искать софт (которого в разы меньше) и т.п.</p>
+<p>В общем этот спор не имеет смысла, как и споры владельцев BMW и Mercedes, чья машина лучше. Чьи маркетологи вас "зазомбируют", ту платформу вы и выберете :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.fzqz.com">Fortsite</a></span> <span class="comment-date">2006-10-27 09:06</span>
+</div>
+<div class="comment-body">
+<p>Религиозные войны?? Где то я это видел :-)</p>
+<p>На самом деле каждый пользуется тем чем ему удобно. И если средне статический пользователь не знает о реестре значит это ему не надо. И это правильно. Ему работать надо,а не думать -А правильно ли удалилась программа? - А не осталось ли чего в реестре??</p>
+<p>А windows можно в крайнем случае переустановить раз в полгода :-)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-27 10:06</span>
+</div>
+<div class="comment-body">
+<p>Просто Иван,</p>
+<p>&gt;&gt;Яблоки не пользовал. Все что видел портированное оттуда: адобовские и макромедиевские поделки - редкостный отстой в плане интерфейса.</p>
+<p>Это отстой и на маках. Ничего общего их интерфейс с маковым не имеет практически ничего.</p>
+<p>Дмитрий,</p>
+<p>&gt;&gt;А зачем его чистить? Я его ни разу не чистил.</p>
+<p>Ну дак и я ни разу не удалял то, что предлагаете удалить Вы. ;-)</p>
+<p>&gt;&gt;Безусловно, кидать значок программки в трэш — это супер, но здесь надо было бы сделать какой-нибудь фокус с автоматическим вызовом деинсталлятора при попадании программки в корзинку. Технически ведь программа=папка.app. Вот если бы в ней бинарник uninstall был и его “корзинка” вызывала — было бы супер.</p>
+<p>Uninstall в винде не удаляет ВСЕ. Посему он тоже не идеал. Да еще и кривым может быть. Удаление програмки в корзинку кривым быть не может. Что же касается настроек и данных клиента, то при удалении проги их не разумно удалять автоматически либо даже спрашивая пользователя. Иначе можно за спиной у человека удалить Mail и грохнуть всю его переписку двумя кликами. Спасибо за заботу, но среднему пользователю такую возможность давать преждевременно. Да и мало ли почему он решил ее удалить. Настройки лучше сохранять. Что Apple и делает. Хотя соглашусь что принципиальная возможность удалять все не помешала бы. Но Apple тоже пока не идеал.</p>
+<p>&gt;&gt;Вот! После стольких лет использования таскбара, без него непривычно работать. А док — это его жалкое подобие.</p>
+<p>А мне больше нравится. Тоже не идеал, но это уже личные предпочтения. Я считаю, что он удобней таскбара. Хотя у каждого есть свои плюсы.</p>
+<p>&gt;&gt;Товарищи из 37signals работают на Маках. Соответственно, когда они запускают Windows — им там всё неудобно.</p>
+<p>Возможно что им там все и неудобно. Вопрос в том, почему они работают на маках? Наверно в целом им на маках удобней. Вряд ли дело в понтах. Я понимаю, что понты могут быть у нас в стране, где 20-30 тысяч макпользователей. Но в америке, где оных несколько миллионов это просто качественный рабочий инструмент.</p>
+<p>Александр,</p>
+<p>&gt;&gt;Вообще супер-продвинутость и удобство Mac-ов - это миф, удачная работа маркетологов. Так же как владелец Range Rover или Ferrari не признается, что купил не надежную машину, так и владелец Mac-а не скажет, что ему неудобно и вообще достало.</p>
+<p>Маки не идеал. Но гораздо лучше всего остального. И именно поэтому народ ими пользуется и агитирует пересесть за них своих друзей и знакомых. Да и поток свитчеров почему-то направлен в сторону маков, а не обратно. Что крутого в железке которая стоит как такая же железка, но с виндой?</p>
+<p>&gt;&gt;У меня знакомые работали на PC все время, а сейчас, в связи с работой в издательстве, сидят за навороченными Mac-ами. Да, так много фишек, которые вызывают умиление. Да, там много удобного.</p>
+<p>;-) значит удобства все таки есть.</p>
+<p>&gt;&gt;Но все тоже самое можно найти и в Windows, а с выходом Vista вообще Mac-ам будет совсем туго.</p>
+<p>Дело не в принципиальной невозможности что-то сделать на винде или на маке. Дело в том, КАК это реализовано. Я вижу в маке больше заботы о пользователе. Это безусловно субъективная оценка. Но я редко слышу, что кто-то говорит кому-то, что винда это круто потому и потому.</p>
+<p>Вам не кажется, что виста слишком уж похожа на макос? Начиная от полупрозрачностей и "стеклянных" элементов и заканчивая названиями некоторых программ. Windows Mail например. Ну назвали бы хотя бы Windows Mailbox.</p>
+<p>&gt;&gt;И еще мои знакомые на Mac-ах занимаются тем, как сделать что-то, что на Windows делается простыми средствами.</p>
+<p>Например?</p>
+<p>&gt;&gt;А на Mac-ах надо шаманить, искать софт (которого в разы меньше) и т.п.</p>
+<p>Какого софта нет на маках? И сколькими программами пользуетесь лично Вы? Какое Вам дело что программ не 200000, а 50000 если вам надо максимум 2 десятка?</p>
+<p>&gt;&gt;В общем этот спор не имеет смысла, как и споры владельцев BMW и Mercedes, чья машина лучше. Чьи маркетологи вас “зазомбируют”, ту платформу вы и выберете</p>
+<p>:-) Имеет смысл оценивать цдобство той или иной системы ДЛЯ СЕБЯ. А спорить действительно смысла особого нет. Я попробовал, мне понравилось. Да я был зазомбированным, но у меня это практически прошло. ;-) Теперь советую попробовать и Вам, а не придерживаться уже озвученной позиции "сам не пробовал, но лишний раз убедился, что говно".</p>
+<p>Fortsite,</p>
+<p>&gt;&gt;На самом деле каждый пользуется тем чем ему удобно.</p>
+<p>очень правильный подход.</p>
+<p>&gt;&gt;А windows можно в крайнем случае переустановить раз в полгода</p>
+<p>Можно. А макос можно не переустанавливать никогда. Кстати висту можно переустанавливать пару раз, если я правильно понял. Это такая особая забота о пользователях?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://thinking.ru">Александр Зубков</a></span> <span class="comment-date">2006-10-27 12:06</span>
+</div>
+<div class="comment-body">
+<p>Артем &gt;&gt;</p>
+<p>На рынке доминирует Windows. С выходом Висты, Mac-и еще больше станут уделом избранных :)</p>
+<p>Я почти уверен что скоро Apple будет продавать свои красивые Маки сразу с установленной Вистой :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.fzqz.com">Fortsite</a></span> <span class="comment-date">2006-10-27 13:06</span>
+</div>
+<div class="comment-body">
+<p>&gt;&gt; Я почти уверен что скоро Apple будет продавать свои красивые Маки сразу с установленной Вистой :)</p>
+<p>А я почти уверен, Vista уже успела морально устареть :-)</p>
+<p><a href="http://developer.apple.com/leopard/overview/index.html" rel="nofollow">http://developer.apple.com/leopard/overview/index.html</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.micromarketing.ru/">Алексей Новиков</a></span> <span class="comment-date">2006-10-27 14:06</span>
+</div>
+<div class="comment-body">
+<p>На маке нет клавиши "WIN" :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-27 14:06</span>
+</div>
+<div class="comment-body">
+<p>&gt;&gt;Я почти уверен что скоро Apple будет продавать свои красивые Маки сразу с установленной Вистой</p>
+<p>Чтобы отвечать за ее работу? Нет уж спасибо. Скорее microsoft купит apple и встроит в макос winapi ;-)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 14:06</span>
+</div>
+<div class="comment-body">
+<p>Алексей: есть. Вот сейчас на маковской клавиатуре в винде сижу, на яблочко (Cmd) жму -- получаю кнопку Win ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 14:06</span>
+</div>
+<div class="comment-body">
+<p>Артём: не, WinAPI уже труп -- его заменяет .NET.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-27 15:06</span>
+</div>
+<div class="comment-body">
+<p>&gt;&gt;не, WinAPI уже труп — его заменяет .NET.</p>
+<p>Я не программист. Так что верю Вашему мнению.</p>
+<p>Скажите, Дмитрий, а основной компьютер Ваш мак или pc?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 15:06</span>
+</div>
+<div class="comment-body">
+<p>Артём: PC, так как он меня кормит (http://www.blogjet.com).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-27 16:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, а зачем Вам тогда маковая клавиатура на PC?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 16:06</span>
+</div>
+<div class="comment-body">
+<p>Да переключаться с Vaio'вской клавы на iBook'овскую неохота, поэтому подключаю отдельную клаву.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-27 17:06</span>
+</div>
+<div class="comment-body">
+<p>может я чего-то не понимаю, но если вместо vaio и ibook'a можно завести один макбук и в зависимости от необходимости грузится или в windows или в mac os, то почему Вы так не сделаете?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-27 19:06</span>
+</div>
+<div class="comment-body">
+<p>Артём: можно, конечно. Только когда я их покупал, MacBookов ещё не было.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Alex</span> <span class="comment-date">2006-10-27 21:06</span>
+</div>
+<div class="comment-body">
+<p>Справедливости ради стоит отметить, что обычный путь проверки на подлинность может быть недоступен из-за того, что 1) все юзеры в висте работают с ограниченными правами; 2) ie работает в protected mode. 1 + 2 (в принципе, достаточно только 1 или 2) приводит к тому, что ActiveX просто нельзя установить. Хотя, Microsoft обещали, что какие-то фишки для этого сценария будут сделаны.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://boltolog.developing.ru">AiK</a></span> <span class="comment-date">2006-10-28 02:06</span>
+</div>
+<div class="comment-body">
+<p>&gt;WinAPI уже труп</p>
+<p>Ага. Без WinAPI - Vista труп. Мастдай хорошо живёт во многом за счёт госучереждений и корпоративных продаж. А в этом мирке ну очень много проприетарных программ, которые не обновляются годами. Я, кстати, знаю парочку учереждений, которые держат win95/98 на PII только из-за того, что на современных компах программы, которые написаны ещё под DOS не работают. Так что индусы будут плакать, но продолжать писать wrapper'ы для .NET, чтобы все WinAPI продолжали работать как и раньше :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://video-am.blogspot.com">Max Folder</a></span> <span class="comment-date">2006-10-28 06:06</span>
+</div>
+<div class="comment-body">
+<p>Кто не забивает себе голову всякой фигней, тому везде хорошо.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://video-am.blogspot.com">Max Folder</a></span> <span class="comment-date">2006-10-28 12:06</span>
+</div>
+<div class="comment-body">
+<p>Виста говорите... А как вам это? <a href="http://www.youtube.com/watch?v=lawkc3jH3ws" rel="nofollow">http://www.youtube.com/watch?v=lawkc3jH3ws</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-28 15:06</span>
+</div>
+<div class="comment-body">
+<p>AiK: WinAPI -- труп только в развитии и для разработчиков прикладных программ. Это не значит, что его вырежут :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-28 15:06</span>
+</div>
+<div class="comment-body">
+<p>Max Folder: ага, я себе на Ubuntu такую штуку ставил. Очень прикольно. Правда, от переноса окон может укачать :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://video-am.blogspot.com">Max Folder</a></span> <span class="comment-date">2006-10-28 16:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий Честных, расскажите об ощущениях. Если можно, в сравнении с Мак, Вин (если можно, Вистой).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.micromarketing.ru/">Алексей Новиков</a></span> <span class="comment-date">2006-10-28 16:06</span>
+</div>
+<div class="comment-body">
+<p>Ну да, под музыку размазываются по экрану окна и вертится какой-то кубик :-)</p>
+<p>Это круто?</p>
+<p>Лучше бы сделали однажды уже один дистрибутив для конечного пользователя. А то все как-то "by programmers, for programmers"</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://video-am.blogspot.com">Max Folder</a></span> <span class="comment-date">2006-10-28 17:06</span>
+</div>
+<div class="comment-body">
+<p>Алексей Новиков, мне интересно, что круче - крутящийся кубик или жизненно необходимый трехмерный интерфейс Аэро.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.micromarketing.ru/">Алексей Новиков</a></span> <span class="comment-date">2006-10-28 18:06</span>
+</div>
+<div class="comment-body">
+<p>круче возможность отключить то и другое и освободить-таки ресурсы :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Alex</span> <span class="comment-date">2006-10-28 19:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, не труп, успокойтесь. :)</p>
+<p>Целая пачка новых API появилась в Висте (DWM, Task Dialogs, новые multimedia API just to name a few) -- странновато для трупа, не так ли?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-29 02:06</span>
+</div>
+<div class="comment-body">
+<p>Alex: И что, имеет смысл новые проекты начинать на WinAPI?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Alex</span> <span class="comment-date">2006-10-29 11:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, если вы пишите под Win32, то это -- единственный ваш выбор. Если мы говорим о .NET, то ситуация, конечно же другая, если(!) мы говорим о WPF/WCF/WWF (а .NET 2.0 всё та же надстройка над Windows API). Но Windows API ни разу не труп: Висту НЕ переписали под .NET -- это всё ещё платформа Win32/Win64 со своими наборами API.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-30 02:06</span>
+</div>
+<div class="comment-body">
+<p>Alex: Понятное дело. Зачем без нужды переписывать всё на .NET? Я говорю про то, что смысла программировать новые прикладные программы на winapi нет.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://boltolog.developing.ru">AiK</a></span> <span class="comment-date">2006-10-30 02:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, лет 5-7 назад примерно те же слова говорили про COM.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.micromarketing.ru/">Алексей Новиков</a></span> <span class="comment-date">2006-10-30 11:06</span>
+</div>
+<div class="comment-body">
+<p>Ну почему нет смысла в WinAPI? Все-таки, надо программеров на переподготовку и т.п., а это ресурсы. Или там все оч. просто?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Alex</span> <span class="comment-date">2006-10-30 12:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, к этому вопросу нужно подходить как обычно, без фанатизма. :)</p>
+<p>Но в любом случае, от API никто никуда не денется: .NET работает поверх операционной системы, а не вместо неё. И, насколько я понимаю, новые вистовые API в .NET 2.0 (который есть часть .NET 3.0) просто не отражены.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-30 13:06</span>
+</div>
+<div class="comment-body">
+<p>AiK: ну вот он и загибается :) </p>
+<p>Просто ещё не пришло новое поколение программистов -- вот здесь: <a href="http://ibsurgeon.blogspot.com/2006/10/blog-post.html" rel="nofollow">http://ibsurgeon.blogspot.com/2006/10/blog-post.html</a> Алексей Ковязин очень верно написал.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://boltolog.developing.ru">AiK</a></span> <span class="comment-date">2006-10-30 14:06</span>
+</div>
+<div class="comment-body">
+<p>А причём тут поколение программистов? Вот Вы согласитесь перевести BlogJet на .net? Полагаю, что вряд ли. Потому что ради моды придётся сократить круг потенциальных покупателей. Потому как к ~2.5Mb программе качать FrameWork размером 23Mb + скорее всего ещё и installer 1.5-2.5Mb захотят далеко не все.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-30 16:06</span>
+</div>
+<div class="comment-body">
+<p>AiK: Какие 23 Мб, виста уже рядом.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://boltolog.developing.ru">AiK</a></span> <span class="comment-date">2006-10-30 16:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, а пользователей 98/Me, NT4, Win2k - в сад?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Alex</span> <span class="comment-date">2006-10-30 20:06</span>
+</div>
+<div class="comment-body">
+<p>Я не скажу за Дмитрия, но всё, что я произвожу, в минимальных требованиях содержит Windows 2000/XP. Как .NET, так и обычные приложения. Люди, которые до сих пор сидят на 98/Me или NT4, составляют очень маленький процент пользователей, который не стОит того геморроя при разработке.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-30 20:06</span>
+</div>
+<div class="comment-body">
+<p>А пользователи Win3.1 и DOS? 8-)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://boltolog.developing.ru">AiK</a></span> <span class="comment-date">2006-10-30 22:06</span>
+</div>
+<div class="comment-body">
+<p>Дмитрий, а как на счёт KISS principle? <a href="http://en.wikipedia.org/wiki/KISS_principle" rel="nofollow">http://en.wikipedia.org/wiki/KISS_principle</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-31 00:06</span>
+</div>
+<div class="comment-body">
+<p>В смысле?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-31 14:06</span>
+</div>
+<div class="comment-body">
+<p>Ха-ха, ну вот, пожалуйста:</p>
+<p><a href="http://www.youtube.com/watch?v=Df-jqfbgL-8" rel="nofollow"><a href="http://www.youtube.com/watch?v=Df-jqfbgL-8" rel="nofollow">http://www.youtube.com/watch?v=Df-jqfbgL-8</a></a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-10-31 15:06</span>
+</div>
+<div class="comment-body">
+<p>&gt;&gt;http://www.youtube.com/watch?v=Df-jqfbgL-8</p>
+<p>А что это доказывает? Баги и ошибки бывают у всех.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2006-10-31 19:06</span>
+</div>
+<div class="comment-body">
+<p>Артём: вы сами только что сказали что это доказывает. Это доказывает, что баги и ошибки бывают у всех. В том числе, у Microsoft.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.tdigest.ru">Артем</a></span> <span class="comment-date">2006-11-01 10:06</span>
+</div>
+<div class="comment-body">
+<p>По-моему баги и ошибки это одно, а недоработанная и непродуманная функциональность это несколько другое. Впрочем я далек от того, чтобы считать Microsoft последними неумельцами в плане создания ПО. Просто у Apple ПО обычно получается более продуманным и удобным. Не всегда и не все, но чаще. А учитывая, что программированием в Apple занимается чуть ли не на 2 порядка меньше людей, это не то, чтобы сильно красило Microsoft.</p>
+</div>
+</div>
+</div>

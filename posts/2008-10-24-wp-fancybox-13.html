@@ -1,0 +1,262 @@
+---
+author: "dchest"
+category: "Сайт и дизайн"
+date: 2008-10-24 20:47:23 +00:00
+primary_category: "Сайт и дизайн"
+status: "Publish"
+tags: "WordPress,plugin,wp-fancybox"
+title: "WP FancyBox 1.3, и пока всё"
+---
+<p>Все, последний пост про WP FancyBox. Вышла версия 1.3<br />(каждый день по версии?).</p>
+<p><ul></p>
+<p>	<li>Сократил количество загружаемых картинок (тени, фон и т.п.) с 11 до 4, используя технику CSS-спрайтов. Размер уменьшился на полкилобайта и сократилась нагрузка на сервер (на 7 HTTP-запросов!), отчего тени стали загружаться быстрее.</li></p>
+<p>	<li>Убрал PNG-fix: по-моему, бессмысленно из-за одного древнего браузера вставлять целый джаваскрипт, который может что-нибудь сломать, да еще и не работающий со спрайтами. Я придумал вариант элегантнее (как я до этого раньше не додумался‽): просто не показывать тени в IE6 и заменить для него закрывающий крестик на GIF.</li></p>
+<p>	<li>Оптимизировал GIF'ы, перерисовал стрелочки. Если кто не знает, если к ссылкам на картинки добавить <code>rel="имя_группы"</code>, то все такие ссылки будут показываться как группа — то есть со стрелочками назад-вперед. </li></p>
+<p>	<li>Исправил баг: в Firefox при нажатии на картинки разного размера, новая картинка показывалась размером со старую.</li></p>
+<p>	<li>Убрал из поставки не минимизированные версии .js и .css. Они там не нужны, а если кому охота посмотреть читаемый код — <a href="http://code.google.com/p/wp-fancybox/source/browse/">попрошу пройти в репозиторий</a>.</li></p>
+<p></ul></p>
+<p>На этом ежедневное обновление WP FancyBox предлагаю прекратить. И просто им пользоваться.</p>
+<p>Качать тут: <a href="http://code.google.com/p/wp-fancybox">http://code.google.com/p/wp-fancybox</a></p>
+<p>P.S. SVN — отстой.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://blog.salikhovilyas.ru">Ильяс</a></span> <span class="comment-date">2008-10-24 21:08</span>
+</div>
+<div class="comment-body">
+<p>За плагин спасибо, а про svn так критично я бы не стал, чем он вас обидел? :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-24 22:08</span>
+</div>
+<div class="comment-body">
+<p>>  а про svn так критично я бы не стал, чем он вас обидел?</p>
+<p>Такое может спросить только тот, кто не пробовал git :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://mactrick.com">bm</a></span> <span class="comment-date">2008-10-24 22:08</span>
+</div>
+<div class="comment-body">
+<p>Спасибо тебе, добрый человек! Пользуюсь с удовольствием.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://touchmybyte.blogspot.com">Сергей Васильев</a></span> <span class="comment-date">2008-10-24 22:08</span>
+</div>
+<div class="comment-body">
+<p>selme.ru-&gt;karma++;</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://iskariot.ru">Сергей М.</a></span> <span class="comment-date">2008-10-25 18:08</span>
+</div>
+<div class="comment-body">
+<p>Эм, не уловил связи между микроформатным rel и тем, что ты написал. Поясни, плиз.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-25 21:08</span>
+</div>
+<div class="comment-body">
+<p>Сергей М.: см. <a href="http://fancy.klade.lv/" rel="nofollow"><a href="http://fancy.klade.lv/" rel="nofollow">http://fancy.klade.lv/</a></a> "Grouped images".</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">abstract</span> <span class="comment-date">2008-10-29 20:08</span>
+</div>
+<div class="comment-body">
+<p>&gt;&gt; а про svn так критично я бы не стал, чем он вас обидел?</p>
+<p>&gt;Такое может спросить только тот, кто не пробовал git :)</p>
+<p>Можно поподробнее о преимуществах git?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-30 15:08</span>
+</div>
+<div class="comment-body">
+<p>abstract: <a href="http://www.google.com/search?client=safari&rls=en-us&q=git+site:sellme.biz&ie=UTF-8&oe=UTF-8" rel="nofollow">http://www.google.com/search?client=safari&rls=en-us&q=git+site:sellme.biz&ie=UTF-8&oe=UTF-8</a></p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Владимир</span> <span class="comment-date">2008-11-22 20:08</span>
+</div>
+<div class="comment-body">
+<p>можно нескромный вопрос, </p>
+<p>а что если портировать этот модуль в Drupal?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-11-22 20:08</span>
+</div>
+<div class="comment-body">
+<p>Владимир: пожалуйста. Только это буду делать не я (намаялся с Друпалом, теперь как минимум полгода не буду его трогать :). Тут, в принципе, портировать-то и нечего -- включить js, css и добавить одну строчку в head (см. исходник этой страницы для примера).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Михаил</span> <span class="comment-date">2009-01-01 20:09</span>
+</div>
+<div class="comment-body">
+<p>Добрый день!... так долго искал именно етот скрипт:)но есть проблема... незнаю как прикрутить его к nextgen ligntbox работает а этот нет... т.е. выкладываю галерею, нажимаем на фотографию срабатывает fancybox ну и конечно неплохо бы листать:) вообщем жду ответа!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Михаил</span> <span class="comment-date">2009-01-01 20:09</span>
+</div>
+<div class="comment-body">
+<p>так рад что нашел что написал всякую фигню:) вообщем подскажите как прикрутить его к Nextgen ?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-01-08 10:09</span>
+</div>
+<div class="comment-body">
+<p>Как использовать с Nextgen:</p>
+<p>В настройках Gallery / Эффекты > Другой:</p>
+<p>class="fancybox" rel="%GALLERY_NAME%"</p>
+<p>В настройках Fancybox / jQuery expression:</p>
+<p>jQuery("a.fancybox")</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://monster.net.ua/promo">monster</a></span> <span class="comment-date">2009-02-15 19:09</span>
+</div>
+<div class="comment-body">
+<p>Здравствуйте, Дмитрий!</p>
+<p>Скажите пожалуйста, можно ли использовать плагин Fancy Box со ссылками вот такой конструкции: </p>
+<p>&lt;area shape="circle" coords="20,20,10" href="image.png"? </p>
+<p>Если да, то как это лучше реализовать?</p>
+<p>Спасибо.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-02-15 20:09</span>
+</div>
+<div class="comment-body">
+<p>Не знаю, попробуйте.</p>
+<p>При этом, </p>
+<p>&lt;area class="my-area" shape="circle" coords="20,20,10" href="image.png"&gt;</p>
+<p>и в настройках плагина jQuery Expression:</p>
+<p>jQuery("area.my-area")</p>
+<p>(без parent()).</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://pro-photo.by">Алекс</a></span> <span class="comment-date">2009-02-18 01:09</span>
+</div>
+<div class="comment-body">
+<p>Не могу понять установил wp-fancybox-1.4 не работает совместно с NEXTGEN Gallery</p>
+<p>все сделал вот так:</p>
+<p>В настройках Gallery / Эффекты &gt; Другой:</p>
+<p>class="fancybox" rel="%GALLERY_NAME%"</p>
+<p>В настройках Fancybox / jQuery expression:</p>
+<p>jQuery("a.fancybox")</p>
+<p>Подскажите в чем причина?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://my-wordpress.ru">AlexPTS</a></span> <span class="comment-date">2009-03-10 23:09</span>
+</div>
+<div class="comment-body">
+<p>К вопросу &gt;&gt;Алекс:</p>
+<p>Плагин не работает в версии 2,7 wordpress у меня. Ставлю ему значение fancybox_expression  =  jQuery("a"), т.е. он должен реагировать на все ссылки на странице. Эфеект 0. В 2,6,x все замечательно работает. Задумайтесь над доработкой под свежую версию wordpress.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-03-10 23:09</span>
+</div>
+<div class="comment-body">
+<p>Не знаю, как это могло бы быть связано с версией WordPress (у меня 2.7). В любом случае, ставить его на все ссылки на странице плохая идея.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://my-wordpress.ru">AlexPTS</a></span> <span class="comment-date">2009-03-11 22:09</span>
+</div>
+<div class="comment-body">
+<p>У меня не работает не у одного на 2,7,1. На все ссылки поставил, чтобы проверить, а не для эксплуатации... Он просто не функционирует. В 2,6 Скрипт реагирует на заданную обертку. В 2,7 глухо... Даже на "a" просто.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-03-11 23:09</span>
+</div>
+<div class="comment-body">
+<p>А jQuery подключается? <a href="http://бла-бла-бла/wp-includes/js/jquery/jquery.js?ver=1.2.6" rel="nofollow">http://бла-бла-бла/wp-includes/js/jquery/jquery.js?ver=1.2.6</a> ?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://my-wordpress.ru">AlexPTS</a></span> <span class="comment-date">2009-03-11 23:09</span>
+</div>
+<div class="comment-body">
+<p>fireBug ругается на строчку (21)</p>
+<p>jQuery(document).ready(function(){jQuery("a").fancybox({});});</p>
+<p>jQ подгружается нормально...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://my-wordpress.ru">AlexPTS</a></span> <span class="comment-date">2009-03-11 23:09</span>
+</div>
+<div class="comment-body">
+<p>Из коммента выризалось часть кода. Но в общем понятно...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-03-11 23:09</span>
+</div>
+<div class="comment-body">
+<p>А чего именно говорит FireBug? И еще -- если попробовать включить "Hide on content click" в настройках плагина будет ругаться?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://my-wordpress.ru">AlexPTS</a></span> <span class="comment-date">2009-03-11 23:09</span>
+</div>
+<div class="comment-body">
+<p>FireBug говорит syntax error.</p>
+<p>Включаю Hide on content click эта строчка немного больше становится</p>
+<p>jQuery(document).ready(function(){jQuery(.fancybox({"hideOnContentClick":true});});</p>
+<p>вместо</p>
+<p>jQuery(document).ready(function(){jQuery(.fancybox({});});</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2009-03-12 00:09</span>
+</div>
+<div class="comment-body">
+<p>И тоже syntax error? А jQuery какая версия? Какие-нибудь другие плагины включены?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://my-wordpress.ru">AlexPTS</a></span> <span class="comment-date">2009-03-12 23:09</span>
+</div>
+<div class="comment-body">
+<p>Приношу свои извинения, дело было в теме. Она подгружает свой jQ 1.2.3 и свои скрипты. Дело в теме. В чем проблема, буду разбираться дальше сам.</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,193 @@
+---
+author: "dchest"
+category: "Технологии"
+date: 2008-04-28 21:56:39 +00:00
+primary_category: "Технологии"
+status: "Publish"
+tags: "API,AppEngine,BigTable,Google,MySQL,web.py"
+title: "На Google App Engine нельзя написать систему управления курятником"
+---
+<p>Я попробовал <a href="http://appengine.google.com/">Google App Engine</a>. И скажу вам, очень удобно под него писать. Если не использовать Django, то все очень похоже на web.py, который так же прост, как и его название. </p>
+<p>Но в нынешнем состоянии App Engine подходит для написания проектов так же, как Google Docs для типичной секретарши. А Google Docs совершенно не подходит типичной секретарше, потому что в нем нет WordArt. Как же секретарша будет писать красивые объявления объемными буквами цвета желто-зеленого градиента?</p>
+<p>Проблема в том, что в App Engine нет крона и вообще, оно не умеет обрабатывать что-то, что, грубо говоря, не приводит к действию само по себе, а не в ответ на тыканья пользователем ссылок и кнопок. Вы не сможете написать свой твиттер, используя Google App Engine, потому что не прикрутите прием смскок. Вы не сможете написать свой фликр или фогбагз, потому что App Engine не читает входящую почту. У вас не получится написать систему управления курятником, потому что App Engine не может подавать воду в трубки для кормления по расписанию. Все ваши куры сдохнут от голода. Короче, вы не сможете написать что-нибудь, что взаимодействует с внешним миром. Теоретически. Практически, конечно, вы можете придумать какой-нибудь воркэраунд — например, обрабатывать письма на своем сервере, а потом вызывать API вашего приложения на App Engine. Или нанять тысячу китайев, которые будут постоянно обновлять страничку. Но это всего лишь воркэраунд, а не нормальный способ.</p>
+<p>И это реальная проблема, а не выдуманная. Потому что для пробы я решил написать что-то вроде твиттера, только без сохранения истории, ибо нефиг из твиттера делать чат. То есть, вы можете написать свой статус и следить за текущим статусом своих "друзей". Я захотел прикрутить возможность изменения статуса смской, и даже нашел бесплатный сервис, который переадресовывает смски с телефона на почту. Но App Engine не умеет читать почту. Прощай, интеграция с реальным миром, или привет, мой сервер.</p>
+<p>Ну вот я поныл, и теперь еще немножко повсхлипываю.</p>
+<p>После реляционных баз данных, под которые я перестроил сознание сразу после того, как на курсах по Oracle в институте стали выдавать вкуснейшие бесплатные обеды, возвращаться обратно в древний мир сложно. В Google технология нереляционной базы называется BigTable. Это можно перевести как "большая таблица", но на самом деле, в названии заложен другой смысл — это "большой стол", об который вы будете биться головой, пока не перестроите свой реляционный разум. Конечно, я преувеличиваю. Не все так плохо. Все прекрасно. Язык запросов очень похож на SQL. Вы можете хранить в базе всякие крутые вещи вроде туплов и дикшенарий. Но к этому надо привыкать. А самое главное, нереляционные базы данных нынче в моде, поэтому у программиста BigTable больше шансов оказаться в постели с девушкой, чем у MySQL-программера. Если, конечно, он не работает в Google, где у каждого сотрудника есть право на 20% рабочего времени на мастурбацию.</p>
+<p>И все-таки, у Google App Engine есть одна фича, ради которой стоит жить на этом свете. Это интеграция с аккаунтами Google. Если для того, чтобы написать очередной реддит требуется всего лишь один раз взять ноутбук с собой в туалет, а очередной твиттер вообще можно написать балончиком краски на заборе, то для написания регистрации юзеров для них потребуется отправить все человечество на Альфа-центавр, чтобы они не успели состариться, пока вы пишете формы и капчи. Так вот, в Google App Engine над этим не надо париться — все уже написано за вас. Но самое главное, людям не надо будет регистрироваться на двухсотмиллионном сайте подряд — они будут заходить к вам со своим Google аккаунтом. И не говорите мне про Open ID — последний раз я видел его в баре, со слезами на глазах жалующегося бармену о том, что его никто не любит.</p>
+<p>Еще классно устроена отладка кода на девелоперской машине. С web.py приходилось каждый раз перезапускать сервер, а App Engine схватывает изменения на лету. Но об этом читайте в нормальных обзорах.</p>
+<p>В общем, Google App Engine вполне себе хорошая штука. Только не забывайте кормить кур.</p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://paradigm.ru">Alex Musayev</a></span> <span class="comment-date">2008-04-28 22:08</span>
+</div>
+<div class="comment-body">
+<p>sms2email - это интересно. Поделишься ссылкой? Те сервисы, что я видел, были не бесплатны.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://vzakharov.livejournal.com">Владимир Захаров</a></span> <span class="comment-date">2008-04-28 23:08</span>
+</div>
+<div class="comment-body">
+<p>1 предложение 3 абзаца не согласовано - не понятно, о чём ты. про сотрудников с правом на мастурбацию запятая перед "где"</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://pilot34.blogspot.com">pilot34</a></span> <span class="comment-date">2008-04-29 00:08</span>
+</div>
+<div class="comment-body">
+<p>Читаю второй после подписки на рсс пост. Респект) Лучший язык в моем фидридере) И тематика интересная</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://nasl-v-rf.ru">smn</a></span> <span class="comment-date">2008-04-29 11:08</span>
+</div>
+<div class="comment-body">
+<p>Согласен с тем, что Google App Engine. Так как эта тема достаточно новая, ожидать от нее прорыва в виде бесплатных благ для всего человечества вряд-ли стоит. Однако, это лишний раз доказывает, что в гугле люди стремятся к развитию, и не зажрались в отличии от MS например ...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">Minor</span> <span class="comment-date">2008-04-29 14:08</span>
+</div>
+<div class="comment-body">
+<p>Замечательно, хочу 20% модного времени!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-04-29 15:08</span>
+</div>
+<div class="comment-body">
+<p>Владимир Захаров: АаАаа!111 Нападение грамотическех тролий!11 За где — спасибо, исправил. Но про согласование —?!!?/ С кем я должен согласовывать это предложение?!11111?111!!!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-04-29 15:08</span>
+</div>
+<div class="comment-body">
+<p>Alex Musayev: <a href="http://en.wikipedia.org/wiki/SMS_gateways#SMS_to_Email" rel="nofollow">http://en.wikipedia.org/wiki/SMS_gateways#SMS_to_Email</a> — там парочка free.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://shep.pp.ru/">Sergey Shepelev</a></span> <span class="comment-date">2008-04-30 10:08</span>
+</div>
+<div class="comment-body">
+<p>Пишите десктопные приложения, Дмитрий. У вас странные ожидания.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-04-30 13:08</span>
+</div>
+<div class="comment-body">
+<p>Пишите свои комментарии у себя в лифте, Сергей. У вас странные наезды.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.geo-blog.ru">Geo</a></span> <span class="comment-date">2008-04-30 16:08</span>
+</div>
+<div class="comment-body">
+<p>"И все-таки, у Google App Engine есть одна фича, ради которой стоит жить на этом свете. Это интеграция с аккаунтами Google."</p>
+<p>   Полностью согласен с автором, Google понимает, в каком направлении надо шагать.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.rdd.su/">rdd</a></span> <span class="comment-date">2008-05-01 13:08</span>
+</div>
+<div class="comment-body">
+<p>Интеграция она и у Яши есть, и у любых других больших систем. А сервис новый мне понравился. ;)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.giscom.ru">Alexey108</a></span> <span class="comment-date">2008-05-02 09:08</span>
+</div>
+<div class="comment-body">
+<p>"И все-таки, у Google App Engine есть одна фича, ради которой стоит жить на этом свете."</p>
+<p>полюбому! :-)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://fuckstar.ru">Звезда</a></span> <span class="comment-date">2008-05-02 17:08</span>
+</div>
+<div class="comment-body">
+<p>Очень понравилось, спасибо!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://remontiruy-sam.ru/">Ацкий</a></span> <span class="comment-date">2008-05-03 00:08</span>
+</div>
+<div class="comment-body">
+<p>А зачем вам управлять курятником?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.extrajob.by">работник</a></span> <span class="comment-date">2008-05-10 21:08</span>
+</div>
+<div class="comment-body">
+<p>Кур кормить лучше все-таки вручную... Специализация и кооперация, знаете ли...</p>
+<p>Но многие названные вами недостатки, имхо, будут исправлены, ведь гугл свои проекты постоянно держит в бетте... :-)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.dexterity.ru">Фокусник</a></span> <span class="comment-date">2008-05-24 19:08</span>
+</div>
+<div class="comment-body">
+<p>Google App Engine обречен.. на провал</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.sheepish.ru/">Современная девушка</a></span> <span class="comment-date">2008-05-28 00:08</span>
+</div>
+<div class="comment-body">
+<p>_http://en.wikipedia.org/wiki/SMS_gateways#SMS_to_Email -  на википедии уже занимаеются рекламмой о_О Куда только мир катится</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-05-28 01:08</span>
+</div>
+<div class="comment-body">
+<p>Это не реклама, а очень полезная информация. Примеры SMS gateways.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.skazki-mira.ru">Зинаида</a></span> <span class="comment-date">2008-06-23 00:08</span>
+</div>
+<div class="comment-body">
+<p>А зачем вообще нужна система управления курятником?!</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.risovaki.ru">Pitergubjec</a></span> <span class="comment-date">2008-07-07 22:08</span>
+</div>
+<div class="comment-body">
+<p>Похоже на антирекламму Google App Engine...</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://soswow.pri.ee">Aleksandr Sugard</a></span> <span class="comment-date">2008-11-12 16:08</span>
+</div>
+<div class="comment-body">
+<p>"... где у каждого сотрудника есть право на 20% рабочего времени на мастурбацию. ..." =))))))</p>
+</div>
+</div>
+</div>

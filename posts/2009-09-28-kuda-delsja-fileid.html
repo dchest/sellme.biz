@@ -1,0 +1,23 @@
+---
+author: "dchest"
+date: 2009-09-28 14:49:54 +00:00
+markup: markdown
+status: "Publish"
+title: "Куда делся fileID?"
+---
+Чуть не испугался! Мне эта фича как раз нужна для проекта, и прочитав [What's New in Mac OS X 10.6](http://developer.apple.com/mac/library/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_6.html), я обнаружил то, что хотел — теперь на файлы можно ссылаться по ID вместо пути. То есть, вместо `/Users/dmitry/Documents/file.txt` можно дать ID, который остается постоянным при перемещении или переименовании файла. Например, если я перенесу и переименую `file.txt` куда-нибудь в `/Users/dmitry/Archive/old-file.txt`, ID все равно будет на него ссылаться. Я даже про это [писал в четверг](/2009/09/pochemu-nado-prigat--ot-radosti-iz-za-togo-chto-finder-perepisali-na-cocoa.html).
+
+Так вот, я нигде в документации не мог найти методы для работы с file ID. И нигде не было `CFURLCreateFileIDURL`, про который писали в [What's New](http://developer.apple.com/mac/library/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_6.html).
+
+Оказалось, его просто переименовали! Теперь это не "ID", а "reference". Логично.
+
+    NSLog(@"%@", [url absoluteURL]);
+  
+    => file://localhost/Users/dmitry/Sites/
+
+    NSLog(@"%@", [url fileReferenceURL]);
+
+    => file:///.file/id=6571367.4787316/
+
+Последний `NSURL` ссылается на ту же папку. Часть до точки — ID диска, после - ID файла/папки.
+

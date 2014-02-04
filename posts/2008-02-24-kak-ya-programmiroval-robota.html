@@ -1,0 +1,66 @@
+---
+author: "dchest"
+category: "Разное"
+date: 2008-02-24 19:49:00 +00:00
+primary_category: "Разное"
+status: "Publish"
+title: "Как я программировал робота"
+---
+<p>Когда я начал лепить на свои программы марку Coding Robots, изредка в поддержку стали приходить странные вопросы, связанные с роботами. Логика простая — раз есть в названии слово &#171;роботы&#187;, значит ребята делают что-то связанное с ними.
+<p></p></p>
+<p>Пару дней назад пришло сообщение от студента третьего курса какого-то индийского университета. Парень написал, что занимается роботами и спросил, не могли бы ли мы прислать код на Си для того, чтобы заставить робота двигаться справа налево. И еще чтобы он поднимал и опускал руки.
+<p></p></p>
+<p>Хороший вопрос! Я стараюсь отвечать на все вопросы, заданные поддержке, поэтому прислал ему следующий исходник:
+<p></p></p>
+<p><pre><code>/*</p>
+<p> *  Moving Robot</p>
+<p> *  Copyright (C) 2008 Coding Robots, http://www.codingrobots.com</p>
+<p> *  MIT License</p>
+<p> */</p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>void tprintf(int n, char *line)</p>
+<p>{</p>
+<p>    int i;</p>
+<p>    for (i = 0; i &lt; n; i++)</p>
+<p>        printf(" ");</p>
+<p>    printf(line);</p>
+<p>}</p>
+<p>void clear()</p>
+<p>{</p>
+<p>    int i;</p>
+<p>    for (i = 0; i &lt; 30; i++)</p>
+<p>        printf("\n");</p>
+<p>}</p>
+<p>int main()</p>
+<p>{</p>
+<p>    int i;</p>
+<p>    for (i = 0; i &lt; 60; i++)</p>
+<p>    {</p>
+<p>        clear();</p>
+<p>        int t = 60-i;</p>
+<p>        if (i % 2 == 0)</p>
+<p>        {</p>
+<p>            tprintf(t, "  0 |\n");</p>
+<p>            tprintf(t, " -|- \n");</p>
+<p>            tprintf(t, "| |  \n");</p>
+<p>            tprintf(t, "  ^  \n");</p>
+<p>            tprintf(t, "/   \\\n");</p>
+<p>        }</p>
+<p>        else</p>
+<p>        {</p>
+<p>            tprintf(t, "| 0  \n");</p>
+<p>            tprintf(t, " -|- \n");</p>
+<p>            tprintf(t, "  | |\n");</p>
+<p>            tprintf(t, "  ^  \n");</p>
+<p>            tprintf(t, " \\  \\\n");</p>
+<p>        }</p>
+<p>        sleep(1);</p>
+<p>    }</p>
+<p>    return 0;</p>
+<p>}</p>
+<p></code></pre><p>Для тех, кто не читает Си, демонстрирую, что делает этот код:</p>
+<p></p></p>
+<p><object width="425" height="355"><param name="movie" value="http://www.youtube.com/v/sYEQ-sCLhAI&rel=0&color1=0xd6d6d6&color2=0xf0f0f0&border=0&fmt=18"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/sYEQ-sCLhAI&rel=0&color1=0xd6d6d6&color2=0xf0f0f0&border=0&fmt=18" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed></object>
+<p></p></p>
+<p>Самое удивительное, что в следующем письме студент поблагодарил меня и спросил, может ли этот код двигать робота не только справа налево, но и вперед-назад, а также какой микроконтроллер я использую. Даже не знаю, что ответить парню&#8230;
+<p></p></p>

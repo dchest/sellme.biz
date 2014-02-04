@@ -1,0 +1,13 @@
+<p>Password generator in single HTML/JavaScript file. <em>Version 2.0</em></p> 
+<p>Create passwords for different websites (or anything else) using a single secret key (if you lose your password for a website, you can regenerate it if you remember your secret key.)</p> 
+<h2>Algorithm</h2> 
+<pre><code>password = base64(pbkdf2(secret, username@url))</code></pre> 
+<p><small>(return first <em>max password length</em> characters)<br>PBKDF2 uses SHA-256 and 5000 iterations.</small></p> 
+
+<p><big><a href="password2.html">Online generator</a></big> / Short link: <code>sellme.ru/p2</code></p>
+<p><big><a href="ios.html">Online generator for slow devices (iPhone/iPad)</a></big> / Short link: <code>sellme.ru/pi</code></p>
+<p><big><a href="https://chrome.google.com/webstore/detail/hegbhhpocfhlnjmemkibgibljklhlfco">Google Chrome Extension</a></big></p>
+<p><big><a href="cryptopass.safariextz">Safari Extension</a></big> (direct download)</p>
+
+<p>Copyright &copy; 2010 Dmitry Chestnykh. MIT License.<br> 
+<small>Includes portions by Jeff Mott and Dojo Foundation (BSD Licenses, see source)</small></p> 

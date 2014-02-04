@@ -1,0 +1,142 @@
+---
+author: "dchest"
+date: 2009-03-31 17:34:13 +00:00
+status: "Publish"
+title: "Обзор Mosso Cloud Servers"
+---
+<p>В 2008 году <a href="http://rackspace.com">Rackspace</a>, один из крупнейших хостеров, купил <a href="http://slicehost.com">Slicehost</a>, провайдера <span class="caps">VPS</span>-хостинга<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup>. Slicehost предлагает доступные <span class="caps">VPS</span> от $20 долларов в месяц. Rackspace взяли их технологию и сделали <a href="http://www.mosso.com/cloudservers.jsp">Mosso Cloud Servers</a>, виртуальные сервера с оплатой по фактическому использованию ресурсов как у <a href="http://aws.amazon.com/ec2/">Amazon EC2</a>. Вы платите за часы работы вашего сервера и за трафик.</p>
+<p><em>Обновление (07.07.2009):</em> Mosso переименовали в The Rackspace Cloud.</p>
+<h2>Цены</h2>
+<p>На момент написания этой заметки цены такие:</p>
+<table>
+	<tr>
+		<th>Память/диск	    </th>
+		<th>В час</th>
+		<th>В месяц</th>
+	</tr>
+	<tr>
+		<td>256 MB / 10 GB	    </td>
+		<td>$0.015	</td>
+		<td>$10.95  </td>
+	</tr>
+	<tr>
+		<td>512 MB / 20 GB     </td>
+		<td>$0.030	</td>
+		<td>$21.90  </td>
+	</tr>
+	<tr>
+		<td>1024 MB / 40 GB	</td>
+		<td>$0.060	</td>
+		<td>$43.80  </td>
+	</tr>
+	<tr>
+		<td>2048 MB / 80 GB	</td>
+		<td>$0.120	</td>
+		<td>$87.60  </td>
+	</tr>
+	<tr>
+		<td>4096 MB / 160 GB	</td>
+		<td>$0.240	</td>
+		<td>$175.20 </td>
+	</tr>
+	<tr>
+		<td>8192 MB / 320 GB	</td>
+		<td>$0.480	</td>
+		<td>$350.40 </td>
+	</tr>
+	<tr>
+		<td>15872 MB / 620 GB	</td>
+		<td>$0.960	</td>
+		<td>$700.80 </td>
+	</tr>
+</table>
+<p>Входящий трафик &#8211; $0.08/Гбайт<br />
+Исходящий трафик &#8211; $0.22/Гбайт</p>
+<p>Для сравнения, у Amazon EC2 цены начинаются с $0.10 за час <a href="http://aws.amazon.com/ec2/instance-types/">Small Instance</a>, которая имеет 1.7 гигабайта оперативки и 160 Гбайт диска, входящий трафик $0.10/Гбайт, исходящий от $0.17 и ниже. То есть, если оставить ее работать 24&#215;30, получается $72 в месяц.</p>
+<p>На Slicehost 256 MB/10 GB стоит $20 в месяц, но включает 100 Гбайт трафика. Если на сервере Mosso с такой же конфигурацией использовать 100 гигабайтов исходящего трафика, это обойдется в 33 доллара.</p>
+<p>У другого известного провайдера <span class="caps">VPS</span>, <a href="http://linode.com">Linode</a>, за $20 можно взять 360 Мбайт памяти, 12 Гбайт диска и 200 трафика.</p>
+<p>Сравнивать самые дешевые планы не совсем корректно, поэтому возьмем <em>примерно</em> двухгигабайтный сервер.</p>
+<table>
+	<tr>
+		<th>Хостер      </th>
+		<th><span class="caps">RAM</span>     </th>
+		<th><span class="caps">HDD</span>       </th>
+		<th>Трафик      </th>
+		<th>Цена </th>
+	</tr>
+	<tr>
+		<td> Linode        </td>
+		<td> 2.8 GB   </td>
+		<td> 96 GB      </td>
+		<td> 1600 GB      </td>
+		<td> $160 </td>
+	</tr>
+	<tr>
+		<td> Slicehost     </td>
+		<td> 2 GB     </td>
+		<td> 80 GB      </td>
+		<td> 800 GB       </td>
+		<td> $130 </td>
+	</tr>
+	<tr>
+		<td> Amazon EC2    </td>
+		<td> 1.7 GB   </td>
+		<td> 160 GB     </td>
+		<td> не включен   </td>
+		<td> $72  </td>
+	</tr>
+	<tr>
+		<td> Mosso CS      </td>
+		<td> 2 GB     </td>
+		<td> 80 GB      </td>
+		<td> не включен   </td>
+		<td> $88  </td>
+	</tr>
+</table>
+<p>(У Linode нет 2 GB, есть 1.4 за $80 и 2.8 за $160.)</p>
+<p>Итого, если трафик большой, Linode и Slicehost дешевле, если маленький &#8212; Mosso Cloud Servers и Amazon EC2. Это если не учитывать превышение трафика &#8212; Slicehost берет $0.30, Linode не говорит сколько.</p>
+<p>Я уже говорил, что сравнивать цены &#8212; сложно?</p>
+<h2>Почему не EC2</h2>
+<p>У Amazon EC2 есть один большой недостаток &#8212; данные в нем не сохраняются при выключении. Вы создаете образ (Amazon Machine Image), закачиваете на Amazon, и этот образ &#8212; единственное, что останется постоянным; данные, созданные вне образа, при его выключении потеряются. Так что забудьте про базы данных на EC2 (конечно, для постоянного хранения у Amazon есть S3 и SimpleDB, но это уже не просто файловая система). EC2 хорош как computing unit, но плохо подходит для использования в качестве типичного веб-сервера.</p>
+<p><em>Обновление (2009-04-02):</em> Я не совсем прав. К Amazon EC2 можно подключать <a href="http://aws.amazon.com/ebs/"><span class="caps">EBS</span></a> (Elastic Block Storage) с отдельной платой за дисковое пространство и I/O запросы.</p>
+<h2>À la carte</h2>
+<p>Для того, чтобы завести свой Cloud Server, не надо платить заранее &#8212; нужно только зарегистрироваться и указать данные кредитки, с которой будут снимать деньги за использованные ресурсы через месяц и далее. В этом преимущество CS &#8212; попробовать очень легко и практически бесплатно. Кроме того, если понадобилось увеличить сервер на время больших нагрузок, а потом уменьшить обратно, больше денег возьмут только за фактическое время работы &#8220;большого&#8221; сервера. Так же и с созданием нового сервера &#8212; если вдруг понадобился сервер на недельку, вы заплатите только за неделю. Прелесть! Жаль только, что сервер нельзя &#8220;поставить на паузу&#8221; &#8212; за него будут брать деньги пока вы его не удалите.</p>
+<h2>Админка</h2>
+<p><a href="/pics/mosso-cloud-servers/admin.png"><img src="/pics/mosso-cloud-servers/admin-thumb.jpg" class="thumb" alt="" /></a></p>
+<p>Тут все просто: веб-консоль, перезагрузка, rescue-режим для спасения сервера, если вы чего-то напортачили, возможность начать с чистого листа, сброс пароля, удаление сервера и бэкапы (пока бесплатные, потом будут платные).</p>
+<h2>Внутри</h2>
+<p><img src="/pics/mosso-cloud-servers/ssh.png" alt="" /></p>
+<p>С Mosso Cloud Servers вы получаете виртуальный компьютер c root-доступом, с которым можете делать что угодно. Соответственно, если вы ничего не умеете с ним делать, у вас есть выбор: а) научиться, б) нанять админа, в) забыть про <span class="caps">VPS</span>. Если предпочтете первый путь, вам поможет <a href="http://cloudservers.mosso.com/index.php/List_of_Articles">множество статей</a>, которые, кстати, скопированы со Slicehost (не зря же купили именно эту компанию!), только &#8220;slice&#8221; заменили на &#8220;Сloud Server&#8221;.</p>
+<h2>Техника и сеть</h2>
+<p>Mosso Cloud Servers располагаются на 64-битных 8+ гигагерцевых четырехядерных машинах. <span class="caps">VPS</span> тоже 64-битные. Каждому виртуальному серверу выделено определенное количество времени процессора пропорционально размеру памяти (но если у процессора есть свободное время, сервер может использовать больше выделенного). Диски на RAID10. Скорее всего, каждый виртуальный сервер ограничен каналом в 10 Мбит/с (по крайней мере, так у Slicehost).</p>
+<p>Пинг моего Cloud Server из разных мест:</p>
+<p><img src="/pics/mosso-cloud-servers/ping1.png" alt="" /></p>
+<p>Для сравнения, пинг reddit.com</p>
+<p><img src="/pics/mosso-cloud-servers/ping2.png" alt="" /></p>
+<p>Mosso Cloud Servers предлагает те же дистрибутивы Linux, что и Slicehost: Ubuntu 8.10 (Intrepid Ibex), Ubuntu 8.04.1 (Hardy Heron) <span class="caps">LTS</span>, Debian 4.0 (Etch), Gentoo 2008.0, Centos 5.2, Fedora 10, Arch 2007.08.</p>
+<h2>Uptime</h2>
+<p>Самое важное в хостинге &#8212; uptime. К сожалению, пока рано говорить как будут вести себя Cloud Servers &#8212; они только недавно запустились. Говорят, у Slicehost аптайм хороший, посмотрим.</p>
+<h2>Cloud Files</h2>
+<p>Стоит рассказать про другую услугу Mosso &#8212; <a href="http://www.mosso.com/cloudfiles.jsp">Cloud Files</a>. Это хранилище файлов вроде Amazon S3. В Cloud Files можно включить <a href="http://en.wikipedia.org/wiki/Content_Delivery_Network"><span class="caps">CDN</span></a> от <a href="http://www.limelightnetworks.com/">Limelight Networks</a>:</p>
+<p><img src="/pics/mosso-cloud-servers/cdn.png" alt="" /></p>
+<table>
+	<tr>
+		<th>Сервис          </th>
+		<th>Хранение за Гбайт       </th>
+		<th>Исходящий трафик за Гбайт  </th>
+	</tr>
+	<tr>
+		<td> Amazon S3*        </td>
+		<td> $0.15                     </td>
+		<td> $0.17                        </td>
+	</tr>
+	<tr>
+		<td> Mosso Cloud Files </td>
+		<td> $0.15                     </td>
+		<td> $0.22                        </td>
+	</tr>
+</table>
+<p class="small">* Цены до 10 TB, в датацентрах США.</p>
+<p>Как видно, цены чуть выше, чем у амазона. Но за трафик с Cloud Files до точек <span class="caps">CDN</span> нет дополнительной платы, в отличие от амазоновской <span class="caps">CDN</span> <a href="http://aws.amazon.com/cloudfront/">CloudFront</a>. В амазоне также берут деньги за <span class="caps">GET</span> запросы &#8212; $0.01 за 10,000 штук. В Cloud Files тарифицируются только <span class="caps">PUT</span>, <span class="caps">POST</span>, <span class="caps">LIST</span>.</p>
+<p>Кстати, <a href="http://cyberduck.ch/">Cyberduck</a>, (S)<span class="caps">FTP</span> клиент для Mac OS X, поддерживает и S3, и Mosso Cloud Files.</p>
+<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> <span class="caps">VSP</span> &#8211; Virtual Private Server, виртуальный сервер. В отличие от shared hosting, <span class="caps">VPS</span> дает в ваше полное распоряжение сервер с root-доступом, только этот сервер не железный, виртуальный &#8212; на одной машине их работает несколько. Пользовались VMware или Parallels? Примерно так же работает.</p>

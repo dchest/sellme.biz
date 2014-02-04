@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru-ru">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>Генератор паролей</title>
+  <link rel="alternate" type="application/rss+xml" title="Sellme.ru RSS Feed" href="/rss/" />
+  <link rel="stylesheet" href="/css/compressed.css?ver=1.3" type="text/css" media=
+  "screen, projection" />
+  <link rel="stylesheet" href="/js/fancybox/fancy.min.css?ver=1.4" type="text/css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="column span-15 prepend-4 first last" id="header">
+      <p class="title"><a href="/">Sellme<span class="title-2">.ru</span></a></p>
+    </div>
+
+    <div class="column span-15 prepend-4 first last">
+
+    <div style="background: #FFFFE0; padding: 10px">
+    <big>Новая версия (несовместимая с этой): <a href="http://sellme.ru/password2/">http://sellme.ru/password2/</a></big>
+    </div>
+
+      <h1>Генератор паролей</h1>
+
+      <p>Генератор разных паролей для разных сайтов на основе одного секретного ключа (слова или
+      предложения), написанный на JavaScript и состоящий из одного HTML файла (чтобы вы могли
+      скачать его себе и пользоваться).</p>
+
+      <p><em>Зачем?</em> Использовать один пароль для нескольких сайтов небезопасно (если украдут с
+      одного, получат доступ к другому). Конечно, самое правильное — генерировать для каждого сайта
+      свой пароль случайным образом, но это же их хранить где-то надо или запоминать…. Выход, менее
+      безопасный, но приемлемый — как-то генерировать пароли из одного секретного ключа. Таким
+      образом, если украдут один пароль, злодеи не получать доступ к другому сайту. Это будет
+      возможно, только если они узнают секретный ключ, поэтому сделайте его неподбираемым и не
+      говорите его никому.</p>
+
+      <p>Алгоритм: <em>password = <a href="http://en.wikipedia.org/wiki/Base64">base64</a>(<a href=
+      "http://en.wikipedia.org/wiki/HMAC">hmac</a>(secret, url))</em></p>
+
+      <p>Алгоритм публичный и может быть реализован на любом языке<sup class="footnote"><a href=
+      "#fn1">1</a></sup> в любой операционной системе (hmac на основе sha1).</p>
+
+      <p><em>Secret</em> — ваш секретный ключ (любой набор букв, цифр, пробелов и других символов)
+      — секретная информация.<br />
+      <em>URL</em> — адрес сайта или любое другое слово (например, google.com или
+      vasya@example.com) — публичная информация.</p>
+
+      <p>Пример:</p>
+
+      <p><em>Secret:</em> iuwr8979yh_45iuh<br />
+      <em>URL:</em> google.com<br />
+      Получаем пароль (10 символов): RwMGDhPdyn</p>
+
+      <p>— <strong><a href="password.html">Онлайн-генератор</a></strong><br />
+      — <a href="password.zip">Скачать</a> (ZIP, 4 килобайта, версия 0.2)</p>
+
+      <p>Короткая ссылка на онлайн-генератор: <a href=
+      "http://sellme.ru/p">http://sellme.ru/p</a></p>
+
+      <h2>History</h2>
+
+      <p><strong>Version 0.2:</strong><br />
+      SHA1 (password.html) = 62ddc3472bffa3310da9baa9a37c65b51158e8c8</p>
+
+      <ul>
+        <li>Generate password by pressing Return.</li>
+
+        <li>Make it look better on iPhone (set ‘viewport’).</li>
+
+        <li>Fix page title.</li>
+
+        <li>Remove some comments.</li>
+      </ul>
+
+      <p><strong>Version 0.1:</strong><br />
+      SHA1 (password.html) = 8abfbfa77de465a7dc967b3c6ba99ed17a8cc1b5</p>
+
+      <ul>
+        <li>Initial release</li>
+      </ul>
+
+      <p class="footnote" id="fn1"><sup>1</sup> Например, на Python:<br /></p>
+
+      <div class="CodeRay">
+        <pre>
+import base64, hmac, hashlib
+print(base64.b64encode(hmac.new("SECRET", "URL", hashlib.sha1).digest()))
+</pre>
+      </div>
+    </div>
+
+    <div class="column span-20 prepend-4 first last top-1" id="footer">
+      <p>Copyright (<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">cc</a>) 2005-2009
+      <a href="/about/">Дмитрий Честных</a> <a class="rss" href="/rss/">RSS</a></p>
+    </div>
+  </div><script type="text/javascript" src=
+  "http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js">
+</script><script type="text/javascript">
+//<![CDATA[
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  jQuery.getScript(gaJsHost + "google-analytics.com/ga.js", function(){
+        var pageTracker = _gat._getTracker("UA-71330-2");
+        pageTracker._trackPageview();
+  });
+  //]]>
+  </script><script type="text/javascript" src="/js/fancybox/jquery.fancybox.min.js?ver=1.2">
+</script><script type="text/javascript">
+//<![CDATA[
+  jQuery(document).ready(function(){jQuery("img.thumb").parent().fancybox({"hideOnContentClick":true});jQuery("a.fancybox").fancybox({"hideOnContentClick":true});});
+  //]]>
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+---
+author: "dchest"
+category: "Технологии"
+date: 2008-05-22 18:30:04 +00:00
+primary_category: "Технологии"
+status: "Publish"
+title: "History meme"
+---
+<p><strong>Ноут:</strong></p>
+<p><pre><code></p>
+<p>$ uname -a</p>
+<p>Darwin dchest-MBA.local 9.2.2 Darwin Kernel Version 9.2.2: </p>
+<p>Tue Mar  4 21:17:34 PST 2008; root:xnu-1228.4.31~1/RELEASE_I386 i386</p>
+<p>─────────────────────────────────────────────────</p>
+<p>$ history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head</p>
+<p>135 bzr</p>
+<p>96 ping</p>
+<p>53 ls</p>
+<p>41 cd</p>
+<p>18 sudo</p>
+<p>16 git</p>
+<p>16 dev_appserver.py</p>
+<p>14 vboxmanage</p>
+<p>8 </p>
+<p>7 ssh</p>
+<p>─────────────────────────────────────────────────</p>
+<p></code></pre></p>
+<p><br /><br /><strong>Сервак:</strong></p>
+<p><pre><code></p>
+<p>[skinner]$ uname -a</p>
+<p>Linux skinner 2.4.32-grsec+f6b+gr217+nfs+a32+fuse23+tg+++opt+c8+gr2b-v6.194 #1 SMP </p>
+<p>Tue Jun 6 15:52:09 PDT 2006 i686 GNU/Linux</p>
+<p>[skinner]$ history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head</p>
+<p>68 cd</p>
+<p>51 ls</p>
+<p>26 mc</p>
+<p>21 killall</p>
+<p>20 env</p>
+<p>19 ruby</p>
+<p>17 gem</p>
+<p>16 wget</p>
+<p>14 make</p>
+<p>13 echo</p>
+<p></code></pre></p>
+<p><br /><br />
+<p>(re: <a href="http://diveintomark.org/archives/2008/04/15/history-meme">diveintomark</a>)</p>
+<p></p></p>

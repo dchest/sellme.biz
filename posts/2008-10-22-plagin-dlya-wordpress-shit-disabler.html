@@ -1,0 +1,110 @@
+---
+author: "dchest"
+category: "Сайт и дизайн"
+date: 2008-10-22 17:00:13 +00:00
+primary_category: "Сайт и дизайн"
+status: "Publish"
+tags: "WordPress,plugin"
+title: "Плагин для WordPress: Shit Disabler"
+---
+<p><em>Я продолжаю заниматься переделкой сайта <a href="http://www.codingrobots.com">Coding Robots</a> и рожать небольшие плагины для WordPress, которые могут пригодиться в хозяйстве. Буду постить их в блог, может и вам окажутся полезными.</em></p>
+<p>Почти все блоги на WordPress имеют три какашки на <em>каждой</em> странице.</p>
+<p><blockquote><code>&lt;link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.example.com/xmlrpc.php?rsd" /&gt;</p>
+<p>&lt;link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.example.com/wp-includes/wlwmanifest.xml" /&gt;</p>
+<p>&lt;meta name="generator" content="WordPress 2.6" /&gt;</p>
+<p></code></p>
+<p></blockquote></p>
+<p>Первая строчка — полезная штука. Она помогает блог-клиентам (таким, как <a href="http://www.codingrobots.com/blogjet/">BlogJet</a> ;) автоматически настраиваться на работу с блогом указанием ссылки на него. Если вы не пользуетесь блог-клиентом или уже настроили его, нет смысла держать эту строчку. Экономьте, блин, байты, а то скоро интернет сломается!</p>
+<p>Вторая строчка — настоящая какашка. Это "манифест" для блог-клиента от Microsoft (которым никто не пользуется :) (BlogJet мог бы тоже этот манифест использовать, но он в таком дурацком формате, что не охота руки пачкать... типа отмазался). Эта строчка вам вообще не нужна (опять же, если вы не пользуетесь <em>злым</em> блог клиентом, или уже настроили его) Экономия!</p>
+<p>Третья строчка — указание на версию WordPress. Эта строка не только не нужна, так она еще и  представляет угрозу безопасности. Например, если в WordPress 2.6 обнаружат дыру, а вы не успеете обновиться до следующей версии, любой дурак сможет обнаружить это, и, сделав бота для поиска и взламывания необновленных блогов, ломать все подряд.  </p>
+<p>Представляю великий плагин для WordPress (состоящий из трех строчек), который удалит эти три строчки — Shit Disabler.</p>
+<p><big><a href="/files/shit_disabler.zip"><strong>Скачать shit_disabler.zip</strong></a> (353 байта)</big></p>
+<p>Установка — как обычно: распаковываете, закачиваете плагин в <em>wp-content/plugins/</em> и активируете в админке </p>
+
+
+<div class="comments">
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://www.thestorm.name/">Болдырев Сергей</a></span> <span class="comment-date">2008-10-22 21:08</span>
+</div>
+<div class="comment-body">
+<p>ну у меня в теме прописано (уже убрал) &lt;meta name="generator" content="WordPress " /&gt;</p>
+<p>а остальное в самом деле светиться зачем-то. причем когда находишься в админке, этого ничего нет</p>
+<p>Спасибо за плагин, пошел ставить :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-22 21:08</span>
+</div>
+<div class="comment-body">
+<p>Ага, старые версии WordPress ставили номер версии в теме.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://padlik.ru">Павел</a></span> <span class="comment-date">2008-10-22 23:08</span>
+</div>
+<div class="comment-body">
+<p>"Злой" блог-клиент работает кстати просто отлично!</p>
+<p>Я им очень доволен. На момент, когда я его ставил, тот же блогджет многое не поддерживал, поэтому я его не купил.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://tvoezdorovje.ru/">Елена Васильева</a></span> <span class="comment-date">2008-10-23 04:08</span>
+</div>
+<div class="comment-body">
+<p>Спасибо!:) Полезный плагин, а то приходилось постоянно следить за обновлениями для WordPress'а, теперь можно будет маленько расслабиться. А то последнее время мой админский пароль сбрасывали постоянно, оказалось проблема была в уязвимости Wordpress, злоумышленник мог сбросить пароль любого пользователя.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-23 04:08</span>
+</div>
+<div class="comment-body">
+<p>Елена, не бросайте слежение за обновлениями WordPress до следующей версии, которая скоро выйдет — у нее будет функция автоматического обновления.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://hepolife.ru/">Дэн</a></span> <span class="comment-date">2008-10-23 21:08</span>
+</div>
+<div class="comment-body">
+<p>А вырезать эти строчки руками из header.php разве не проще?</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-23 23:08</span>
+</div>
+<div class="comment-body">
+<p>Дэн: проще, если вы их там найдете :)</p>
+<p>Их там нет — они не относятся к теме, а вставляются WordPress'ом (добавляются к wp_head()), поэтому и требуется плагин.</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="http://reani.biz">Reani</a></span> <span class="comment-date">2008-10-24 00:08</span>
+</div>
+<div class="comment-body">
+<p>Спасибо Вам за плагин сейчас буду тестить :) и разбираться :) еще раз спасибо :)</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author">a-nesterov</span> <span class="comment-date">2008-10-24 15:08</span>
+</div>
+<div class="comment-body">
+<p>Вот интересно, а чем в таком случае думали сами разработчики (я про строку с версией)? Или это специально сделано, чтобы все до последней версии обновлялись..</p>
+</div>
+</div>
+<div class="comment">
+<div class="comment-header">
+<span class="comment-author"><a rel="nofollow" href="/">Дмитрий Честных</a></span> <span class="comment-date">2008-10-24 15:08</span>
+</div>
+<div class="comment-body">
+<p>a-nesterov: Это неоднозначно. С одной стороны, показывать номер версии — облегчать задачу взломщикам. С другой — security through obscurity — это не security. Так что обновляться надо всегда.</p>
+</div>
+</div>
+</div>
