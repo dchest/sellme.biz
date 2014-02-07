@@ -4,7 +4,7 @@ layout: none
 <feed xmlns="http://www.w3.org/2005/Atom">
  
     {{with .Page.title}}
-    <title type="text">{{.}}</title>
+    <title type="text">{{. | xml}}</title>
     {{else}}
     <title type="text">{{.Site.Name | xml}}</title>
     {{end}}
@@ -18,7 +18,7 @@ layout: none
 
     {{range .Site.Posts.Limit 10 }}
     <entry>
-        <title type="text">{{ .Meta.title }}</title>
+        <title type="text">{{ .Meta.title | xml }}</title>
 	<id>{{ $.Site.URL }}/{{ .Meta.id }}</id>
         <link rel="alternate" type="text/html" href="{{$.Site.URL}}{{.Meta.url}}"/>
         <updated>{{.Date.Format "2006-01-02T15:04:05Z07:00" }}</updated>
