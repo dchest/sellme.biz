@@ -2,7 +2,7 @@
 title: О переусложнении проектов
 ---
 
-<img src="https://sellme.biz/pics/2014/big_sandwich.png" style="float:right"
+<img src="/pics/2014/big_sandwich.png" style="float:right"
      alt="Переусложненный гамбургер (но, наверное, вкусный)">
 
 > Не надо начинать большой проект. Начните с маленького тривиального проекта, и не 
