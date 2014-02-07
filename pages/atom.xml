@@ -27,7 +27,7 @@ layout: none
 	<summary type="text">{{. | xml}}</summary>
 	{{end}}
 	<!-- TODO categories -->
-	<content type="html" xml:base="{{$.Site.URL}}/">{{ .Content | xml }}</content>
+	<content type="html" xml:base="{{$.Site.URL}}/">{{ .Content | abspaths | xml }}</content>
     </entry>
     {{end}}
 
