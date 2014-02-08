@@ -72,6 +72,7 @@ RedirectPermanent /articles/change.html /2009/03/change.html
 # Pages
 RedirectPermanent /about/ /about.html
 RedirectPermanent /contacts/ /about.html
+RedirectPermanent /contacts.html /about.html
 
 
 #
