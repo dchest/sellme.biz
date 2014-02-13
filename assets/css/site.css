@@ -115,17 +115,17 @@ label {
   color: #55acee;
 }
 
-.btn-donate {
-  margin-top: 5px;
-  line-height: 1;
-  background: #f4f4f4;
-  border-color: #eee;
-  color: #555;
+.fa-ul-nospace {
+  margin-left: 1.4em;
 }
 
-  .btn-donate .fa-bitcoin {
-    color: #f0ad4e;
-  }
+.fa-bitcoin-color {
+  color: #f0ad4e;
+}
+
+.fa-usd-color {
+  color: #85bb65;
+}
 
 /* Posts */
 
