@@ -11,6 +11,9 @@ permalink: .htaccess
 RemoveHandler .php .phtml .php3
 RemoveType .php .phtml .php3
 
+# Disable directory indexes
+Options -Indexes
+
 # Index
 DirectoryIndex index.html index.htm
 
