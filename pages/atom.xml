@@ -27,7 +27,9 @@ layout: none
 	<summary type="text">{{. | xml}}</summary>
 	{{end}}
 	<!-- TODO categories -->
-	<content type="html" xml:base="{{$.Site.URL}}/">{{ .Content | abspaths | xml }}</content>
+	<content type="html" xml:base="{{$.Site.URL}}/">
+	{{ .Content | abspaths | xml }}{{with .Meta.feed_only}}<p>{{. | abspaths | xml}}</p>{{end}}
+	</content>
     </entry>
     {{end}}
 
