@@ -27,9 +27,13 @@ title: Как выбрать нишу для бизнеса
 
 Мне не очень нравится термин, но смысл хороший.
 
+*Добавлено (2014-02-21):* У Макса Крайнова в блоге [написано немного
+подробнее про несправедливое преимущество][max].
+
 [siv]: http://sivers.org
 [int]: http://drt.fm/office-hours/derek-sivers/
 [cdb]: https://en.wikipedia.org/wiki/CD_Baby
 [coh]: http://blog.asmartbear.com/jason-cohen
 [sbs]: https://en.wikipedia.org/wiki/SmartBear_Software
 [def]: http://blog.asmartbear.com/unfair-advantages.html
+[max]: http://www.kraynov.com/2012/10/09/unfair-advantage-business/
