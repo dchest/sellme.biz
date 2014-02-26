@@ -36,6 +36,7 @@ RewriteRule ^wp-atom.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP_USER_AGENT} !FeedBurner
+RewriteCond %{HTTP_USER_AGENT} !YandexBot
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R]
 
 # Redirect sellme.ru to sellme.biz
