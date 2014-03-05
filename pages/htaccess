@@ -121,6 +121,9 @@ RedirectPermanent /about/ /about.html
 RedirectPermanent /contacts/ /about.html
 RedirectPermanent /contacts.html /about.html
 
+# Removed posts
+RedirectPermanent /2005/07/kak-poluchit-inn-fizicheskomu-litsu.html http://nalog.ru
+
 
 #
 # Optimizations
