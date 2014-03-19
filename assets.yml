@@ -2,12 +2,13 @@
 - name: libs-css
   files:
     - assets/css/bootstrap.min.css
-    - assets/css/font-awesome.min.css
     - assets/css/social-likes_birman.css
+    - assets/css/font-awesome.min.css
   outname: $
 
 - name: site-css
   files:
+    - assets/css/pt-fonts.css
     - assets/css/site.css
   filter: cssmin
   outname: $
