@@ -21,6 +21,7 @@
 
 - name: libs-js
   files:
+    - assets/js/jquery.min.js
     - assets/js/bootstrap.min.js
     - assets/js/social-likes.min.js
   separator: "\n"
