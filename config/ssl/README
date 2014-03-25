@@ -3,5 +3,5 @@ oakley-group-14.pem
 
 sellme.biz.crt
  Combined certificates for use with nginx:
- - PositiveSSL CA 2
  - www.sellme.biz
+ - PositiveSSL CA 2
