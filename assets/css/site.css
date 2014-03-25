@@ -248,3 +248,7 @@ label {
   padding: 0;
   margin: 0;
 }
+
+a.tor-link {
+  color: #3D9970;
+}
