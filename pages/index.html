@@ -18,7 +18,7 @@ description: Блог Дмитрия Честных о бизнесе, марк�
       <i class="fa fa-calendar"></i> 
       <a href="javascript:void(0)"
         data-container="body" data-toggle="popover" data-placement="right" data-html="true"
-        data-content="<div class='permalink-popover'><label>Ссылка на пост (<a href='{{.Meta.url}}'>открыть</a>):<br><input type='text' onfocus='permalinkFocus(this)' class='form-control' size=250 value='{{$.Site.URL}}{{.Meta.url}}'></label></div>"
+        data-content="<div class='permalink-popover'><label>Ссылка на пост (<a href='{{.Meta.url}}'>открыть</a>):<br><input type='text' onfocus='permalinkFocusHandler(this)' class='form-control' size=250 value='{{$.Site.URL}}{{.Meta.url}}'></label></div>"
        >
         {{.Date.Format "02.01.2006"}}
       </a>
@@ -39,15 +39,3 @@ description: Блог Дмитрия Честных о бизнесе, марк�
 {{end}}
 
 <div class="blog-footer"><a href="/archive/" class="btn btn-primary">Все посты</a></div>
-<script>
-  $(function() {
-    $('a[data-toggle="popover"]').popover();
-  });
-
-  function permalinkFocus(that) {
-    window.setTimeout(function() {
-     $(that).select();
-    }, 100);
-  }
-
-</script>
