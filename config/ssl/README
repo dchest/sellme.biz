@@ -4,4 +4,5 @@ oakley-group-14.pem
 sellme.biz.crt
  Combined certificates for use with nginx:
  - www.sellme.biz
- - PositiveSSL CA 2
+ - COMODO RSA Domain Validation Secure Server CA
+ - COMODO RSA Certification Authority
