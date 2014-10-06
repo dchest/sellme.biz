@@ -185,25 +185,11 @@ label {
 
 /* Social likes overrides */
 
-.social-likes__button {
-  padding: 1px 6px 1px 14px
+.social-likes_light .social-likes__button, .social-likes_single-light+.social-likes__button {
+  padding-left: 4px;
+/*  padding-bottom: 4px;*/
+  font-size: 11px;
 }
-
-.social-likes__widget {
-  margin: 0;
-  border: 0;
-  background: transparent;
-}
-
-.social-likes__counter {
-  border-left: 0;
-  color: #ccc;
-}
-
-.social-likes__widget:hover .social-likes__counter {
-  color: #fff;
-}
-
 
 /* Comments for old imported posts */
 

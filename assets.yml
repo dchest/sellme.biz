@@ -2,7 +2,7 @@
 - name: libs-css
   files:
     - assets/css/bootstrap.min.css
-    - assets/css/social-likes_birman.css
+    - assets/css/social-likes_flat.css
     - assets/css/font-awesome.min.css
   outname: $
 
