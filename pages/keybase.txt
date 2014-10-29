@@ -1,0 +1,82 @@
+==================================================================
+https://keybase.io/dchest
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://sellme.biz
+  * I am dchest (https://keybase.io/dchest) on keybase.
+  * I have a public key with fingerprint F466 022B 936F 90F0 FCBB  50BA BE06 B1CD 3F41 D32D
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.2"
+        },
+        "key": {
+            "fingerprint": "f466022b936f90f0fcbb50babe06b1cd3f41d32d",
+            "host": "keybase.io",
+            "key_id": "BE06B1CD3F41D32D",
+            "uid": "6579a45649e70a19577aeeb3090d8600",
+            "username": "dchest"
+        },
+        "merkle_root": {
+            "ctime": 1414573811,
+            "hash": "58d3169efad4898d67496ce52641f45fd24d57bbe570d9011df0c5c3e98cb2da7b2fe58971a9e7615d15561ff851c220612be663d741912d2a066eb417214a18",
+            "seqno": 88867
+        },
+        "service": {
+            "hostname": "sellme.biz",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1414573904,
+    "expire_in": 157680000,
+    "prev": "da9c8b3592981ef967bbff015442af4afdd5a1685f1a8e538f32d592cc21988d",
+    "seqno": 6,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owFVUn1MVWUY50sGZAJzk1IQPAzWHF3Pez7ecw7j614uNifk1WQhNa/n4z3cA5d7
+4N4LSoCzxowPTYygMgdNsUSRxBsaa7HQckwoyEujMJDko8BWSUkrlDqH0cr3r/d9
+nt/ze36/53nrH/f38fPtCez8ItXofdq3f1bw2W35wFKOCapUhiWWY6JdQQ63fnPw
+hQhLxApQmcC7kEFRYxyqhAz5rpgVTAJWipwuRXVoKNzAGAisMkGH68Wy4shDziKn
+onNhMgUhThACR0KZw2VcFgWBxgVeQDgUgCiRMgUkkpA0Spvqcj/SFVvmtCqSFjVl
+4NAE0s3kVgqYScKs5UqWE5BmOJ6iIcUhBucBRzMMj5BA4hwusRDHdaALOVcsSaIN
+aV00tYXIWWBHVqeqLlsW3YoOABSgaIZkAdD08C6bVkKzEgkgh2ReoliOlSBDcVBE
+NAEpIFO0LBGURDOCgGgGlzgcAEnGRVokEceKAiHxjEDIiGY5BvCaRAhoCdA0BLLM
+0kAkCBwCQkAQkhJDAQ4QEsHjECKBAgwBKB6wmgEXKnaoWCLLspCp1J/OUkVEumx9
+ZivWXMhuL0QGQXlJqyhyqm5VVO1a3OZ2F7kSdcvusiIduB8JVp2iTeOwCopD0hb2
+/40CDfroODicSsDQgSLFiayKjqAZyOLa0RuhUn2uPCeyAklzBMcCJHNQG4gs44Cm
+KIKXKV6WJJoHkKVlwLOIJllZ27mGFkUCcCwr/WcSajr5PN2Pkufg3SVOhFXW+EUG
++Pj6+QSu8tO/rE9IcNi///j44dC/X1i6+kn38PG0/FdDhUOxU8M32NqGgfDcn7OW
+quqiFr6/JAfc3FYTaZh35O07+2S8d3XhzuiYJG+JtdD8a2xUp3o+pCvOxQb4+e4d
+6Mh2tPK2RTQ/dbG85caMfzBWFeLxf4XF49LTbo4Hd11MuiC/tQ7G37mC5dh+jI5M
+71w3B70TvqdyOon3zfGXu9IqKpaCglrqjH/2DX19+kO+MqPqUqNnpq/mQfyBgj92
+b9y0sLnDdWsotfHthqra0CN7mHZDqnVsuiQud0dPWdxPBZ7BVObFvntbsj3GXlti
+XLPF/aXp1NDzjV2jZQd3fGaaoEa86mORiQtHrGuvHVrzbcCnKSbjAN/kfSLd/M48
+f6uo3NS89f79wAeWcqQ2vJkZednrfDmimhkcHQmjjhHSYKF9rPrMiabh68VVR7Ni
+76SJbwxvOrrht7boRdhT+9fBzsWmnMnks4NEc1tEwpW56PX7xic9X2XK7bfzk9/b
+/Hl/04l3w+rLdtV8syqn2269+vHJu3UjjekTcqfFnjxpTPm9LWq1OWh86eFC17GB
+9q7wuTOODYdDxZaeLJ/c6eL9s1MPs7vHeq9vcZNrjPT26tG9H3ntrXsu2HMHkO25
+a5bXXu+tP+fIPZ8ZfnvGvWtjVP/J0/eanvGkJDybcbf4qY7G0HPx3yVV/FITMd09
+W7d+bd0PEa3bd3aYwv8B
+=h2UO
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/dchest
+
+==================================================================
