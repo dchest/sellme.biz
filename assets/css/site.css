@@ -119,12 +119,16 @@ label {
   margin-left: 1.4em;
 }
 
-.fa-bitcoin-color {
+.bitcoin-color {
   color: #f0ad4e;
 }
 
-.fa-usd-color {
+.usd-color {
   color: #85bb65;
+}
+
+.info-color {
+  color: #999;
 }
 
 /* Posts */
@@ -237,4 +241,9 @@ label {
 
 a.tor-link {
   color: #3D9970;
+}
+
+a.bitcoin-link {
+  color: #b8860b;
+  font-size: 13px;
 }
