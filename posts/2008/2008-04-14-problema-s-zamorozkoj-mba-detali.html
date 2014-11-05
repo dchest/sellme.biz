@@ -10,7 +10,7 @@ title: "Проблема с заморозкой MBA: детали"
 <p>Проводим расследование :)</p>
 <p>Когда MBA перегревается, он выключает одно из ядер процессора. Вот тут и появляется проблема.</p>
 <p>Если отключить одно ядро вручную:</p>
-<p><a href='/wp-content/uploads/2008/04/picture-11.png'><img src="/wp-content/uploads/2008/04/picture-11.png" alt="" title="Отключение ядра" width="500" height="237" class="alignnone size-full wp-image-1007" /></a></p>
+<p><a href='/wp-content/uploads/2008/04/picture-11.png'><img src="/pics/2008/04/picture-11.png" alt="" title="Отключение ядра" width="500" height="237" class="alignnone size-full wp-image-1007" /></a></p>
 <p>то MBA ведет себя так же — 3 секунды работает, 3 секунды висит.</p>
 <p>В <a href="http://discussions.apple.com/thread.jspa?threadID=1415343&tstart=0">форуме Apple написали</a>, что Windows XP в BootCamp, себя так не ведет:</p>
 <p><blockquote></p>
@@ -20,7 +20,7 @@ title: "Проблема с заморозкой MBA: детали"
 <p>My opinion is that the problem is OS and/or driver related and I think it will be fixed in the future with a patch.</p>
 <p></blockquote></p>
 <p>Если посмотреть на график загрузки процессора:</p>
-<p><a href='/wp-content/uploads/2008/04/picture-2.png'><img src="/wp-content/uploads/2008/04/picture-2.png" alt="" title="CPU Graph" width="500" height="281" class="alignnone size-full wp-image-1008" /></a></p>
+<p><a href='/wp-content/uploads/2008/04/picture-2.png'><img src="/pics/2008/04/picture-2.png" alt="" title="CPU Graph" width="500" height="281" class="alignnone size-full wp-image-1008" /></a></p>
 <p>то зависания приходятся на пиковые нагрузки. Заметьте, что на графике получается овердрайв какой-то. При работающих двух ядрах такого не возникает. </p>
 <p>Я посмотрел в Activity Monitor и увидел, что при отключенном ядре <code>kernel_task</code> время от времени жрет больше <strong>1225%</strong> CPU, что вообще невозможно (максимум — 200%, по 100% на каждое ядро). Компьютер тормозит как раз в это время.</p>
 <p>Так что я склонен считать, что это проблема Mac OS X. Надеюсь, ее скоро решат.</p>

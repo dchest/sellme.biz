@@ -9,6 +9,7 @@ filters:
 
 properties:
   tagline: "блог о бизнесе и маркетинге своими силами"
+  onion: http://sellmefmabkgispl.onion
   like_title: "Sellme.biz"
   twitter_name: sellmebiz
   urls:
