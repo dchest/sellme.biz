@@ -27,6 +27,8 @@ server {
 	ssl_session_cache		shared:SSL:50m;
 
 	# Add HSTS header.
+  # Needs to be cloned to every `location` below, because nginx
+  # won't inherit it from `server`, which is kinda stupid.
 	add_header Strict-Transport-Security max-age=7884000; # 3 months
 
 	# Redirect www to non-www.
@@ -126,23 +128,27 @@ server {
 	# Images expire in 30 days.
 	location ~* \.(?:ico|gif|jpe?g|png)$ {
 		expires	   30d;
+		add_header Strict-Transport-Security max-age=7884000; # 3 months
 		add_header Cache-Control public;
 	}
 
 	# Pages expire in 1 hour.
 	location ~* \.(?:xml|txt|html|htm)$ {
 		expires	   1h;
+		add_header Strict-Transport-Security max-age=7884000; # 3 months
 		add_header Cache-Control public;
 	}
 
 	# Assets and fonts never expire.
 	location /assets {
 		expires    max;
+		add_header Strict-Transport-Security max-age=7884000; # 3 months
 		add_header Cache-Control public;
 	}
 
 	location /fonts {
 		expires    max;
+		add_header Strict-Transport-Security max-age=7884000; # 3 months
 		add_header Cache-Control public;
 	}
 
