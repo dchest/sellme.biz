@@ -13,7 +13,7 @@ server {
 
 	# Redirect www to non-www.
 	if ($host ~* ^www\.){
-		rewrite ^(.*)$ $scheme://sellme.biz$1;
+		rewrite ^(.*)$ $scheme://sellmefmabkgispl.onion$1;
 	}
 
 	#
