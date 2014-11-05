@@ -88,6 +88,7 @@ server {
 	rewrite ^/2005/07/kak-poluchit-inn-fizicheskomu-litsu.html$ http://nalog.ru permanent;
 
 
+	# -------------
 	# Redirect sellme.ru to https://sellme.biz.
 
 	## Some bots don't like the modern secure Web, so we used to

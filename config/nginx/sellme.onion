@@ -31,6 +31,37 @@ server {
 	rewrite ^/feed/?$ $scheme://$host/atom.xml redirect;
 
 	#
+	# Optimizations
+	# -------------
+	#
+
+	# Enable gzip compression
+	# XXX must be enabled by default
+
+	# Images expire in 30 days.
+	location ~* \.(?:ico|gif|jpe?g|png)$ {
+		expires	   30d;
+		add_header Cache-Control public;
+	}
+
+	# Pages expire in 1 hour.
+	location ~* \.(?:xml|txt|html|htm)$ {
+		expires	   1h;
+		add_header Cache-Control public;
+	}
+
+	# Assets and fonts never expire.
+	location /assets {
+		expires    max;
+		add_header Cache-Control public;
+	}
+
+	location /fonts {
+		expires    max;
+		add_header Cache-Control public;
+	}
+
+	#
 	# Cool URIs Don't Change.
 	# (But when they change, we redirect.)
 	# ------------------------------------
@@ -67,10 +98,32 @@ server {
 	rewrite ^/articles/mosso-cloud-servers.html$     $new_url/2009/03/mosso-cloud-servers.html      permanent;
 	rewrite ^/articles/change.html$	                 $new_url/2009/03/change.html                   permanent;
 
+	# /article/
+	rewrite ^/article/parallelnoe-zhulyo$		$new_url/2007/09/parallelnoe-zhulyo.html	permanent;
+	rewrite ^/article/rugayu-sebya$			$new_url/2007/09/rugayu-sebya.html		permanent;
+	rewrite ^/article/eshche-raz-posypayu-golovu-peplom$	$new_url/2007/09/eshche-raz-posypayu-golovu-peplom.html permanent;
+	rewrite ^/article/pro-proshloe-i-budushchee-sellmeru$	$new_url/2007/10/pro-proshloe-i-budushchee-sellmeru.html permanent;
+	rewrite ^/article/o-poleznosti-memoires$	$new_url/2007/11/o-poleznosti-memoires.html	permanent;
+	rewrite ^/article/keln$				$new_url/2007/08/keln.html			permanent;
+	rewrite ^/article/linus-torvalds-on-git$		$new_url/2007/12/linus-torvalds-on-git.html	permanent;
+	rewrite ^/article/makedoniya$			$new_url/2007/10/makedoniya.html		permanent;
+	rewrite ^/article/parallels-protiv-vmware-fusion$	$new_url/2007/08/parallels-protiv-vmware-fusion.html permanent;
+	rewrite ^/article/sankt-peterburg$		$new_url/2007/06/sankt-peterburg.html	permanent;
+	rewrite ^/article/zametka-o-programme-translateit-dlya-mac$	$new_url/2007/05/zametka-o-programme-translateit-dlya-mac.html	permanent;
+
+
+	# /post/
+	rewrite ^/post/12$	$new_url/2008/02/kak-ya-programmiroval-robota.html permanent;
+	rewrite ^/post/15$	$new_url/2008/03/kak-organizovyvat-fajly.html permanent;
+
+	rewrite ^/productive_email/$	$new_url/2005/03/kak-uvelichit-produktivnost-raboty-s-pochtoi.html permanent;
+	rewrite ^/testimonials/$	$new_url/2005/03/otzyvy-polzovatelei.html permanent;
+
 	# Site pages.
-	rewrite ^/about/$		$new_url/about.html permanent;
-	rewrite ^/contacts/$		$new_url/about.html permanent;
-	rewrite ^/contacts.html$	$new_url/about.html permanent;
+	rewrite ^/about/$		$new_url/about.html	permanent;
+	rewrite ^/archives/$		$new_url/archive/	permanent;
+	rewrite ^/contacts/$		$new_url/about.html	permanent;
+	rewrite ^/contacts.html$	$new_url/about.html	permanent;
 
 	# Password page. (Not recommended for use anymore).
 	rewrite ^/p/?$	$new_url/password/password.html	  permanent;
@@ -83,36 +136,4 @@ server {
 	# and it's better addressed by some third-party website.
 	#
 	rewrite ^/2005/07/kak-poluchit-inn-fizicheskomu-litsu.html$ http://nalog.ru permanent;
-
-	#
-	# Optimizations
-	# -------------
-	#
-
-	# Enable gzip compression
-	# XXX must be enabled by default
-
-	# Images expire in 30 days.
-	location ~* \.(?:ico|gif|jpe?g|png)$ {
-		expires	   30d;
-		add_header Cache-Control public;
-	}
-
-	# Pages expire in 1 hour.
-	location ~* \.(?:xml|txt|html|htm)$ {
-		expires	   1h;
-		add_header Cache-Control public;
-	}
-
-	# Assets and fonts never expire.
-	location /assets {
-		expires    max;
-		add_header Cache-Control public;
-	}
-
-	location /fonts {
-		expires    max;
-		add_header Cache-Control public;
-	}
 }
-
