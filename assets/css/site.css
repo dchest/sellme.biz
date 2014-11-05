@@ -263,6 +263,6 @@ a.bitcoin-link {
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   a.bitcoin-link {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
