@@ -13,7 +13,6 @@
   <link href="{{asset "global-css"}}" rel="stylesheet" type="text/css">
 </head>
 <body>
-{{include "analytics.html"}}
 <div class="container">
 <div id="header">
   <h1><a href="/">{{.Site.Name}}</a>{{with .Site.Properties.tagline}} <span class="tagline">{{.}}</span>{{end}}</h1>
@@ -29,18 +28,6 @@
   </ul>
 </div><!-- /footer -->
 </div>
-<script src="{{asset "libs-js"}}"></script>
-<script>
-  $(function() {
-    $('a[data-toggle="tooltip"]').tooltip();
-    $('a[data-toggle="popover"]').popover();
-  });
-
-  function permalinkFocusHandler(that) {
-    window.setTimeout(function() {
-     $(that).select();
-    }, 100);
-  }
-</script>
+<script src="{{asset "global-js"}}"></script>
 </body>
 </html>
