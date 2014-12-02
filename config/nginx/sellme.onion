@@ -29,6 +29,20 @@ server {
 
 	# Redirect feed.
 	rewrite ^/feed/?$ $scheme://$host/atom.xml redirect;
+	
+	#
+	# Security
+	# -------
+	#
+
+	# Additional headers need to be cloned to every `location` below,
+	# because nginx won't inherit it from `server`, which is kinda stupid.
+
+	# Allow scripts only from self.
+	add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+
+	# Disable framing from other origins.
+	add_header X-Frame-Options "SAMEORIGIN";
 
 	#
 	# Optimizations
@@ -41,23 +55,31 @@ server {
 	# Images expire in 30 days.
 	location ~* \.(?:ico|gif|jpe?g|png)$ {
 		expires	   30d;
+		add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
 	}
 
 	# Pages expire in 1 hour.
 	location ~* \.(?:xml|txt|html|htm)$ {
 		expires	   1h;
+		add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
 	}
 
 	# Assets and fonts never expire.
 	location /assets {
 		expires    max;
+		add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
 	}
 
 	location /fonts {
 		expires    max;
+		add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
 	}
 
