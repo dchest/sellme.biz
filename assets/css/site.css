@@ -181,6 +181,10 @@ label {
   margin-right: 16px;
 }
 
+.blog-post-date a {
+  cursor: pointer;
+}
+
 .permalink-popover {
   font-family: "PT Sans", sans-serif;
   font-size: 14px;
