@@ -7,7 +7,7 @@ server {
 	server_name	sellmefmabkgispl.onion;
 	server_tokens	off;
 	root		/var/www/sellme.biz;
-	
+
 	# Turn off access logging for privacy.
 	access_log	off;
 
@@ -29,7 +29,7 @@ server {
 
 	# Redirect feed.
 	rewrite ^/feed/?$ $scheme://$host/atom.xml redirect;
-	
+
 	#
 	# Security
 	# -------
@@ -39,7 +39,7 @@ server {
 	# because nginx won't inherit it from `server`, which is kinda stupid.
 
 	# Allow scripts only from self.
-	add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+	add_header Content-Security-Policy "script-src 'self'";
 
 	# Disable framing from other origins.
 	add_header X-Frame-Options "SAMEORIGIN";
@@ -55,7 +55,7 @@ server {
 	# Images expire in 30 days.
 	location ~* \.(?:ico|gif|jpe?g|png)$ {
 		expires	   30d;
-		add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+		add_header Content-Security-Policy "script-src 'self'";
 		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
 	}
@@ -63,7 +63,7 @@ server {
 	# Pages expire in 1 hour.
 	location ~* \.(?:xml|txt|html|htm)$ {
 		expires	   1h;
-		add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+		add_header Content-Security-Policy "script-src 'self'";
 		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
 	}
@@ -71,17 +71,20 @@ server {
 	# Assets and fonts never expire.
 	location /assets {
 		expires    max;
-		add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+		add_header Content-Security-Policy "script-src 'self'";
 		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
 	}
 
 	location /fonts {
 		expires    max;
-		add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'";
+		add_header Content-Security-Policy "script-src 'self'";
 		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
 	}
+
+	# No Google Analytics for .onion, so return empty.js.
+	rewrite ^/maybe-google-analytics.js$ /empty.js;
 
 	#
 	# Cool URIs Don't Change.
