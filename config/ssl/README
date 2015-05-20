@@ -1,5 +1,5 @@
-oakley-group-14.pem 
- 2048-bit DH parameters from RFC-3526.
+sellme.biz-dh-params.pem
+ Custom randomly generated 2048-bit DH group.
 
 sellme.biz.crt
  Combined certificates for use with nginx:
