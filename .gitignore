@@ -2,3 +2,4 @@ out/**
 rsync.sh
 **/.directory
 **/.DS_Store
+drafts
