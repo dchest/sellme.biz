@@ -5,7 +5,7 @@
 
 server {
 	listen 	80;
-	server_name	sellme.ru;
+	server_name	sellme.ru www.sellme.ru;
 	server_tokens	off;
 
 	# Turn off access logging for privacy.
