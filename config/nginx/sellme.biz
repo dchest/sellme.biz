@@ -39,7 +39,7 @@ server {
 	# because nginx won't inherit it from `server`, which is kinda stupid.
 
 	# Add HSTS header.
-	add_header Strict-Transport-Security max-age=15768000; # 6 months
+	add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"; # 6 month
 
 	# Allow scripts only from self and Google Analytics.
 	add_header Content-Security-Policy "script-src 'self' www.google-analytics.com";
@@ -131,7 +131,7 @@ server {
 	# Images expire in 30 days.
 	location ~* \.(?:ico|gif|jpe?g|png)$ {
 		expires	   30d;
-		add_header Strict-Transport-Security max-age=15768000; # 6 months
+		add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"; # 6 month
 		add_header Content-Security-Policy "script-src 'self' www.google-analytics.com";
 		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
@@ -140,7 +140,7 @@ server {
 	# Pages expire in 1 hour.
 	location ~* \.(?:xml|txt|html|htm)$ {
 		expires	   1h;
-		add_header Strict-Transport-Security max-age=15768000; # 6 months
+		add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"; # 6 month
 		add_header Content-Security-Policy "script-src 'self' www.google-analytics.com";
 		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
@@ -149,7 +149,7 @@ server {
 	# Assets and fonts never expire.
 	location /assets {
 		expires    max;
-		add_header Strict-Transport-Security max-age=15768000; # 6 months
+		add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"; # 6 month
 		add_header Content-Security-Policy "script-src 'self' www.google-analytics.com";
 		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
@@ -157,7 +157,7 @@ server {
 
 	location /fonts {
 		expires    max;
-		add_header Strict-Transport-Security max-age=15768000; # 6 months
+		add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"; # 6 month
 		add_header Content-Security-Policy "script-src 'self' www.google-analytics.com";
 		add_header X-Frame-Options "SAMEORIGIN";
 		add_header Cache-Control public;
@@ -165,7 +165,7 @@ server {
 
 	# Redirect to Google Analytics.
 	location /maybe-google-analytics.js {
-		add_header Strict-Transport-Security max-age=15768000; # 6 months
+		add_header Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"; # 6 month
 		add_header Content-Security-Policy "script-src 'self' www.google-analytics.com";
 		add_header X-Frame-Options "SAMEORIGIN";
 		return 301 https://www.google-analytics.com/analytics.js;
