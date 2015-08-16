@@ -2,10 +2,19 @@
 #  Config for sellme.biz
 #
 
+# Redirect all HTTP to https://sellme.biz
 server {
-	listen		80;
+    listen 80;
+    server_name sellme.biz www.sellme.biz;
+		server_tokens	off;
+		access_log	off;
+
+    return 301 https://sellme.biz$request_uri;
+}
+
+server {
 	listen		443 ssl;
-	server_name	sellme.biz sellme.dev;
+	server_name	sellme.biz www.sellme.biz;
 	server_tokens	off;
 	root            /var/www/sellme.biz;
 
@@ -58,19 +67,6 @@ server {
 		rewrite ^/wp-atom.php$	http://feeds.feedburner.com/SellMe redirect;
 		rewrite ^/category/podcasts/feed/?(.*)$ http://feeds.feedburner.com/SellMe redirect;
 	}
-
-	# Redirect to HTTPS everyone except for bots that can't HTTPS.
-	if ($scheme = "http") {  # XXX alternative ($server_port = 80)
-		set $redir_to_https "yes";
-	}
-	#if ($http_user_agent ~* (FeedBurner|YandexBot|bingbot)) {
-	if ($http_user_agent ~* (FeedBurner)) {
-		set $redir_to_https "no";
-	}
-	if ($redir_to_https = "yes") {
-		return 301 https://$host$request_uri;
-	}
-	# ... the rest of config ...
 
 	#
 	# Block Russian Government's related networks.
