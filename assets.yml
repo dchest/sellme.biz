@@ -19,9 +19,8 @@
     - $site-css
   outname: /assets/global.:hash.css
 
-- name: global-js
+- name: analytics-js
   files:
     - assets/js/google-analytics.js
   separator: "\n"
-  filter: jsmin
-  outname: /assets/global.:hash.js
+  outname: /assets/analytics.:hash.js
