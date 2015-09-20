@@ -3,6 +3,7 @@
   files:
     - assets/css/bootstrap.min.css
     - assets/css/font-awesome.min.css
+    - assets/css/hint.min.css
   outname: $
 
 - name: site-css
@@ -18,23 +19,9 @@
     - $site-css
   outname: /assets/global.:hash.css
 
-- name: libs-js
-  files:
-    - assets/js/jquery.min.js
-    - assets/js/bootstrap.min.js
-  separator: "\n"
-  outname: $
-
-- name: site-js
-  files:
-    - assets/js/site.js
-    - assets/js/google-analytics.js
-  filter: jsmin
-  outname: $
-
 - name: global-js
   files:
-    - $libs-js
-    - $site-js
+    - assets/js/google-analytics.js
   separator: "\n"
+  filter: jsmin
   outname: /assets/global.:hash.js

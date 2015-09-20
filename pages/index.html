@@ -16,12 +16,7 @@ description: Блог Дмитрия Честных о бизнесе, марк�
   <div class="blog-post-meta">
     <div class="blog-post-date">
       <i class="fa fa-calendar"></i>
-      <a
-         data-container="body" data-toggle="popover" data-placement="right" data-html="true"
-                                                                            data-content="<div class='permalink-popover'><label>Ссылка на пост (<a href='{{.Meta.url}}'>открыть</a>):<br><input type='text' class='permalink-input form-control' size=250 value='{{$.Site.URL}}{{.Meta.url}}'></label></div>"
-                                                                            >
-                                                                            {{.Date.Format "02.01.2006"}}
-      </a>
+      <a href="{{.Meta.url}}">{{.Date.Format "02.01.2006"}}</a>
     </div>
     <ul class="list-inline list-share">
       <li><a href="https://www.facebook.com/sharer/sharer.php?u={{$.Site.URL}}{{.Meta.url}}"  target="_blank" class="btn-share-facebook"><i class="fa fa-facebook-official"></i></a></li>
