@@ -2,7 +2,6 @@
 - name: libs-css
   files:
     - assets/css/bootstrap.min.css
-    - assets/css/social-likes_flat.css
     - assets/css/font-awesome.min.css
   outname: $
 
@@ -23,7 +22,6 @@
   files:
     - assets/js/jquery.min.js
     - assets/js/bootstrap.min.js
-    - assets/js/social-likes.min.js
   separator: "\n"
   outname: $
 

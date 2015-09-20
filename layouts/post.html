@@ -10,10 +10,10 @@ layout: blog
 
   <div class="blog-post-meta">
     <div class="blog-post-date"><i class="fa fa-calendar"></i> {{.Page.date.Format "02.01.2006"}}</div>
-    <div class="social-likes social-likes_light" data-counters="no">
-      <div class="facebook" title="Поделиться ссылкой на Фейсбуке"></div>
-      <div class="twitter" data-via="sellmebiz" title="Поделиться ссылкой в Твиттере"></div>
-      <div class="vkontakte" title="Поделиться ссылкой во Вконтакте"></div>
-    </div>
+    <ul class="list-inline list-share">
+      <li><a href="https://www.facebook.com/sharer/sharer.php?u={{$.Site.URL}}{{.Page.url}}"  target="_blank" class="btn-share-facebook"><i class="fa fa-facebook-official"></i></a></li>
+      <li><a href="https://twitter.com/intent/tweet?url={{$.Site.URL}}{{.Page.url}}&amp;text={{.Page.title | urlquery}}&amp;via=sellmebiz" target="_blank" class="btn-share-twitter"><i class="fa fa-twitter"></i></a></li>
+      <li><a href="https://vk.com/share.php?url={{$.Site.URL}}{{.Page.url}}&amp;title={{.Page.title | urlquery}}" target="_blank" class="btn-share-vk"><i class="fa fa-vk"></i></a></li>
+    </ul>
   </div>
 </div>

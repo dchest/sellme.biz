@@ -17,22 +17,17 @@ description: Блог Дмитрия Честных о бизнесе, марк�
     <div class="blog-post-date">
       <i class="fa fa-calendar"></i>
       <a
-        data-container="body" data-toggle="popover" data-placement="right" data-html="true"
-        data-content="<div class='permalink-popover'><label>Ссылка на пост (<a href='{{.Meta.url}}'>открыть</a>):<br><input type='text' class='permalink-input form-control' size=250 value='{{$.Site.URL}}{{.Meta.url}}'></label></div>"
-       >
-        {{.Date.Format "02.01.2006"}}
+         data-container="body" data-toggle="popover" data-placement="right" data-html="true"
+                                                                            data-content="<div class='permalink-popover'><label>Ссылка на пост (<a href='{{.Meta.url}}'>открыть</a>):<br><input type='text' class='permalink-input form-control' size=250 value='{{$.Site.URL}}{{.Meta.url}}'></label></div>"
+                                                                            >
+                                                                            {{.Date.Format "02.01.2006"}}
       </a>
-      </div>
-      <div
-        class="social-likes social-likes_light"
-        data-counters="no"
-        data-url="{{$.Site.URL}}{{.Meta.url}}"
-        data-title="{{.Meta.title}}"
-      >
-      <div class="facebook" title="Поделиться ссылкой на Фейсбуке"></div>
-      <div class="twitter" data-via="sellmebiz" title="Поделиться ссылкой в Твиттере"></div>
-      <div class="vkontakte" title="Поделиться ссылкой во Вконтакте"></div>
     </div>
+    <ul class="list-inline list-share">
+      <li><a href="https://www.facebook.com/sharer/sharer.php?u={{$.Site.URL}}{{.Meta.url}}"  target="_blank" class="btn-share-facebook"><i class="fa fa-facebook-official"></i></a></li>
+      <li><a href="https://twitter.com/intent/tweet?url={{$.Site.URL}}{{.Meta.url}}&amp;text={{.Meta.title | urlquery}}&amp;via=sellmebiz" target="_blank" class="btn-share-twitter"><i class="fa fa-twitter"></i></a></li>
+      <li><a href="https://vk.com/share.php?url={{$.Site.URL}}{{.Meta.url}}&amp;title={{.Meta.title | urlquery}}" target="_blank" class="btn-share-vk"><i class="fa fa-vk"></i></a></li>
+    </ul>
   </div>
 </div>
 {{end}}

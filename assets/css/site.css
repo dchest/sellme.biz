@@ -270,3 +270,23 @@ a.bitcoin-link {
     font-size: 12px;
   }
 }
+
+.list-share {
+  display: inline-block;
+}
+
+.list-share > li {
+  padding: 0 10px 0 0;
+}
+
+a.btn-share-facebook {
+  color: #3d5b95;
+}
+
+a.btn-share-twitter {
+  color: #24aadd;
+}
+
+a.btn-share-vk {
+  color: #587d9f;
+}
