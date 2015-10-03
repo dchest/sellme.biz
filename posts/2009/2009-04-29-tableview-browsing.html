@@ -9,10 +9,14 @@ title: "Плавное пролистывание списков"
 <p>Ситуация кажется простой &#8212; по нажатию клавиш &#8220;вниз&#8221; и &#8220;вверх&#8221; выделение в списке меняется и загружается какой-то контент, связанный с пунктом. Например, список писем в почтовом ящике. Нажимаем &#8220;вниз&#8221;, получаем следующее письмо. Проблема в том, что при неправильной реализации (или по недосмотру), если загрузка контента занимает много времени, мы лишаем пользователя возможности быстро и плавно листать список: в случае, если контент загружается в том же треде, в котором происходит выделение в списке, загрузка контента блокирует выделение следующего пункта.</p>
 <p>Если в Finder включить Quick Look и пролистать некэшированную папку со множеством &#8220;тяжелых&#8221; (для Quick Look) файлов, листание будет тормозить, пока превьюшки не будут кэшированы.</p>
 <p>То же самое в iTunes, если включить показ обложки для выбранной песни.</p>
-<p><object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/iy0JAk5xky0&hl=en&fs=1&rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/iy0JAk5xky0&hl=en&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object></p>
+
+<iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/iy0JAk5xky0?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+
 <p><em>Сравните скорость листания с выключенным показом обложки и с включенным. На скринкасте это менее заметно, чем на самом деле &#8212; при листании во втором случае такое чувство, что к клавишам добавили жесткости нажатия.</em></p>
 <p>В Mail листание происходит по нажатию клавиши, а загрузка контента &#8211; по ее отпусканию. Если вы нажимаете клавишу со стрелкой, то пока ее держите, список листается. Отпускаете клавишу &#8212; выбранное письмо показывается. Таким образом, прокрутка всегда происходит быстро и плавно.</p>
-<p><object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/QYquZuxE6Ac&hl=en&fs=1&rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/QYquZuxE6Ac&hl=en&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object></p>
+
+<iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/QYquZuxE6Ac?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+
 <p>Это один из способов решения проблемы, и пожалуй, самый лучший, если его немного доработать: если выделение останавливается в начале списка или в конце, загрузка контента должна происходить сразу, а не по отпусканию клавиши. Иначе, пока вы держите кнопку, выделение будет стоять на одном пункте, а загружен будет другой.</p>
 <p>Я попробовал реализовать такой способ, но так как я использую NSTableView с bindings, назначение выделенного пункта и отдача этого значения контроллеру происходит где-то глубоко внутри таблицы, поэтому задача оказалась непростой.</p>
 <p>Но есть другой способ.</p>
