@@ -4,11 +4,12 @@
     - assets/css/bootstrap.min.css
     - assets/css/font-awesome.min.css
     - assets/css/hint.min.css
+    - assets/css/ptsans.css
+    - assets/css/ptserif.css
   outname: $
 
 - name: site-css
   files:
-    - assets/css/pt-fonts.css
     - assets/css/site.css
   filter: cssmin
   outname: $

@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local("PT Sans Italic"), 
+    local("PTSans-Italic"), 
+    url("/fonts/ptsans/ptsans-921d73aaec07d1c433e82dfd285cdf0ce18ea82d.woff2") format("woff2"), 
+    url("/fonts/ptsans/ptsans-e5e3be3f34036c7dae6a92c42b70a6db6ec1f64e.woff") format("woff"), 
+    url("/fonts/ptsans/ptsans-8b4fd5f31888c8977eb220342feb1aaa413b44db.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local("PT Sans Bold Italic"), 
+    local("PTSans-BoldItalic"), 
+    url("/fonts/ptsans/ptsans-89a16ae11fa7bed4c6593101336b57ca7ef86bb3.woff2") format("woff2"), 
+    url("/fonts/ptsans/ptsans-e46264ab4472346a661aeb184bc9ed483f7d16e9.woff") format("woff"), 
+    url("/fonts/ptsans/ptsans-7ddad99e24cd25113eb7d983593d7271b3aaa830.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  /* IE6-8 compat */
+  src: url("/fonts/ptsans/ptsans-3b362bb9fba287d01e1a7d9e2d8f5b8d761b9dbe.eot");
+  src: local("PT Sans"), 
+    local("PTSans-Regular"), 
+    url("/fonts/ptsans/ptsans-47687283652d0d7f9e2660a578294afcfe424cc8.woff2") format("woff2"), 
+    url("/fonts/ptsans/ptsans-42a4251adde4328a7ca56817d5a6e0d913eb2b3f.woff") format("woff"), 
+    url("/fonts/ptsans/ptsans-e5c9edd55fa48c5700a1376be865e7b084a2509a.svg#PTSans") format("svg"), 
+    url("/fonts/ptsans/ptsans-3b362bb9fba287d01e1a7d9e2d8f5b8d761b9dbe.eot") format("embedded-opentype"), 
+    url("/fonts/ptsans/ptsans-c1b0c2eb928da32e93a56e9e8a9f061296225c78.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("PT Sans Bold"), 
+    local("PTSans-Bold"), 
+    url("/fonts/ptsans/ptsans-6870ac8af04f0f5b76ee55c7bed75d846fa7c264.woff2") format("woff2"), 
+    url("/fonts/ptsans/ptsans-f34268287e0287913593f5246e8c337489db471e.woff") format("woff"), 
+    url("/fonts/ptsans/ptsans-79c230510917098358feefab36eab6e861c833e5.ttf") format("truetype");
+}
+
