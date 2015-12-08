@@ -19,9 +19,3 @@
     - $libs-css
     - $site-css
   outname: /assets/global.:hash.css
-
-- name: analytics-js
-  files:
-    - assets/js/google-analytics.js
-  separator: "\n"
-  outname: /assets/analytics.:hash.js
