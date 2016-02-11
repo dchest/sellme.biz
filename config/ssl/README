@@ -1,8 +1,2 @@
-oakley-group-14.pem 
+oakley-group-14.pem
  2048-bit DH parameters from RFC-3526.
-
-sellme.biz.crt
- Combined certificates for use with nginx:
- - www.sellme.biz
- - COMODO RSA Domain Validation Secure Server CA
- - COMODO RSA Certification Authority
