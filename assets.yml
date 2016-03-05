@@ -8,8 +8,6 @@
 
 - name: site-css
   files:
-    - assets/css/ptsans.css
-    - assets/css/ptserif.css
     - assets/css/site.css
   filter: cssmin
   outname: $

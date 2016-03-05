@@ -1,11 +1,11 @@
 body {
-  font-family: "PT Serif", serif;
+  font-family: "Georgia", "PT Serif", "Times New Roman", serif;
   font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6,
 #footer, #header {
-  font-family: "PT Sans", sans-serif;
+  font-family: "Trebuchet MS", "PT Sans", sans-serif;
 }
 
 a:link,
@@ -14,7 +14,7 @@ a:visited {
 }
 
 a.btn {
-  font-family: "PT Sans", sans-serif;
+  font-family: "Trebuchet MS", "PT Sans", sans-serif;
   color: #fff;
 }
 
@@ -36,7 +36,7 @@ blockquote {
 /* Blog */
 
 #header h1 {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: bold;
 }
 
@@ -68,7 +68,8 @@ blockquote {
 /* Sidebar */
 
 .blog-sidebar {
-  font-family: "PT Sans", sans-serif;
+  font-family: "Trebuchet MS", "PT Sans", sans-serif;
+  font-size: 15px;
   background-color: #eee;
   padding: 10px;
   border-radius: 10px;
@@ -86,7 +87,7 @@ blockquote {
 
 @media (max-width: 992px) {
   .blog-sidebar {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 
@@ -145,7 +146,7 @@ label {
 }
 
 .blog-post-title {
-  font-size: 38px;
+  font-size: 36px;
   font-weight: bold;
 }
 
@@ -165,12 +166,12 @@ label {
 }
 
 .blog-post-content form {
-  font-family: "PT Sans", sans-serif;
+  font-family: "Trebuchet MS", "PT Sans", sans-serif;
 }
 
 .blog-post-meta {
-  font-family: "PT Sans", sans-serif;
-  font-size: 14px;
+  font-family: "Trebuchet MS", "PT Sans", sans-serif;
+  font-size: 13px;
   color: #999;
 }
 
@@ -183,12 +184,6 @@ label {
 
 .blog-post-date a {
   cursor: pointer;
-}
-
-.permalink-popover {
-  font-family: "PT Sans", sans-serif;
-  font-size: 14px;
-  color: #999;
 }
 
 .blog-post-date a {
