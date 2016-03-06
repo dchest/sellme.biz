@@ -2,11 +2,11 @@
 - name: libs-css
   files:
     - assets/css/bootstrap.min.css
-    - assets/css/hint.min.css
   outname: $
 
 - name: site-css
   files:
+    - assets/css/hint-stripped.css
     - assets/css/site.css
   filter: cssmin
   outname: $
