@@ -177,7 +177,7 @@ body, textarea, input, select {
 }
 
 .container {
-  margin: 0 20px;
+  margin: 0 15px;
   width: auto;
 }
 
@@ -238,7 +238,7 @@ label>* {
 
 .row {
   margin: 1% 0;
-  overflow: auto;
+  /*overflow: auto;*/
 }
 
 .col {
