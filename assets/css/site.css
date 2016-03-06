@@ -165,6 +165,7 @@ label {
 .blog-post-title {
   font-size: 36px;
   font-weight: bold;
+  letter-spacing: -0.5px;
 }
 
 .blog-post-title > a:link,
