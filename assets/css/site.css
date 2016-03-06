@@ -120,6 +120,22 @@ label {
 
 .twitter-color {
   color: #55acee;
+  fill: #55acee;
+}
+
+.facebook-color {
+  color: #3d5b95;
+  fill: #3d5b95;
+}
+
+.vk-color {
+  color: #587d9f;
+  fill: #587d9f;
+}
+
+.rss-color {
+  color: #4374e0;
+  fill: #4374e0;
 }
 
 .fa-ul-nospace {
@@ -128,6 +144,7 @@ label {
 
 .bitcoin-color {
   color: #f0ad4e;
+  fill: #f0ad4e;
 }
 
 .usd-color {
@@ -272,16 +289,4 @@ a.bitcoin-link {
 
 .list-share > li {
   padding: 0 10px 0 0;
-}
-
-a.btn-share-facebook {
-  color: #3d5b95;
-}
-
-a.btn-share-twitter {
-  color: #24aadd;
-}
-
-a.btn-share-vk {
-  color: #587d9f;
 }
