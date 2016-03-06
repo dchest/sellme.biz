@@ -5,5 +5,4 @@
     - assets/css/hint-stripped.css
     - assets/css/site.css
   filter: cssmin
-  outname: $
-  # outname: /assets/global.:hash.css
+  outname: /assets/global.:hash.css
