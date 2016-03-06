@@ -76,7 +76,7 @@ blockquote {
   padding-bottom: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 749px) {
   .blog-sidebar {
     border-radius: 0;
     padding-bottom: 6px;
