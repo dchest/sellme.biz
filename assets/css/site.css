@@ -71,16 +71,12 @@ blockquote {
   font-family: "Trebuchet MS", "PT Sans", sans-serif;
   font-size: 15px;
   padding: 10px;
-  border-radius: 10px;
   padding-bottom: 0;
 }
 
 @media (max-width: 749px) {
   .blog-sidebar {
-    border-radius: 0;
-    padding-bottom: 6px;
     padding-top: 20px;
-    margin-top: 40px;
   }
 }
 
@@ -158,6 +154,12 @@ label {
 .blog-post {
   margin-top: 30px;
   margin-bottom: 60px;
+}
+
+@media (max-width: 749px) {
+  .blog-post {
+    margin-bottom: 30px;
+  }
 }
 
 .blog-post-title {
