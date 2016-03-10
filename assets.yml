@@ -1,18 +1,8 @@
 ---
-- name: libs-css
+- name: global-css
   files:
-    - assets/css/bootstrap.min.css
-  outname: $
-
-- name: site-css
-  files:
+    - assets/css/mine.css
     - assets/css/hint-stripped.css
     - assets/css/site.css
   filter: cssmin
-  outname: $
-
-- name: global-css
-  files:
-    - $libs-css
-    - $site-css
   outname: /assets/global.:hash.css
