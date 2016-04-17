@@ -350,7 +350,8 @@ label {
   text-decoration: underline;
 }
 
-.blog-post-content a:visited {
+.blog-post-content a:visited,
+.archive a:visited {
   color: #4D00AC;
 }
 
