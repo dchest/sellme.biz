@@ -3,6 +3,7 @@
   files:
     - assets/css/mine.css
     - assets/css/hint-stripped.css
+    - assets/css/clearsans.css
     - assets/css/site.css
   filter: cssmin
   outname: /assets/global.:hash.css
