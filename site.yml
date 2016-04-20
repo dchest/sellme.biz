@@ -7,6 +7,9 @@ url: https://sellme.biz
 filters:
   .html: [htmlmin, scripts, styles]
 
+markup:
+  markdown_angled_quotes: true
+
 properties:
   tagline: "блог о бизнесе и маркетинге своими силами"
   onion: http://sellmefmabkgispl.onion
