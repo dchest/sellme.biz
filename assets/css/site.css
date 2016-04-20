@@ -230,6 +230,7 @@ blockquote {
   font-size: 15px;
   padding: 10px;
   padding-bottom: 0;
+  color: #444;
 }
 
 @media (max-width: 749px) {
@@ -261,6 +262,10 @@ blockquote {
   .blog-sidebar .list-group-item {
     border-color: #eee;
   }
+
+.blog-post-list li + li {
+  margin-bottom: 5px;
+}
 
 .panel-projects .list-group-item-text {
   color: #aaa;
