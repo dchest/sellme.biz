@@ -12,22 +12,42 @@
   <link rel="shortcut icon" href="/favicon.ico?v=1" />
   <title>{{with .Page.seo_title}}{{.}}{{else}}{{.Page.title}} - {{.Site.Name}}{{if .Page.is_post}}{{end}}{{end}}</title>
   <link rel="stylesheet" type="text/css" href="{{asset "global-css"}}">
-  </style>
 </head>
 <body>
 <div class="container">
 <div id="header">
-  <h1><a href="/">{{.Site.Name}}</a>{{with .Site.Properties.tagline}} <span class="tagline">{{.}}</span>{{end}}</h1>
+  <h1><a href="/">{{.Site.Name}}</a></h1>
+  <a href="/about.html">Кто автор?</a> &#183;
+  <a href="/archive/">Архив</a>  &#183;
+  <a href="/feed/">RSS</a> &#183;
+  <a href="{{.Site.Properties.urls.twitter}}">Твиттер</a> &#183;
+  <a href="https://feedburner.google.com/fb/a/mailverify?uri=SellMe&amp;loc=ru_RU">Подписаться</a>
 </div>
 
 {{.Content }}
 
 <div id="footer">
-  <ul class="list-inline">
-    <li>&copy; 2005-{{.Site.Date.Format "2006"}} <a rel="author" href="/about.html">{{.Site.Author}}</a>.</li>
-    <li><a href="/terms.html">Условия и лицензия</a></li>
-    <li><a href="https://github.com/dchest/sellme.biz">Исходники</a></li>
-  </ul>
+
+&copy; 2005-{{.Site.Date.Format "2006"}} <a rel="author" href="/about.html">{{.Site.Author}}</a>  &#183;
+<a href="/terms.html">Условия и лицензия</a>  &#183;
+<a href="https://github.com/dchest/sellme.biz">Исходники</a>
+
+<br>
+
+Мои другие проекты:
+
+<a href="https://www.codingrobots.com/memoires/?utm_source=Sellme.biz&utm_medium=sidebar_link&utm_campaign=Sellme.biz">Mémoires</a> &#183;
+
+<a href="https://www.codingrobots.com/videomemoires/?utm_source=Sellme.biz&utm_medium=sidebar_link&utm_campaign=Sellme.biz">Video Mémoires</a> &#183;
+
+<a href="https://github.com/dchest">github.com/dchest</a>
+
+<br>
+
+Адрес сайта в <a href="https://ru.wikipedia.org/wiki/Tor">Торе</a>:
+<span class="tor-link">sellmefmabkgispl.onion</span>
+
+
 </div><!-- /footer -->
 </div>
 </body>
