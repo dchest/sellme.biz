@@ -22,11 +22,8 @@ a:hover {
   text-decoration: underline;
 }
 
-a.btn {
-  font-family: "Clear Sans", "Helvetica Neue", Arial, Helvetica, serif;
-}
-
 code {
+  font: 14px Consolas, "Liberation Mono", Menlo, Courier, monospace;
   color: #555;
   background-color: transparent;
   padding: 0;
