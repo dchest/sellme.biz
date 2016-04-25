@@ -85,48 +85,12 @@ blockquote {
   fill: #587d9f;
 }
 
-.rss-color {
-  color: #4374e0;
-  fill: #4374e0;
-}
-
-.fa-ul-nospace {
-  margin-left: 1.4em;
-}
-
-.bitcoin-color {
-  color: #f0ad4e;
-  fill: #f0ad4e;
-}
-
-.usd-color {
-  color: #85bb65;
-}
-
-.info-color {
-  color: #999;
-}
-
-.avatar {
-  float: right;
-}
-
-.avatar img {
-  border-radius: 50%;
-}
-
 /* Posts */
 
 .blog-post {
   margin-top: 0;
   margin-bottom: 30px;
   margin-right: 30px;
-}
-
-@media (max-width: 749px) {
-  .blog-post {
-    margin-bottom: 30px;
-  }
 }
 
 .blog-post-title {
