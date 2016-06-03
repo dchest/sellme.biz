@@ -68,23 +68,6 @@ blockquote {
   clear: both;
 }
 
-/* Sidebar */
-
-.twitter-color {
-  color: #55acee;
-  fill: #55acee;
-}
-
-.facebook-color {
-  color: #3d5b95;
-  fill: #3d5b95;
-}
-
-.vk-color {
-  color: #587d9f;
-  fill: #587d9f;
-}
-
 /* Posts */
 
 .blog-post {
@@ -130,13 +113,11 @@ blockquote {
 .blog-post-meta {
   font-size: 14px;
   color: #999;
+  margin-top: 0;
 }
 
 .blog-post-date {
   display: inline-block;
-  line-height: 1;
-  margin-right: 16px;
-  vertical-align: text-bottom;
 }
 
 .blog-post-date a {
@@ -215,15 +196,6 @@ blockquote {
   display: inline-block;
   padding-right: 5px;
   padding-left: 5px;
-}
-
-.list-share {
-  display: inline-block;
-  margin: 0;
-}
-
-.list-share > li {
-  padding: 0 5px 0 0;
 }
 
 hr {
