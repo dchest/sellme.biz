@@ -63,9 +63,11 @@ DirectoryIndex index.html index.htm
 # 404 error
 ErrorDocument 404 /404.html
 
+RewriteEngine On
+
 # RSS Feed: redirect to FeedBurner.
 # Must come before HTTPS redirection, since a lot of feed readers
-# unfortnately can't handle TLS :-(
+# unfortunately can't handle TLS :-(
 RewriteRule ^rss\/?$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteRule ^rss\/?(.*)/?$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteCond %{HTTP_USER_AGENT} !FeedBurner
@@ -74,14 +76,18 @@ RewriteRule ^category\/podcasts\/feed\/?(.*)$ http://feeds.feedburner.com/SellMe
 RewriteRule ^wp-rss2.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteRule ^wp-atom.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 
-# Redirect http to https everyone
-# except for FeedBurner, as it can't handle our HTTPS.
-RewriteEngine On
+# Redirect all HTTP to HTTPS
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_USER_AGENT} !FeedBurner
-RewriteCond %{HTTP_USER_AGENT} !YandexBot
-RewriteCond %{HTTP_USER_AGENT} !bingbot
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R]
+RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
+
+# HSTS preload for 6 months
+Header always set Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
+
+# Security headers
+Header always set Content-Security-Policy "script-src 'none'"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-XSS-Protection "1; mode=block"
+Header always set X-Content-Type-Options "nosniff"
 
 # Redirect sellme.ru to sellme.biz
 # (NOTE: redirection is turned off, because it's set in hoster's admin panel).
@@ -89,24 +95,16 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R]
 #RewriteCond %{HTTP_HOST}   !^$
 #RewriteRule ^/(.*)         https://sellme.biz/$1 [L,R]
 
-SSLCipherSuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:ECDHE-RSA-RC4-SHA:ECDHE-ECDSA-RC4-SHA:AES128:AES256:RC4-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!3DES:!MD5:!PSK
-
-
 #
-#  Rewrites and redirects
-#  ----------------------
+# Cool URIs Don't Change.
+# (But when they change, we redirect.)
+# ------------------------------------
 #
 
-# Password page
-RedirectPermanent /p/ /password/password.html
-RedirectPermanent /p2/ /password2/password2.html
-RedirectPermanent /pi/ /password2/ios.html
-
-RewriteEngine on
-# Sellme runned on multiple CMS since 2005. We'd like to keep links working.
+# Sellme ran on multiple CMS since 2005. We'd like to keep links working.
 # WordPress
 RewriteRule ^([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(.+)?$ https://sellme.biz/$1/$2/$4.html [R=permanent,L]
-RewriteRule ^([0-9]{4})/([0-9]{1,2})/(.*)\_(.*)$ https://sellme.biz/$1/$2/$3-$4
+RewriteRule ^([0-9]{4})/([0-9]{1,2})/(.*)\_(.*)$ https://sellme.biz/$1/$2/$3-$4 [R=permanent,L]
 
 # Uploads.
 RewriteRule ^wp-content\/uploads\/(.*)$ https://sellme.biz/pics/$1 [R=permanent,L]
@@ -117,12 +115,46 @@ RedirectPermanent /articles/tableview-browsing.html /2009/04/tableview-browsing.
 RedirectPermanent /articles/ellipticlicense-preview.html /2009/03/ellipticlicense-preview.html
 RedirectPermanent /articles/mosso-cloud-servers.html /2009/03/mosso-cloud-servers.html
 RedirectPermanent /articles/change.html /2009/03/change.html
+
+# /article/
+RedirectPermanent /article/parallelnoe-zhulyo		https://sellme.biz/2007/09/parallelnoe-zhulyo.html
+RedirectPermanent /article/rugayu-sebya			https://sellme.biz/2007/09/rugayu-sebya.html
+RedirectPermanent /article/eshche-raz-posypayu-golovu-peplom	https://sellme.biz/2007/09/eshche-raz-posypayu-golovu-peplom.html
+RedirectPermanent /article/pro-proshloe-i-budushchee-sellmeru	https://sellme.biz/2007/10/pro-proshloe-i-budushchee-sellmeru.html
+RedirectPermanent /article/o-poleznosti-memoires	https://sellme.biz/2007/11/o-poleznosti-memoires.html
+RedirectPermanent /article/keln				https://sellme.biz/2007/08/keln.html
+RedirectPermanent /article/linus-torvalds-on-git		https://sellme.biz/2007/12/linus-torvalds-on-git.html
+RedirectPermanent /article/makedoniya			https://sellme.biz/2007/10/makedoniya.html
+RedirectPermanent /article/parallels-protiv-vmware-fusion	https://sellme.biz/2007/08/parallels-protiv-vmware-fusion.html
+RedirectPermanent /article/sankt-peterburg		https://sellme.biz/2007/06/sankt-peterburg.html
+RedirectPermanent /article/zametka-o-programme-translateit-dlya-mac	https://sellme.biz/2007/05/zametka-o-programme-translateit-dlya-mac.html
+
+# /post/
+RedirectPermanent /post/12	https://sellme.biz/2008/02/kak-ya-programmiroval-robota.html
+RedirectPermanent /post/15	https://sellme.biz/2008/03/kak-organizovyvat-fajly.html
+
+RedirectPermanent /productive_email/	https://sellme.biz/2005/03/kak-uvelichit-produktivnost-raboty-s-pochtoi.html
+RedirectPermanent /testimonials/ https://sellme.biz/2005/03/otzyvy-polzovatelei.html
+
 # Pages
 RedirectPermanent /about/ /about.html
+RedirectPermanent /archives/ /archive/
 RedirectPermanent /contacts/ /about.html
 RedirectPermanent /contacts.html /about.html
 
 # Removed posts
+RedirectPermanent /2005/07/kak-poluchit-inn-fizicheskomu-litsu.html http://nalog.ru
+
+# Password page. (Not recommended for use anymore).
+RedirectPermanent /p/ /password/password.html
+RedirectPermanent /p2/ /password2/password2.html
+RedirectPermanent /pi/ /password2/ios.html
+
+# Removed posts.
+#
+# Sometimes the information contained in posts becomes obsolete
+# and it's better addressed by some third-party website.
+#
 RedirectPermanent /2005/07/kak-poluchit-inn-fizicheskomu-litsu.html http://nalog.ru
 
 
@@ -131,29 +163,10 @@ RedirectPermanent /2005/07/kak-poluchit-inn-fizicheskomu-litsu.html http://nalog
 # -------------
 #
 
-# TODO: tighten.
-
 # Enable gzip compression
-SetOutputFilter DEFLATE 
+SetOutputFilter DEFLATE
 AddOutputFilterByType DEFLATE text/html text/plain text/xml text/javascript text/css application/x-javascript
 
-# For all browsers turn on html, css and javascript gzip compression 
-# For old browsers turn OFF all gzip compression 
-# For IE6 gzip html only 
-# Allow gzip compression for html, css, and javascript 
-AddOutputFilterByType DEFLATE text/html text/javascript text/css application/x-javascript 
-# Netscape 4.x has some problems... 
-BrowserMatch ^Mozilla/4 gzip-only-text/html 
-# Netscape 4.06-4.08 have some more problems 
-BrowserMatch ^Mozilla/4\.0[678] no-gzip 
-# MSIE masquerades as Mozilla, but it is fine 
-BrowserMatch \bMSIE\s7 !no-gzip !gzip-only-text/html 
-# Turn off gzip for images, pdf, zips and swfs 
-SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary 
-SetEnvIfNoCase Request_URI \.pdf$ no-gzip dont-vary 
-SetEnvIfNoCase Request_URI \.zip$ no-gzip dont-vary 
-SetEnvIfNoCase Request_URI \.swf$ no-gzip dont-vary 
- 
 # Set far future expiration
 ExpiresActive On
 ExpiresByType text/javascript "access plus 1 years"

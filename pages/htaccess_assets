@@ -4,4 +4,3 @@ permalink: /assets/.htaccess
 ---
 ExpiresActive On
 ExpiresDefault "access plus 1 year"
-
