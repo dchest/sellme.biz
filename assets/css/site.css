@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body, textarea, input, select {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
@@ -9,14 +14,14 @@ body, textarea, input, select {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 700px;
   margin: auto;
-  padding: 0 15px;
+  padding: 15px;
 }
 
 a:link,
 a:visited {
-  color: #004cac;
+  color: #0D47A1;
   text-decoration: none;
 }
 
@@ -25,7 +30,7 @@ a:hover {
 }
 
 code {
-  font: 14px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font: 13px Consolas, "Liberation Mono", Menlo, Courier, monospace;
   color: #555;
   background-color: transparent;
   padding: 0;
@@ -41,30 +46,53 @@ blockquote {
 
 /* Blog */
 
-#header {
-  margin-top: 20px;
+#header-wrapper {
+  border-bottom: 1px solid #eee;
 }
 
-#header h1 {
-  display: inline-block;
+header {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+  padding: 5px 15px;
+}
+
+header h1 {
   margin-right: 20px;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1;
   font-weight: bold;
+  display: block;
+  position: absolute;
+  margin-top: 9px;
 }
 
-#header h1 a:link,
-#header h1 a:visited {
-  color: #3E9600;
+header h1 a:link,
+header h1 a:visited {
   text-decoration: none;
+  border-bottom: 0;
 }
 
-#header a {
+header a:link,
+header a:visited {
+  color: #444;
   white-space: nowrap;
+  margin-right: 20px;
+}
+
+header ul {
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+  margin-left: 120px;
+}
+
+header ul > li {
+  display: inline-block;
 }
 
 
-#footer {
+footer {
   font-size: 14px;
   padding: 20px 0;
   clear: both;
@@ -72,15 +100,25 @@ blockquote {
 
 /* Posts */
 
+.blog-post-title,
+.blog-post-content,
+.page-header,
+.page-content {
+  font-family: "Charis SIL", Georgia, 'Times New Roman', Times, serif;
+  line-height: 1.4;
+}
+
 .blog-post {
   margin-top: 0;
   margin-bottom: 30px;
   margin-right: 30px;
 }
 
+.page-header,
 .blog-post-title {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: bold;
+  font-style: italic;
   letter-spacing: -0.5px;
   padding: 0;
   margin: 0;
@@ -104,7 +142,7 @@ blockquote {
 
 .blog-post-content a:visited,
 .archive a:visited {
-  color: #4D00AC;
+  color: #512DA8;
 }
 
 .blog-post-content img {
@@ -209,4 +247,12 @@ hr {
 
 address {
   font-style: normal;
+}
+
+a.rss {
+  padding: 2px 4px;
+  background: #FFE0B2;
+  color: #111;
+  border-radius: 3px;
+  font-size: 12px;
 }
