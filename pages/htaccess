@@ -76,12 +76,18 @@ RewriteRule ^category\/podcasts\/feed\/?(.*)$ http://feeds.feedburner.com/SellMe
 RewriteRule ^wp-rss2.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteRule ^wp-atom.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 
-# Redirect all HTTP to HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
-
 # HSTS preload for 6 months
 Header always set Strict-Transport-Security "max-age=15768000; includeSubDomains; preload"
+
+# Redirect all HTTP to HTTPS
+# (Must come before redirecting www to non-www as required by hstspreload.appspot.com)
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect www to non-www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.sellme\.biz [NC]
+RewriteRule ^(.*)$ https://sellme.biz/$1 [L,R=301]
 
 # Security headers
 Header always set Content-Security-Policy "script-src 'none'"
