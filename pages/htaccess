@@ -90,7 +90,7 @@ RewriteCond %{HTTP_HOST} ^www\.sellme\.biz [NC]
 RewriteRule ^(.*)$ https://sellme.biz/$1 [L,R=301]
 
 # Security headers
-Header always set Content-Security-Policy "script-src 'none'"
+Header always set Content-Security-Policy "script-src 'none'; upgrade-insecure-requests"
 Header always set X-Frame-Options "SAMEORIGIN"
 Header always set X-XSS-Protection "1; mode=block"
 Header always set X-Content-Type-Options "nosniff"
