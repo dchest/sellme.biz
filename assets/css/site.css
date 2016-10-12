@@ -24,7 +24,7 @@ a:hover {
 }
 
 code {
-  font: 13px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font: 13px Consolas, "Roboto Mono", "Liberation Mono", Menlo, "DejaVu Sans Mono", Courier, monospace;
   color: #555;
   background-color: transparent;
   padding: 0;
