@@ -1,24 +1,28 @@
 ---
 layout: blog
 ---
-<div class="blog-post">
-  <h2 class="blog-post-title">{{.Page.title}}</h2>
+<article class="post">
+	<header>
+		<h2 class="post-title">{{.Page.title}}</h2>
+	</header>
 
-  <div class="blog-post-content">
-  {{.Content}}
-  </div>
+	<div class="post-content">
+		{{.Content}}
+	</div>
 
-  <div class="blog-post-meta">
-    <div class="blog-post-date">
-      {{.Page.date.Format "02.01.2006"}}
-    </div>
-  </div>
-</div>
+	<footer class="post-meta">
+		<div class="post-date">
+			{{.Page.date.Format "02.01.2006"}}
+		</div>
+	</footer>
+</article>
 
-<h3>Три свежих поста:</h3>
-<ul >
-  {{range .Site.Posts.Limit 3}}
-  <li><a href="{{.Meta.url}}">{{.Meta.title}}</a></li>
-  {{end}}
-  <li><a href="/archive/"><b>Список всех постов</b></a></li>
-</ul>
+<aside>
+	<h3>Три свежих поста:</h3>
+	<ul>
+		{{range .Site.Posts.Limit 3}}
+		<li><a href="{{.Meta.url}}">{{.Meta.title}}</a></li>
+		{{end}}
+		<li><a href="/archive/"><b>Список всех постов</b></a></li>
+	</ul>
+</aside>

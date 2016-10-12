@@ -3,4 +3,4 @@
   files:
     - assets/css/site.css
   filter: cssmin
-  outname: /assets/global.:hash.css
+  outname: $

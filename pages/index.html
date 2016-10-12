@@ -6,19 +6,23 @@ description: Блог Дмитрия Честных о бизнесе, марк�
 ---
 
 {{range .Site.Posts.Limit 10}}
-<div class="blog-post">
-  <h2 class="blog-post-title"><a href="{{.Meta.url}}">{{.Meta.title}}</a></h2>
+<article class="post">
+  <header>
+    <h2 class="post-title"><a href="{{.Meta.url}}">{{.Meta.title}}</a></h2>
+  </header>
 
-  <div class="blog-post-content">
+  <div class="post-content">
     {{.Content}}
   </div>
 
-  <div class="blog-post-meta">
-    <div class="blog-post-date">
+  <footer class="post-meta">
+    <div class="post-date">
       <a href="{{.Meta.url}}">{{.Date.Format "02.01.2006"}}</a>
     </div>
-  </div>
-</div>
+  </footer>
+</article>
 {{end}}
 
-<div class="blog-footer"><a href="/archive/" class="btn btn-o">Все посты</a></div>
+<footer class="blog-footer">
+  <a href="/archive/" class="btn btn-o">Все посты</a>
+</footer>

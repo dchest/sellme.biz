@@ -1,61 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="referrer" content="no-referrer">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {{with .Page.description}}<meta name="description" content="{{.}}">{{end}}
-  {{with .Page.keywords}}<meta name="keywords" content="{{.}}">{{end}}
-  <link rel="alternate" type="application/atom+xml" href="http://sellme.biz/feed/" title="Sellme.biz Feed">
-  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="/favicon.ico?v=1" />
-  <title>{{with .Page.seo_title}}{{.}}{{else}}{{.Page.title}} - {{.Site.Name}}{{if .Page.is_post}}{{end}}{{end}}</title>
-  <link rel="stylesheet" type="text/css" href="{{asset "global-css"}}">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="referrer" content="no-referrer">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> {{with .Page.description}}
+	<meta name="description" content="{{.}}">{{end}} {{with .Page.keywords}}
+	<meta name="keywords" content="{{.}}">{{end}}
+	<link rel="alternate" type="application/atom+xml" href="http://sellme.biz/feed/" title="Sellme.biz Feed">
+	<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+	<link rel="shortcut icon" href="/favicon.ico?v=1" />
+	<title>{{with .Page.seo_title}}{{.}}{{else}}{{.Page.title}} - {{.Site.Name}}{{if .Page.is_post}}{{end}}{{end}}</title>
+	<style>{{asset "global-css"}}</style>
 </head>
+
 <body>
-<div id="header-wrapper">
-  <header>
-    <h1><a href="/">{{.Site.Name}}</a></h1>
-    <ul>
-      <li><a href="/about.html">Кто автор?</a></li>
-      <li><a href="/archive/">Архив</a></li>
-      <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=SellMe&amp;loc=ru_RU">Подписка</a></li>
-      <li><a href="{{.Site.Properties.urls.twitter}}">Твиттер</a></li>
-    </ul>
-  </header>
-</div>
-<div class="container">
+	<header id="mh">
+		<nav>
+			<h1><a href="/">{{.Site.Name}}</a></h1>
+			<ul>
+				<li><a href="/about.html">Кто автор?</a></li>
+				<li><a href="/archive/">Архив</a></li>
+				<li><a href="https://feedburner.google.com/fb/a/mailverify?uri=SellMe&amp;loc=ru_RU">Подписка</a></li>
+				<li><a href="{{.Site.Properties.urls.twitter}}">Твиттер</a></li>
+			</ul>
+		</nav>
+	</header>
 
-{{.Content }}
+	<main>
+		{{.Content }}
+	</main>
 
-<footer>
+	<footer id="mf">
+		Мои другие проекты:
 
-Мои другие проекты:
+		<a href="https://www.codingrobots.com/memoires/?utm_source=Sellme.biz&utm_medium=sidebar_link&utm_campaign=Sellme.biz">Mémoires</a>		&#183;
 
-<a href="https://www.codingrobots.com/memoires/?utm_source=Sellme.biz&utm_medium=sidebar_link&utm_campaign=Sellme.biz">Mémoires</a> &#183;
+		<a href="https://www.codingrobots.com/videomemoires/?utm_source=Sellme.biz&utm_medium=sidebar_link&utm_campaign=Sellme.biz">Video Mémoires</a>		&#183;
 
-<a href="https://www.codingrobots.com/videomemoires/?utm_source=Sellme.biz&utm_medium=sidebar_link&utm_campaign=Sellme.biz">Video Mémoires</a> &#183;
+		<a href="https://github.com/dchest">github.com/dchest</a>
 
-<a href="https://github.com/dchest">github.com/dchest</a>
+		<br> &copy; 2005-{{.Site.Date.Format "2006"}} <a rel="author" href="/about.html">{{.Site.Author}}</a> &#183;
+		<a href="/terms.html">Условия и лицензия</a> &#183;
+		<a href="https://github.com/dchest/sellme.biz">Исходники</a> &#183;
+		<a href="/feed/" class="rss">RSS</a> &nbsp;
 
-<br>
-
-&copy; 2005-{{.Site.Date.Format "2006"}} <a rel="author" href="/about.html">{{.Site.Author}}</a>  &#183;
-<a href="/terms.html">Условия и лицензия</a> &#183;
-<a href="https://github.com/dchest/sellme.biz">Исходники</a> &#183;
-<a href="/feed/" class="rss">RSS</a> &nbsp;
-
-
-<br>
-
-<!--
-Адрес сайта в <a href="https://ru.wikipedia.org/wiki/Tor">Торе</a>:
-<span class="tor-link">sellmefmabkgispl.onion</span>
--->
-
-
-</footer>
-</div>
+	</footer>
 </body>
+
 </html>
