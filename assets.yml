@@ -1,7 +1,6 @@
 ---
 - name: global-css
   files:
-    - assets/css/CharisSILCyr.css
     - assets/css/site.css
   filter: cssmin
   outname: /assets/global.:hash.css
