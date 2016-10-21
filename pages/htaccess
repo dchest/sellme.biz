@@ -109,6 +109,8 @@ Header always set X-Content-Type-Options "nosniff"
 
 # Sellme ran on multiple CMS since 2005. We'd like to keep links working.
 # WordPress
+RewriteRule ^old/(.*)$ https://sellme.biz/$1 [R=permanent,L]
+RewriteRule ^([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(.+)?\.html$ https://sellme.biz/$1/$2/$4.html [R=permanent,L]
 RewriteRule ^([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(.+)?$ https://sellme.biz/$1/$2/$4.html [R=permanent,L]
 RewriteRule ^([0-9]{4})/([0-9]{1,2})/(.*)\_(.*)$ https://sellme.biz/$1/$2/$3-$4 [R=permanent,L]
 
