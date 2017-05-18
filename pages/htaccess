@@ -71,7 +71,7 @@ RewriteEngine On
 RewriteRule ^rss\/?$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteRule ^rss\/?(.*)/?$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteCond %{HTTP_USER_AGENT} !FeedBurner
-RewriteRule ^feed\/?(.*)/?$ http://feeds.feedburner.com/SellMe [R=permanent,L]
+RewriteRule ^feed\/(.*)/?$ http://feeds.feedburner.com/SellMe [L]
 RewriteRule ^category\/podcasts\/feed\/?(.*)$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteRule ^wp-rss2.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
 RewriteRule ^wp-atom.php$ http://feeds.feedburner.com/SellMe [R=permanent,L]
