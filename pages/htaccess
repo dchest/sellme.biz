@@ -65,6 +65,8 @@ ErrorDocument 404 /404.html
 
 RewriteEngine On
 
+RewriteRule ^.well-known/(.*)$ - [L]
+
 # RSS Feed: redirect to FeedBurner.
 # Must come before HTTPS redirection, since a lot of feed readers
 # unfortunately can't handle TLS :-(
