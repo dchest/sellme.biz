@@ -14,29 +14,17 @@ The site is built with [kkr](https://github.com/dchest/kkr).
 License
 -------
 
-This website, including the content, images, and design, unless specified, is
-copyright Dmitry Chestnykh. You may use it under the terms of [Creative Commons
-Attribution-NonCommercial-NoDerivatives 4.0 International][cc] license.
-Commercial use rights are available for purchase from the author. Derivative
-works (e.g. if you want to make a song from my post or create a free ebook
-from it) require author's permission, which may be granted without payment.
-If in doubt, ask the author.
+I dedicate the work to the public domain by waiving all of my rights to the work
+worldwide under copyright law, including all related and neighboring rights.
 
-[cc]: http://creativecommons.org/licenses/by-nc-nd/4.0/
-
+You can copy, modify, distribute and perform the work without asking permission.
 
 Лицензия
 --------
 
-Авторские права на содержимое этого сайта, включая статьи, картинки и дизайн,
-если не указано иное, принадлежат Дмитрию Честных. Вы можете использовать
-его по условиям лицензии [Creative Commons Атрибуция — Некоммерческое
-использование — Без производных произведений, версии 4.0 Всемирная][cc_ru].
-Коммерческое использование материалов допускается только с согласия автора,
-которое можно купить, написав ему.  Производные произведения (например, если
-вы хотите положить мой пост на музыку или сделать из него бесплатную книгу)
-допускаются, опять же, с предварительного согласия автора, но не обязательно
-за деньги. В любой непонятной ситуации пишите письма.
+Я передаю произведение в общественное достояние путём отказа от всех своих прав
+на него по всему миру в рамках законодательства об авторских правах, включая все
+связанные и смежные права.
 
-
-[cc_ru]: http://creativecommons.org/licenses/by-nc-nd/4.0/deed.ru
+Вы можете копировать, изменять, распространять и исполнять данное произведение
+в любых целях не спрашивая разрешения.
